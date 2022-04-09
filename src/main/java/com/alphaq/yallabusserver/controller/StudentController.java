@@ -23,9 +23,8 @@ public class StudentController {
         return studentDAO.getAllStudents();
     }
 
-    @GetMapping("/student/get-by-id")
-    @RequestMapping(value = "/student/get-by-id/{studentId}", method = RequestMethod.GET)
-    public Student getStudentById(@PathVariable @NotNull int studentId){
+    @RequestMapping(value = "/student/get-by-id", method = RequestMethod.GET)
+    public Student getStudentById(@RequestParam("id") int studentId){
         StudentDTO studentDTO = new StudentDTO();
         studentDTO.setId(studentId);
         Student student = new Student();
