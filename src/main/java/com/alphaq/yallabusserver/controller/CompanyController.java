@@ -18,12 +18,12 @@ public class CompanyController {
     @Autowired
     private CompanyDAO companyDAO;
 
-    @GetMapping("/Company/get-all")
+    @GetMapping("/company/get-all")
     public List<Company> getAllCompanies() {
         return companyDAO.getAllCompanies();
     }
 
-    @GetMapping("/Company/get-by-id")
+    @GetMapping("/company/get-by-id")
     public Company getAllCompanies(@RequestBody CompanyDTO companyDTO) {
         Company company = new Company();
         company.setId(companyDTO.getId());
@@ -33,7 +33,7 @@ public class CompanyController {
         return company;
     }
 
-    @PostMapping("/Company/save-company")
+    @PostMapping("/company/save-company")
     public Company save(@RequestBody CompanyDTO companyDTO){
         Company company = new Company();
         int count = (int)companyDAO.getCount();
