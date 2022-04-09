@@ -6,11 +6,9 @@ import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.LkTown;
 import com.alphaq.yallabusserver.entity.LkUniversity;
 import com.alphaq.yallabusserver.entity.Student;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +24,10 @@ public class StudentController {
     }
 
     @GetMapping("/student/get-by-id")
-    public Student getStudentById(@RequestBody StudentDTO studentDTO){
+    @RequestMapping(value = "/student/get-by-id/{studentId}", method = RequestMethod.GET)
+    public Student getStudentById(@PathVariable @NotNull int studentId){
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setId(studentId);
         Student student = new Student();
         student.setId(studentDTO.getId());
         Optional<Student> optional = studentDAO.getStudentById(student);
