@@ -22,12 +22,12 @@ public class LkUniversityController {
     @Autowired
     private CompanyDAO companyDAO;
 
-    @GetMapping("/LkUniversity/get-all")
+    @GetMapping("/lkUniversity/get-all")
     public List<LkUniversity> getAllLkUniversities(){
         return lkUniversityDAO.getAllLkUniversities();
     }
 
-    @GetMapping("/LkUniversity/get-by-id")
+    @GetMapping("/lkUniversity/get-by-id")
     public LkUniversity getUniversityById(@RequestBody LkUniversityDTO lkUniversityDTO){
         LkUniversity lkUniversity = new LkUniversity();
         lkUniversity.setId(lkUniversityDTO.getId());
@@ -37,7 +37,7 @@ public class LkUniversityController {
         return lkUniversity;
     }
 
-    @PostMapping("/LkUniversity/save-lk-university")
+    @PostMapping("/lkUniversity/save-lk-university")
     public LkUniversity save(@RequestBody LkUniversityDTO lkUniversityDTO){
         LkUniversity lkUniversity = new LkUniversity();
         int count = lkUniversityDAO.getCount();

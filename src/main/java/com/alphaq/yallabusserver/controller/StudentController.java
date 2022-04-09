@@ -20,12 +20,12 @@ public class StudentController {
     @Autowired
     private StudentDAO studentDAO;
 
-    @GetMapping("/Student/get-all")
+    @GetMapping("/student/get-all")
     public List<Student> getAllStudents(){
         return studentDAO.getAllStudents();
     }
 
-    @GetMapping("/Student/get-by-id")
+    @GetMapping("/student/get-by-id")
     public Student getStudentById(@RequestBody StudentDTO studentDTO){
         Student student = new Student();
         student.setId(studentDTO.getId());
@@ -35,7 +35,7 @@ public class StudentController {
         return student;
     }
 
-    @PostMapping("/Student/save-student")
+    @PostMapping("/student/save-student")
     public Student save(@RequestBody StudentDTO studentDTO){
         Student student = new Student();
         Company company = new Company();

@@ -19,12 +19,12 @@ public class LkTownController {
     @Autowired
     private CompanyDAO companyDAO;
 
-    @GetMapping("/LkTown/get-all")
+    @GetMapping("/lkTown/get-all")
     public List<LkTown> getAllLkTowns() {
         return lkTownDAO.getAllLkTowns();
     }
 
-    @GetMapping("/LkTown/get-by-id")
+    @GetMapping("/lkTown/get-by-id")
     public LkTown getTownById(@RequestBody LkTownDTO lkTownDTO) {
         LkTown lkTown = new LkTown();
         lkTown.setId(lkTownDTO.getId());
@@ -34,7 +34,7 @@ public class LkTownController {
         return lkTown;
     }
 
-    @PostMapping("/LkTown/save-lk-town")
+    @PostMapping("/lkTown/save-lk-town")
     public LkTown save(@RequestBody LkTownDTO lkTownDTO) {
         LkTown lkTown = new LkTown();
         int count = lkTownDAO.getCount();

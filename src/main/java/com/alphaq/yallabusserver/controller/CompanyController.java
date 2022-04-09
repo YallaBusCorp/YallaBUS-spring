@@ -1,8 +1,8 @@
 package com.alphaq.yallabusserver.controller;
 
+import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.dao.CompanyDAO;
 import com.alphaq.yallabusserver.dto.CompanyDTO;
-import com.alphaq.yallabusserver.entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
