@@ -24,6 +24,11 @@ public class LkUniversityController {
         return lkUniversityDAO.getAllLkUniversities();
     }
 
+    @RequestMapping(value = "/lkUniversity/get-by-company-id", method = RequestMethod.GET)
+    public List<LkUniversity> getAllLkUniversitiesInCompany(@RequestParam("id") int companyId){
+        return lkUniversityDAO.getAllLkUniversitiesInCompany(companyId);
+    }
+
     @RequestMapping(value = "/lkUniversity/get-by-id", method = RequestMethod.GET)
     public LkUniversity getUniversityById(@RequestParam("id") int universityId){
         LkUniversityDTO lkUniversityDTO = new LkUniversityDTO();

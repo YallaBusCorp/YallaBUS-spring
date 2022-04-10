@@ -24,6 +24,11 @@ public class LkTownController {
         return lkTownDAO.getAllLkTowns();
     }
 
+    @RequestMapping(value = "/lkTown/get-by-company-id", method = RequestMethod.GET)
+    public List<LkTown> getAllLkTownsInCompany(@RequestParam("id") int companyId){
+        return lkTownDAO.getAllLkTownsInCompany(companyId);
+    }
+
     @RequestMapping(value = "/lkTown/get-by-id", method = RequestMethod.GET)
     public LkTown getTownById(@RequestParam("id") int townId) {
         LkTownDTO lkTownDTO = new LkTownDTO();
