@@ -52,6 +52,7 @@ public class StudentController {
         student.getCompany().setId(studentDTO.getCompany().getId());
         student.getTown().setId(studentDTO.getTown().getId());
         student.getUniversity().setId(studentDTO.getUniversity().getId());
+        student.setCode(studentDTO.getCode());
         return studentDAO.save(student);
     }
 

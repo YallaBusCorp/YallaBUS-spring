@@ -1,8 +1,5 @@
 package com.alphaq.yallabusserver.entity;
 
-import com.alphaq.yallabusserver.entity.LkTown;
-import com.alphaq.yallabusserver.entity.LkUniversity;
-import com.alphaq.yallabusserver.entity.Student;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -53,6 +50,12 @@ public class Company {
     @Fetch(FetchMode.JOIN)
     private Set<LkUniversity> lkUniversities = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "company")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<Employee> employees = new LinkedHashSet<>();
+
+
     public Set<LkUniversity> getLkUniversities() {
         return lkUniversities;
     }
@@ -67,6 +70,14 @@ public class Company {
 
     public void setLkTowns(Set<LkTown> lkTowns) {
         this.lkTowns = lkTowns;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     public Set<Student> getStudents() {

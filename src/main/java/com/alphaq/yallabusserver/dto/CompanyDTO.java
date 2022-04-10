@@ -64,4 +64,17 @@ public class CompanyDTO {
     public void setFacebookURL(String facebookURL) {
         this.facebookURL = facebookURL;
     }
+
+    @Override
+    public String toString() {
+        return "CompanyDTO{" +
+                "id=" + id +
+                ", companyName='" + companyName + '\'' +
+                ", companyPhone='" + companyPhone + '\'' +
+                ", description='" + description + '\'' +
+                ", companyLocation='" + companyLocation + '\'' +
+                ", imgURL='" + imgURL + '\'' +
+                ", facebookURL='" + facebookURL + '\'' +
+                '}';
+    }
 }

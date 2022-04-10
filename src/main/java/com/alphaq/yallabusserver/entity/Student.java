@@ -16,6 +16,9 @@ public class Student {
     @Column(name = "std_id", nullable = false)
     private Integer id;
 
+    @Column(name = "std_code", nullable = false, unique = true)
+    private String code;
+
     @Column(name = "std_name", nullable = false)
     private String stdName;
 
@@ -40,10 +43,10 @@ public class Student {
     @Fetch(FetchMode.JOIN)
     private Company company;
 
-    @Column(name = "end_subscription_date", nullable = false)
+    @Column(name = "end_subscription_date", nullable = true)
     private LocalDate endSubscriptionDate;
 
-    @Column(name = "is_subscribed", nullable = false)
+    @Column(name = "is_subscribed", nullable = true)
     private Boolean isSubscribed = false;
 
     public Boolean getIsSubscribed() {
@@ -102,6 +105,22 @@ public class Student {
         this.stdName = stdName;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Boolean getSubscribed() {
+        return isSubscribed;
+    }
+
+    public void setSubscribed(Boolean subscribed) {
+        isSubscribed = subscribed;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -110,12 +129,16 @@ public class Student {
         this.id = id;
     }
 
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
+                ", code='" + code + '\'' +
                 ", stdName='" + stdName + '\'' +
                 ", stdPhone='" + stdPhone + '\'' +
+                ", endSubscriptionDate=" + endSubscriptionDate +
+                ", isSubscribed=" + isSubscribed +
                 '}';
     }
 }

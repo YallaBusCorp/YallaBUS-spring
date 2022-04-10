@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class StudentDTO {
     private Integer id;
+    private String code;
     private String stdName;
     private String stdPhone;
     private LkTownDTO town;
@@ -19,6 +20,14 @@ public class StudentDTO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getStdName() {
@@ -75,5 +84,28 @@ public class StudentDTO {
 
     public void setIsSubscribed(Boolean subscribed) {
         isSubscribed = subscribed;
+    }
+
+    public Boolean getSubscribed() {
+        return isSubscribed;
+    }
+
+    public void setSubscribed(Boolean subscribed) {
+        isSubscribed = subscribed;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDTO{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", stdName='" + stdName + '\'' +
+                ", stdPhone='" + stdPhone + '\'' +
+                ", town=" + town +
+                ", university=" + university +
+                ", company=" + company +
+                ", endSubscriptionDate=" + endSubscriptionDate +
+                ", isSubscribed=" + isSubscribed +
+                '}';
     }
 }

@@ -28,4 +28,13 @@ public class LkTownDTO {
     public void setCompany(CompanyDTO company) {
         this.company = company;
     }
+
+    @Override
+    public String toString() {
+        return "LkTownDTO{" +
+                "id=" + id +
+                ", townName='" + townName + '\'' +
+                ", company=" + company +
+                '}';
+    }
 }

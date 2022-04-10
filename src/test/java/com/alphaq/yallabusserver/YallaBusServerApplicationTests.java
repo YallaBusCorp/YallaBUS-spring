@@ -8,6 +8,7 @@ import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.LkTown;
 import com.alphaq.yallabusserver.entity.LkUniversity;
 import com.alphaq.yallabusserver.entity.Student;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -140,5 +141,7 @@ class YallaBusServerApplicationTests {
         List<Student> students = studentDAO.getAllStudents();
         System.out.println(students);
     }
+
+
 
 }

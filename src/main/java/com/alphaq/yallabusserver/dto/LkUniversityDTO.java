@@ -28,4 +28,13 @@ public class LkUniversityDTO {
     public void setCompany(CompanyDTO company) {
         this.company = company;
     }
+
+    @Override
+    public String toString() {
+        return "LkUniversityDTO{" +
+                "id=" + id +
+                ", universityName='" + universityName + '\'' +
+                ", company=" + company +
+                '}';
+    }
 }
