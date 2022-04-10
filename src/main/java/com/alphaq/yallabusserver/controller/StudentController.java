@@ -6,7 +6,6 @@ import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.LkTown;
 import com.alphaq.yallabusserver.entity.LkUniversity;
 import com.alphaq.yallabusserver.entity.Student;
-import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

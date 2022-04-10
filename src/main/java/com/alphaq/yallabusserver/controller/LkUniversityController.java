@@ -6,10 +6,7 @@ import com.alphaq.yallabusserver.dto.LkUniversityDTO;
 import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.LkUniversity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +24,10 @@ public class LkUniversityController {
         return lkUniversityDAO.getAllLkUniversities();
     }
 
-    @GetMapping("/lkUniversity/get-by-id")
-    public LkUniversity getUniversityById(@RequestBody LkUniversityDTO lkUniversityDTO){
+    @RequestMapping(value = "/lkUniversity/get-by-id", method = RequestMethod.GET)
+    public LkUniversity getUniversityById(@RequestParam("id") int universityId){
+        LkUniversityDTO lkUniversityDTO = new LkUniversityDTO();
+        lkUniversityDTO.setId(universityId);
         LkUniversity lkUniversity = new LkUniversity();
         lkUniversity.setId(lkUniversityDTO.getId());
         Optional<LkUniversity> optional = lkUniversityDAO.getLkUniversityById(lkUniversity);

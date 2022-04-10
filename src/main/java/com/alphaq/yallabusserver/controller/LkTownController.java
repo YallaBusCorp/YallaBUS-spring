@@ -24,8 +24,10 @@ public class LkTownController {
         return lkTownDAO.getAllLkTowns();
     }
 
-    @GetMapping("/lkTown/get-by-id")
-    public LkTown getTownById(@RequestBody LkTownDTO lkTownDTO) {
+    @RequestMapping(value = "/lkTown/get-by-id", method = RequestMethod.GET)
+    public LkTown getTownById(@RequestParam("id") int townId) {
+        LkTownDTO lkTownDTO = new LkTownDTO();
+        lkTownDTO.setId(townId);
         LkTown lkTown = new LkTown();
         lkTown.setId(lkTownDTO.getId());
         Optional<LkTown> optional = lkTownDAO.getLKTownById(lkTown);

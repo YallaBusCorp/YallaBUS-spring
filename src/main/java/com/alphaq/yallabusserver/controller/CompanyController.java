@@ -4,10 +4,7 @@ import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.dao.CompanyDAO;
 import com.alphaq.yallabusserver.dto.CompanyDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +20,10 @@ public class CompanyController {
         return companyDAO.getAllCompanies();
     }
 
-    @GetMapping("/company/get-by-id")
-    public Company getAllCompanies(@RequestBody CompanyDTO companyDTO) {
+    @RequestMapping(value = "/company/get-by-id", method = RequestMethod.GET)
+    public Company getAllCompanies(@RequestParam("id") int companyId) {
+        CompanyDTO companyDTO = new CompanyDTO();
+        companyDTO.setId(companyId);
         Company company = new Company();
         company.setId(companyDTO.getId());
         Optional< Company > optional = companyDAO.getCompanyById(company);
