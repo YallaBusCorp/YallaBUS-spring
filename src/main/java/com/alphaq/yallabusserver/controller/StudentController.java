@@ -24,10 +24,8 @@ public class StudentController {
 
     @RequestMapping(value = "/student/get-by-id", method = RequestMethod.GET)
     public Student getStudentById(@RequestParam("id") int studentId){
-        StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setId(studentId);
         Student student = new Student();
-        student.setId(studentDTO.getId());
+        student.setId(studentId);
         Optional<Student> optional = studentDAO.getStudentById(student);
         if (optional.isPresent())
             student = optional.get();

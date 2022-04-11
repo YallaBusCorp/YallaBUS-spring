@@ -22,10 +22,8 @@ public class CompanyController {
 
     @RequestMapping(value = "/company/get-by-id", method = RequestMethod.GET)
     public Company getAllCompanies(@RequestParam("id") int companyId) {
-        CompanyDTO companyDTO = new CompanyDTO();
-        companyDTO.setId(companyId);
         Company company = new Company();
-        company.setId(companyDTO.getId());
+        company.setId(companyId);
         Optional< Company > optional = companyDAO.getCompanyById(company);
         if (optional.isPresent())
             company = optional.get();

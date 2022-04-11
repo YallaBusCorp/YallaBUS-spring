@@ -31,10 +31,8 @@ public class LkTownController {
 
     @RequestMapping(value = "/lkTown/get-by-id", method = RequestMethod.GET)
     public LkTown getTownById(@RequestParam("id") int townId) {
-        LkTownDTO lkTownDTO = new LkTownDTO();
-        lkTownDTO.setId(townId);
         LkTown lkTown = new LkTown();
-        lkTown.setId(lkTownDTO.getId());
+        lkTown.setId(townId);
         Optional<LkTown> optional = lkTownDAO.getLKTownById(lkTown);
         if (optional.isPresent())
             lkTown = optional.get();
