@@ -55,6 +55,18 @@ public class Company {
     @Fetch(FetchMode.JOIN)
     private Set<Employee> employees = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "company")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<SubscriptionPrice> subscriptionPrices = new LinkedHashSet<>();
+
+    public Set<SubscriptionPrice> getSubscriptionPrices() {
+        return subscriptionPrices;
+    }
+
+    public void setSubscriptionPrices(Set<SubscriptionPrice> subscriptionPrices) {
+        this.subscriptionPrices = subscriptionPrices;
+    }
 
     public Set<LkUniversity> getLkUniversities() {
         return lkUniversities;
