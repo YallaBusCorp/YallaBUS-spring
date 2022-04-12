@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class CompanyController {
@@ -22,21 +21,15 @@ public class CompanyController {
 
     @RequestMapping(value = "/company/get-by-id", method = RequestMethod.GET)
     public Company getAllCompanies(@RequestParam("id") int companyId) {
-        Company company = new Company();
-        company.setId(companyId);
-        Optional< Company > optional = companyDAO.getCompanyById(company);
-        if (optional.isPresent())
-            company = optional.get();
-        return company;
+        return companyDAO.getCompanyById(companyId);
     }
 
     @PostMapping("/company/save-company")
-    public Company save(@RequestBody CompanyDTO companyDTO){
+    public Company save(@RequestBody CompanyDTO companyDTO) {
         Company company = new Company();
         company.setCompanyName(companyDTO.getCompanyName());
         return companyDAO.save(company);
     }
-
 
 
 }

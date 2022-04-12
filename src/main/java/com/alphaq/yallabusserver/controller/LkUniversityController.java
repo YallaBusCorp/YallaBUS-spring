@@ -43,11 +43,7 @@ public class LkUniversityController {
     public LkUniversity save(@RequestBody LkUniversityDTO lkUniversityDTO){
         LkUniversity lkUniversity = new LkUniversity();
         lkUniversity.setUniversityName(lkUniversityDTO.getUniversityName());
-        Company company = new Company();
-        company.setId(lkUniversityDTO.getCompany().getId());
-        Optional< Company > optional = companyDAO.getCompanyById(company);
-        if (optional.isPresent())
-            company = optional.get();
+        Company company = companyDAO.getCompanyById(lkUniversityDTO.getCompany().getId());
         lkUniversity.setCompany(company);
         return lkUniversityDAO.save(lkUniversity);
     }

@@ -52,14 +52,11 @@ public class StudentController {
     @PostMapping("/student/save-student")
     public Student save(@RequestBody StudentDTO studentDTO){
         Student student = new Student();
-        Company company = new Company();
+        Company company = companyDAO.getCompanyById(studentDTO.getCompany().getId());
         LkTown lkTown = new LkTown();
         LkUniversity lkUniversity = new LkUniversity();
-
-        company.setId(studentDTO.getCompany().getId());
-        Optional< Company > optionalCompany = companyDAO.getCompanyById(company);
-        if (optionalCompany.isPresent())
-            student.setCompany(optionalCompany.get());
+        
+        student.setCompany(company);
 
         lkTown.setId(studentDTO.getTown().getId());
         Optional<LkTown> optionalLkTown = lkTownDAO.getLKTownById(lkTown);

@@ -43,11 +43,7 @@ public class LkTownController {
     public LkTown save(@RequestBody LkTownDTO lkTownDTO) {
         LkTown lkTown = new LkTown();
         lkTown.setTownName(lkTownDTO.getTownName());
-        Company company = new Company();
-        company.setId(lkTownDTO.getCompany().getId());
-        Optional< Company > optional = companyDAO.getCompanyById(company);
-        if (optional.isPresent())
-            company = optional.get();
+        Company company = companyDAO.getCompanyById(lkTownDTO.getCompany().getId());
         lkTown.setCompany(company);
         return lkTownDAO.save(lkTown);
     }

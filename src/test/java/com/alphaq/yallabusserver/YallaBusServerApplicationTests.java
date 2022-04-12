@@ -85,9 +85,7 @@ class YallaBusServerApplicationTests {
         LkUniversity lkUniversity = new LkUniversity();
         Company company = new Company();
         company.setId(company_id);
-        Optional< Company > optional = companyDAO.getCompanyById(company);
-        if (optional.isPresent())
-            company = optional.get();
+        company = companyDAO.getCompanyById(company_id);
         lkUniversity.setCompany(company);
         lkUniversity.setUniversityName("النيل");
         lkUniversityDAO.save(lkUniversity);
