@@ -34,6 +34,11 @@ public class StudentController {
         return studentDAO.getAllStudents();
     }
 
+    @RequestMapping(value = "/student/get-by-company-id", method = RequestMethod.GET)
+    public List<Student> getStudentsByCompanyId(@RequestParam("id") int companyId){
+        return studentDAO.getStudentsByCompanyId(companyId);
+    }
+
     @RequestMapping(value = "/student/get-by-id", method = RequestMethod.GET)
     public Student getStudentById(@RequestParam("id") int studentId){
         Student student = new Student();
