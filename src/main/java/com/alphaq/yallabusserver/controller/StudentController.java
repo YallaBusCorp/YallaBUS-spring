@@ -41,12 +41,7 @@ public class StudentController {
 
     @RequestMapping(value = "/student/get-by-id", method = RequestMethod.GET)
     public Student getStudentById(@RequestParam("id") int studentId){
-        Student student = new Student();
-        student.setId(studentId);
-        Optional<Student> optional = studentDAO.getStudentById(student);
-        if (optional.isPresent())
-            student = optional.get();
-        return student;
+        return studentDAO.getStudentById(studentId);
     }
 
     @PostMapping("/student/save-student")

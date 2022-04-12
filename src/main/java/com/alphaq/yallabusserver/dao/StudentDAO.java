@@ -30,8 +30,8 @@ public class StudentDAO {
         return students;
     }
 
-    public Optional<Student> getStudentById(Student student) {
-        return repository.findById(student.getId());
+    public Student getStudentById(int studentId) {
+        return repository.findStudentsById(studentId);
     }
 
     public List<Student> getStudentsByCompanyId(int companyId) {
