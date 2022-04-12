@@ -55,7 +55,7 @@ public class StudentController {
         Company company = companyDAO.getCompanyById(studentDTO.getCompany().getId());
         LkTown lkTown = new LkTown();
         LkUniversity lkUniversity = new LkUniversity();
-        
+
         student.setCompany(company);
 
         lkTown.setId(studentDTO.getTown().getId());
