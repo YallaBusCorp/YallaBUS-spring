@@ -58,12 +58,12 @@ public class StudentController {
 
         lkTown.setId(studentDTO.getTown().getId());
         Optional<LkTown> optionalLkTown = lkTownDAO.getLKTownById(lkTown);
-        if(optionalLkTown.isPresent())
+        if(optionalLkTown.isPresent()&&lkTownDAO.getLKTownByIdAndCompanyId(optionalLkTown.get(),company.getId())!=null)
             student.setTown(optionalLkTown.get());
 
         lkUniversity.setId(studentDTO.getUniversity().getId());
         Optional<LkUniversity> optionalLkUniversity = lkUniversityDAO.getLkUniversityById(lkUniversity);
-        if(optionalLkUniversity.isPresent())
+        if(optionalLkUniversity.isPresent()&&lkUniversityDAO.getLkUniversityByIdAndCompanyId(optionalLkUniversity.get(),company.getId())!=null)
             student.setUniversity(optionalLkUniversity.get());
 
         student.setStdName(studentDTO.getStdName());
