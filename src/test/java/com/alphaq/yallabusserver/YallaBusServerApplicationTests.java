@@ -71,6 +71,15 @@ class YallaBusServerApplicationTests {
     }
 
     //@Test
+    void getTownByTownIdAndCompanyId(){
+        LkTown lkTown = new LkTown();
+        lkTown.setId(4);
+        lkTown = lkTownDAO.getLKTownByIdAndCompanyId(lkTown,1);
+        System.out.println(lkTown);
+
+    }
+
+    //@Test
     void addLkUniversity() {
         int company_id = 2;
         LkUniversity lkUniversity = new LkUniversity();
@@ -88,6 +97,15 @@ class YallaBusServerApplicationTests {
     void getAllLkUniversities() {
         List<LkUniversity> lkUniversities = lkUniversityDAO.getAllLkUniversities();
         System.out.println(lkUniversities);
+    }
+
+    //@Test
+    void getUniversityByUniversityIdAndCompanyId(){
+        LkUniversity lkUniversity = new LkUniversity();
+        lkUniversity.setId(4);
+        lkUniversity = lkUniversityDAO.getLkUniversityByIdAndCompanyId(lkUniversity,2);
+        System.out.println(lkUniversity);
+
     }
 
     //@Test

@@ -36,6 +36,12 @@ public class LkUniversityDAO {
         return lkUniversities;
     }
 
+    public LkUniversity getLkUniversityByIdAndCompanyId(LkUniversity lkUniversity, int companyId){
+        LkUniversity university = new LkUniversity();
+        university = repository.findLkUniversityByIdAndCompanyId(lkUniversity.getId(),companyId);
+        return university;
+    }
+
     public Optional<LkUniversity> getLkUniversityById(LkUniversity lkUniversity){
         return repository.findById(lkUniversity.getId());
     }
