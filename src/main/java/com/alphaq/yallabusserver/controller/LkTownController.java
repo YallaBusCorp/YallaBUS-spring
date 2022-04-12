@@ -42,17 +42,12 @@ public class LkTownController {
     @PostMapping("/lkTown/save-lk-town")
     public LkTown save(@RequestBody LkTownDTO lkTownDTO) {
         LkTown lkTown = new LkTown();
-        int count = lkTownDAO.getCount();
-        lkTown.setId(++count);
         lkTown.setTownName(lkTownDTO.getTownName());
         Company company = new Company();
-        List<Company> companies = companyDAO.getAllCompanies();
-        for (Company element : companies) {
-            if (element.getId() == lkTownDTO.getCompany().getId()) {
-                company = element;
-                break;
-            }
-        }
+        company.setId(lkTownDTO.getCompany().getId());
+        Optional< Company > optional = companyDAO.getCompanyById(company);
+        if (optional.isPresent())
+            company = optional.get();
         lkTown.setCompany(company);
         return lkTownDAO.save(lkTown);
     }

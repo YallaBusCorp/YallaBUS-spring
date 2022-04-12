@@ -13,6 +13,7 @@ import java.time.LocalDate;
 })
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "std_id", nullable = false)
     private Integer id;
 

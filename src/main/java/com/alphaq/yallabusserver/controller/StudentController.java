@@ -1,5 +1,8 @@
 package com.alphaq.yallabusserver.controller;
 
+import com.alphaq.yallabusserver.dao.CompanyDAO;
+import com.alphaq.yallabusserver.dao.LkTownDAO;
+import com.alphaq.yallabusserver.dao.LkUniversityDAO;
 import com.alphaq.yallabusserver.dao.StudentDAO;
 import com.alphaq.yallabusserver.dto.StudentDTO;
 import com.alphaq.yallabusserver.entity.Company;
@@ -16,6 +19,15 @@ import java.util.Optional;
 public class StudentController {
     @Autowired
     private StudentDAO studentDAO;
+
+    @Autowired
+    private CompanyDAO companyDAO;
+
+    @Autowired
+    private LkUniversityDAO lkUniversityDAO;
+
+    @Autowired
+    private LkTownDAO lkTownDAO;
 
     @GetMapping("/student/get-all")
     public List<Student> getAllStudents(){
@@ -38,18 +50,26 @@ public class StudentController {
         Company company = new Company();
         LkTown lkTown = new LkTown();
         LkUniversity lkUniversity = new LkUniversity();
-        student.setCompany(company);
-        student.setTown(lkTown);
-        student.setUniversity(lkUniversity);
-        int count = studentDAO.getCount();
-        student.setId(++count);
+
+        company.setId(studentDTO.getCompany().getId());
+        Optional< Company > optionalCompany = companyDAO.getCompanyById(company);
+        if (optionalCompany.isPresent())
+            student.setCompany(optionalCompany.get());
+
+        lkTown.setId(studentDTO.getTown().getId());
+        Optional<LkTown> optionalLkTown = lkTownDAO.getLKTownById(lkTown);
+        if(optionalLkTown.isPresent())
+            student.setTown(optionalLkTown.get());
+
+        lkUniversity.setId(studentDTO.getUniversity().getId());
+        Optional<LkUniversity> optionalLkUniversity = lkUniversityDAO.getLkUniversityById(lkUniversity);
+        if(optionalLkUniversity.isPresent())
+            student.setUniversity(optionalLkUniversity.get());
+
         student.setStdName(studentDTO.getStdName());
         student.setStdPhone(studentDTO.getStdPhone());
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
-        student.getCompany().setId(studentDTO.getCompany().getId());
-        student.getTown().setId(studentDTO.getTown().getId());
-        student.getUniversity().setId(studentDTO.getUniversity().getId());
         student.setCode(studentDTO.getCode());
         return studentDAO.save(student);
     }

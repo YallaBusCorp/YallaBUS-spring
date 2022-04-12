@@ -42,19 +42,13 @@ public class LkUniversityController {
     @PostMapping("/lkUniversity/save-lk-university")
     public LkUniversity save(@RequestBody LkUniversityDTO lkUniversityDTO){
         LkUniversity lkUniversity = new LkUniversity();
-        int count = lkUniversityDAO.getCount();
-        lkUniversity.setId(++count);
         lkUniversity.setUniversityName(lkUniversityDTO.getUniversityName());
         Company company = new Company();
-        List<Company> companies = companyDAO.getAllCompanies();
-        for (Company element : companies) {
-            if (element.getId() == lkUniversityDTO.getCompany().getId()) {
-                company = element;
-                break;
-            }
-        }
+        company.setId(lkUniversityDTO.getCompany().getId());
+        Optional< Company > optional = companyDAO.getCompanyById(company);
+        if (optional.isPresent())
+            company = optional.get();
         lkUniversity.setCompany(company);
-
         return lkUniversityDAO.save(lkUniversity);
     }
 

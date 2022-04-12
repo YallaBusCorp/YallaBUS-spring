@@ -15,6 +15,7 @@ import java.util.Set;
 })
 public class LkUniversity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "university_id", nullable = false)
     private Integer id;
 

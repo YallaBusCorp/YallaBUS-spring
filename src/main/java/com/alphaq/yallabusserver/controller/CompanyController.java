@@ -33,8 +33,6 @@ public class CompanyController {
     @PostMapping("/company/save-company")
     public Company save(@RequestBody CompanyDTO companyDTO){
         Company company = new Company();
-        int count = (int)companyDAO.getCount();
-        company.setId(++count);
         company.setCompanyName(companyDTO.getCompanyName());
         return companyDAO.save(company);
     }

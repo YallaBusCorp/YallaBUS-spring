@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class YallaBusServerApplicationTests {
@@ -71,20 +72,15 @@ class YallaBusServerApplicationTests {
 
     //@Test
     void addLkUniversity() {
-        long company_id = 1;
+        int company_id = 2;
         LkUniversity lkUniversity = new LkUniversity();
         Company company = new Company();
-        int count = lkUniversityDAO.getCount();
-        List<Company> companies = companyDAO.getAllCompanies();
-        for (Company element : companies) {
-            if (element.getId() == company_id) {
-                company = element;
-                break;
-            }
-        }
-        lkUniversity.setId(++count);
+        company.setId(company_id);
+        Optional< Company > optional = companyDAO.getCompanyById(company);
+        if (optional.isPresent())
+            company = optional.get();
         lkUniversity.setCompany(company);
-        lkUniversity.setUniversityName("المنصورة");
+        lkUniversity.setUniversityName("النيل");
         lkUniversityDAO.save(lkUniversity);
     }
 
