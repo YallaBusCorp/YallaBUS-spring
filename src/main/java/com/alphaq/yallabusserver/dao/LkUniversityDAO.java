@@ -26,14 +26,8 @@ public class LkUniversityDAO {
         return lkUniversities;
     }
 
-    public List<LkUniversity> getAllLkUniversitiesInCompany(int companyId){
-        List<LkUniversity> lkUniversities = new ArrayList<>();
-        Streamable.of(repository.findAll())
-                .forEach(lkUniversity -> {
-                    if (lkUniversity.getCompany().getId()==companyId)
-                        lkUniversities.add(lkUniversity);
-                });
-        return lkUniversities;
+    public List<LkUniversity> getLkUniversitiesByCompanyId(int companyId){
+        return repository.findLkUniversitiesByCompanyId(companyId);
     }
 
     public LkUniversity getLkUniversityByIdAndCompanyId(LkUniversity lkUniversity, int companyId){

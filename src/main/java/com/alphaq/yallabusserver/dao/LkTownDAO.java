@@ -26,14 +26,8 @@ public class LkTownDAO {
         return lkTowns;
     }
 
-    public List<LkTown> getAllLkTownsInCompany(int companyId) {
-        List<LkTown> lkTowns = new ArrayList<>();
-        Streamable.of(repository.findAll())
-                .forEach(lkTown -> {
-                    if (lkTown.getCompany().getId() == companyId)
-                        lkTowns.add(lkTown);
-                });
-        return lkTowns;
+    public List<LkTown> findLkTownsByCompanyId(int companyId) {
+        return repository.findLkTownsByCompanyId(companyId);
     }
 
     public LkTown getLKTownByIdAndCompanyId(LkTown lkTown, int companyId) {

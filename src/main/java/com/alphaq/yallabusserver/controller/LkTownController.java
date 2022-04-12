@@ -25,8 +25,8 @@ public class LkTownController {
     }
 
     @RequestMapping(value = "/lkTown/get-by-company-id", method = RequestMethod.GET)
-    public List<LkTown> getAllLkTownsInCompany(@RequestParam("id") int companyId){
-        return lkTownDAO.getAllLkTownsInCompany(companyId);
+    public List<LkTown> findLkTownsByCompanyId(@RequestParam("id") int companyId){
+        return lkTownDAO.findLkTownsByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/lkTown/get-by-id", method = RequestMethod.GET)
