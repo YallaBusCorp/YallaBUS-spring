@@ -15,32 +15,30 @@ public class LkUniversityDAO {
     @Autowired
     private LkUniversityRepository repository;
 
-    public LkUniversity save(LkUniversity lkUniversity){
+    public LkUniversity save(LkUniversity lkUniversity) {
         return repository.save(lkUniversity);
     }
 
-    public List<LkUniversity> getAllLkUniversities(){
+    public List<LkUniversity> getAllLkUniversities() {
         List<LkUniversity> lkUniversities = new ArrayList<>();
         Streamable.of(repository.findAll())
                 .forEach(lkUniversities::add);
         return lkUniversities;
     }
 
-    public List<LkUniversity> getLkUniversitiesByCompanyId(int companyId){
+    public List<LkUniversity> getLkUniversitiesByCompanyId(int companyId) {
         return repository.findLkUniversitiesByCompanyId(companyId);
     }
 
-    public LkUniversity getLkUniversityByIdAndCompanyId(LkUniversity lkUniversity, int companyId){
-        LkUniversity university = new LkUniversity();
-        university = repository.findLkUniversityByIdAndCompanyId(lkUniversity.getId(),companyId);
-        return university;
+    public LkUniversity checkExistenceUniversityInCompany(LkUniversity lkUniversity, int companyId) {
+        return repository.findLkUniversityByIdAndCompanyId(lkUniversity.getId(), companyId);
     }
 
-    public LkUniversity getLkUniversityById(int UniversityId){
+    public LkUniversity getLkUniversityById(int UniversityId) {
         return repository.findLkUniversityById(UniversityId);
     }
 
-    public int getCount(){
+    public int getCount() {
         return (int) repository.count();
     }
 }

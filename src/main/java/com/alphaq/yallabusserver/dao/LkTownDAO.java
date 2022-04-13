@@ -30,10 +30,8 @@ public class LkTownDAO {
         return repository.findLkTownsByCompanyId(companyId);
     }
 
-    public LkTown getLKTownByIdAndCompanyId(LkTown lkTown, int companyId) {
-        LkTown town = new LkTown();
-        town = repository.findLKTownByIdAndCompanyId(lkTown.getId(),companyId);
-        return town;
+    public LkTown checkExistenceTownInCompany(LkTown lkTown, int companyId) {
+        return repository.findLKTownByIdAndCompanyId(lkTown.getId(), companyId);
     }
 
     public LkTown getLKTownById(int townId) {
