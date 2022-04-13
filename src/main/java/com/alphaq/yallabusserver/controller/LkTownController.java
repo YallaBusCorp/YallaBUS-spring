@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "https://yalla-bus.herokuapp.com/", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 public class LkTownController {
 
