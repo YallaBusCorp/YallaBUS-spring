@@ -26,7 +26,7 @@ public class CompanyDAO {
     }
 
     public Company getCompanyById(int companyId){
-        return repository.findById(companyId);
+        return repository.findCompanyById(companyId);
     }
 
     public long getCount(){

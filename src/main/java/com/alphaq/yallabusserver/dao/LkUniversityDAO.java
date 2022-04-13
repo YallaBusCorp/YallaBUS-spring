@@ -36,8 +36,8 @@ public class LkUniversityDAO {
         return university;
     }
 
-    public Optional<LkUniversity> getLkUniversityById(LkUniversity lkUniversity){
-        return repository.findById(lkUniversity.getId());
+    public LkUniversity getLkUniversityById(int UniversityId){
+        return repository.findLkUniversityById(UniversityId);
     }
 
     public int getCount(){

@@ -30,36 +30,34 @@ public class StudentController {
     private LkTownDAO lkTownDAO;
 
     @GetMapping("/student/get-all")
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return studentDAO.getAllStudents();
     }
 
     @RequestMapping(value = "/student/get-by-company-id", method = RequestMethod.GET)
-    public List<Student> getStudentsByCompanyId(@RequestParam("id") int companyId){
+    public List<Student> getStudentsByCompanyId(@RequestParam("id") int companyId) {
         return studentDAO.getStudentsByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/student/get-by-id", method = RequestMethod.GET)
-    public Student getStudentById(@RequestParam("id") int studentId){
+    public Student getStudentById(@RequestParam("id") int studentId) {
         return studentDAO.getStudentById(studentId);
     }
 
     @PostMapping("/student/save-student")
-    public Student save(@RequestBody StudentDTO studentDTO){
+    public Student save(@RequestBody StudentDTO studentDTO) {
         Student student = new Student();
         Company company = companyDAO.getCompanyById(studentDTO.getCompany().getId());
         LkTown lkTown = lkTownDAO.getLKTownById(studentDTO.getTown().getId());
-        LkUniversity lkUniversity = new LkUniversity();
+        LkUniversity lkUniversity = lkUniversityDAO.getLkUniversityById(studentDTO.getUniversity().getId());
 
         student.setCompany(company);
 
-        if( lkTown!=null &&lkTownDAO.getLKTownByIdAndCompanyId(lkTown,company.getId())!=null)
+        if (lkTown != null && lkTownDAO.getLKTownByIdAndCompanyId(lkTown, company.getId()) != null)
             student.setTown(lkTown);
 
-        lkUniversity.setId(studentDTO.getUniversity().getId());
-        Optional<LkUniversity> optionalLkUniversity = lkUniversityDAO.getLkUniversityById(lkUniversity);
-        if(optionalLkUniversity.isPresent()&&lkUniversityDAO.getLkUniversityByIdAndCompanyId(optionalLkUniversity.get(),company.getId())!=null)
-            student.setUniversity(optionalLkUniversity.get());
+        if (lkUniversity != null && lkUniversityDAO.getLkUniversityByIdAndCompanyId(lkUniversity, company.getId()) != null)
+            student.setUniversity(lkUniversity);
 
         student.setStdName(studentDTO.getStdName());
         student.setStdPhone(studentDTO.getStdPhone());

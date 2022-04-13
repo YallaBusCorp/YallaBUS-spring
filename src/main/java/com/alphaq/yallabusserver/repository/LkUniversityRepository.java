@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface LkUniversityRepository extends JpaRepository<LkUniversity,Integer> {
+    LkUniversity findLkUniversityById(int universityId);
     LkUniversity findLkUniversityByIdAndCompanyId(int universityId,int companyId);
     List<LkUniversity> findLkUniversitiesByCompanyId(int companyId);
 }

@@ -31,12 +31,7 @@ public class LkUniversityController {
 
     @RequestMapping(value = "/lkUniversity/get-by-id", method = RequestMethod.GET)
     public LkUniversity getUniversityById(@RequestParam("id") int universityId){
-        LkUniversity lkUniversity = new LkUniversity();
-        lkUniversity.setId(universityId);
-        Optional<LkUniversity> optional = lkUniversityDAO.getLkUniversityById(lkUniversity);
-        if (optional.isPresent())
-            lkUniversity = optional.get();
-        return lkUniversity;
+        return lkUniversityDAO.getLkUniversityById(universityId);
     }
 
     @PostMapping("/lkUniversity/save-lk-university")
