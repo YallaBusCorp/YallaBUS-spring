@@ -114,13 +114,6 @@ public class Student {
         this.code = code;
     }
 
-    public Boolean getSubscribed() {
-        return isSubscribed;
-    }
-
-    public void setSubscribed(Boolean subscribed) {
-        isSubscribed = subscribed;
-    }
 
     public Integer getId() {
         return id;
