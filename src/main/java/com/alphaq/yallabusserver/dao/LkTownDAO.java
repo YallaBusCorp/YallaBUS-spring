@@ -36,8 +36,8 @@ public class LkTownDAO {
         return town;
     }
 
-    public Optional<LkTown> getLKTownById(LkTown lkTown) {
-        return repository.findById(lkTown.getId());
+    public LkTown getLKTownById(int townId) {
+        return repository.findById(townId);
     }
 
     public int getCount() {

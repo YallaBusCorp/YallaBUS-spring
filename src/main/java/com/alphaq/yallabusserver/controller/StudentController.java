@@ -48,15 +48,13 @@ public class StudentController {
     public Student save(@RequestBody StudentDTO studentDTO){
         Student student = new Student();
         Company company = companyDAO.getCompanyById(studentDTO.getCompany().getId());
-        LkTown lkTown = new LkTown();
+        LkTown lkTown = lkTownDAO.getLKTownById(studentDTO.getTown().getId());
         LkUniversity lkUniversity = new LkUniversity();
 
         student.setCompany(company);
 
-        lkTown.setId(studentDTO.getTown().getId());
-        Optional<LkTown> optionalLkTown = lkTownDAO.getLKTownById(lkTown);
-        if(optionalLkTown.isPresent()&&lkTownDAO.getLKTownByIdAndCompanyId(optionalLkTown.get(),company.getId())!=null)
-            student.setTown(optionalLkTown.get());
+        if( lkTown!=null &&lkTownDAO.getLKTownByIdAndCompanyId(lkTown,company.getId())!=null)
+            student.setTown(lkTown);
 
         lkUniversity.setId(studentDTO.getUniversity().getId());
         Optional<LkUniversity> optionalLkUniversity = lkUniversityDAO.getLkUniversityById(lkUniversity);

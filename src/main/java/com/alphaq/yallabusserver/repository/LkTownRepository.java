@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface LkTownRepository extends JpaRepository<LkTown,Integer> {
+    LkTown findById(int townId);
     LkTown findLKTownByIdAndCompanyId(int townId,int companyId);
     List<LkTown> findLkTownsByCompanyId(int companyId);
 }
