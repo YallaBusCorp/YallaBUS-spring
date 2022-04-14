@@ -4,6 +4,7 @@ import com.alphaq.yallabusserver.dao.AdminDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+//Hello
 @RestController
 public class AdminController {
 
