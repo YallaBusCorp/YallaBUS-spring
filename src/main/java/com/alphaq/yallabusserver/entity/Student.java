@@ -50,7 +50,7 @@ public class Student {
     @Column(name = "is_subscribed", nullable = true)
     private Boolean isSubscribed = false;
 
-    @Column(name = "is_Active",columnDefinition = "bit(1) DEFAULT 1")
+    @Column(name = "is_Active", nullable = false)
     private Boolean isActive;
 
     public Boolean getActive() {

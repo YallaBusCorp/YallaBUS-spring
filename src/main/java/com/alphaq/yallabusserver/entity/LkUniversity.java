@@ -33,7 +33,7 @@ public class LkUniversity {
     @Fetch(FetchMode.JOIN)
     private Set<Student> students = new LinkedHashSet<>();
 
-    @Column(name = "is_Active",columnDefinition = "bit(1) DEFAULT 1")
+    @Column(name = "is_Active", nullable = false)
     private Boolean isActive;
 
     public Boolean getActive() {
