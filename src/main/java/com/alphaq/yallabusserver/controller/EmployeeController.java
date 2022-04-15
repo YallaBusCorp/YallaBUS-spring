@@ -25,7 +25,7 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @RequestMapping(value = "/get-by-company-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
     public List<Employee> getEmployeesByCompanyId(@RequestParam("id") int companyId) {
         return employeeService.getEmployeesByCompanyId(companyId);
     }

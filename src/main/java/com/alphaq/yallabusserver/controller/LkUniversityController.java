@@ -25,7 +25,7 @@ public class LkUniversityController {
         return lkUniversityService.getAllLkUniversities();
     }
 
-    @RequestMapping(value = "/get-by-company-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
     public List<LkUniversity> getLkUniversitiesByCompanyId(@RequestParam("id") int companyId){
         return lkUniversityService.getLkUniversitiesByCompanyId(companyId);
     }

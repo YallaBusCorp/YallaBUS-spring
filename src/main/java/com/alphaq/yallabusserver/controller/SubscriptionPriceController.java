@@ -25,7 +25,7 @@ public class SubscriptionPriceController {
         return subscriptionPriceService.getAllSubscriptionPrices();
     }
 
-    @RequestMapping(value = "/get-by-company-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
     public List<SubscriptionPrice> getSubscriptionPricesByCompanyId(@RequestParam("id") int companyId) {
         return subscriptionPriceService.getSubscriptionPricesByCompanyId(companyId);
     }
