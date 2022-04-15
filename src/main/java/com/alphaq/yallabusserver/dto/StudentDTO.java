@@ -13,6 +13,7 @@ public class StudentDTO {
     private CompanyDTO company;
     private LocalDate endSubscriptionDate;
     private Boolean isSubscribed;
+    private Boolean isActive;
 
     public Integer getId() {
         return id;
@@ -94,6 +95,14 @@ public class StudentDTO {
         isSubscribed = subscribed;
     }
 
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
     @Override
     public String toString() {
         return "StudentDTO{" +
@@ -106,6 +115,7 @@ public class StudentDTO {
                 ", company=" + company +
                 ", endSubscriptionDate=" + endSubscriptionDate +
                 ", isSubscribed=" + isSubscribed +
+                ", isActive=" + isActive +
                 '}';
     }
 }

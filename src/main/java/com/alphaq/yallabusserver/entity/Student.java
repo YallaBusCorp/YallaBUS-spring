@@ -50,6 +50,17 @@ public class Student {
     @Column(name = "is_subscribed", nullable = true)
     private Boolean isSubscribed = false;
 
+    @Column(name = "is_Active",columnDefinition = "bit(1) DEFAULT 1")
+    private Boolean isActive;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
     public Boolean getIsSubscribed() {
         return isSubscribed;
     }
@@ -133,6 +144,7 @@ public class Student {
                 ", stdPhone='" + stdPhone + '\'' +
                 ", endSubscriptionDate=" + endSubscriptionDate +
                 ", isSubscribed=" + isSubscribed +
+                ", isActive=" + isActive +
                 '}';
     }
 }
