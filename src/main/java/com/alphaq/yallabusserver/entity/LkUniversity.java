@@ -33,6 +33,17 @@ public class LkUniversity {
     @Fetch(FetchMode.JOIN)
     private Set<Student> students = new LinkedHashSet<>();
 
+    @Column(name = "is_Active",columnDefinition = "bit(1) DEFAULT 1")
+    private Boolean isActive;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
     public Set<Student> getStudents() {
         return students;
     }

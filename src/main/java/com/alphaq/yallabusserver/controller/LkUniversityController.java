@@ -26,8 +26,13 @@ public class LkUniversityController {
     }
 
     @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
-    public List<LkUniversity> getLkUniversitiesByCompanyId(@RequestParam("id") int companyId){
-        return lkUniversityService.getLkUniversitiesByCompanyId(companyId);
+    public List<LkUniversity> getAllLkUniversitiesByCompanyId(@RequestParam("id") int companyId){
+        return lkUniversityService.getAllLkUniversitiesByCompanyId(companyId);
+    }
+
+    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
+    public List<LkUniversity> getAllActiveLkUniversitiesByCompanyId(@RequestParam("id") int companyId){
+        return lkUniversityService.getAllActiveLkUniversityByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)

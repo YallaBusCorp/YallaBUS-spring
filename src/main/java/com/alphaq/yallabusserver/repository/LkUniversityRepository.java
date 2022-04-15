@@ -11,4 +11,5 @@ public interface LkUniversityRepository extends JpaRepository<LkUniversity,Integ
     LkUniversity findLkUniversityById(int universityId);
     LkUniversity findLkUniversityByIdAndCompanyId(int universityId,int companyId);
     List<LkUniversity> findLkUniversitiesByCompanyId(int companyId);
+    List<LkUniversity> findLkUniversitiesByCompanyIdAndIsActiveEquals(int companyId,boolean isActive);
 }

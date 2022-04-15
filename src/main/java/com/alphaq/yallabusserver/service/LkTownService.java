@@ -25,8 +25,12 @@ public class LkTownService {
         return lkTowns;
     }
 
-    public List<LkTown> findLkTownsByCompanyId(int companyId) {
+    public List<LkTown> getAllLkTownsByCompanyId(int companyId) {
         return repository.findLkTownsByCompanyId(companyId);
+    }
+
+    public List<LkTown> getAllActiveLkTownsByCompanyId(int companyId){
+        return repository.findLkTownsByCompanyIdAndIsActive(companyId,true);
     }
 
     public LkTown checkExistenceTownInCompany(LkTown lkTown, int companyId) {

@@ -26,8 +26,13 @@ public class LkTownController {
     }
 
     @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
-    public List<LkTown> findLkTownsByCompanyId(@RequestParam("id") int companyId){
-        return lkTownService.findLkTownsByCompanyId(companyId);
+    public List<LkTown> getAllLkTownsByCompanyId(@RequestParam("id") int companyId){
+        return lkTownService.getAllLkTownsByCompanyId(companyId);
+    }
+
+    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
+    public List<LkTown> getAllActiveLkTownsByCompanyId(@RequestParam("id") int companyId){
+        return lkTownService.getAllActiveLkTownsByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)

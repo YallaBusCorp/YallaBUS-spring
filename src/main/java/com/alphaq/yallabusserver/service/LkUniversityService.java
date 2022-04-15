@@ -25,8 +25,12 @@ public class LkUniversityService {
         return lkUniversities;
     }
 
-    public List<LkUniversity> getLkUniversitiesByCompanyId(int companyId) {
+    public List<LkUniversity> getAllLkUniversitiesByCompanyId(int companyId) {
         return repository.findLkUniversitiesByCompanyId(companyId);
+    }
+
+    public List<LkUniversity> getAllActiveLkUniversityByCompanyId(int companyId){
+        return repository.findLkUniversitiesByCompanyIdAndIsActiveEquals(companyId,true);
     }
 
     public LkUniversity checkExistenceUniversityInCompany(LkUniversity lkUniversity, int companyId) {

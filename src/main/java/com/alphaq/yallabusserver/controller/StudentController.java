@@ -37,7 +37,7 @@ public class StudentController {
 
     @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
     public List<Student> getALLStudentsByCompanyId(@RequestParam("id") int companyId) {
-        return studentService.getStudentsByCompanyId(companyId);
+        return studentService.getAllStudentsByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)

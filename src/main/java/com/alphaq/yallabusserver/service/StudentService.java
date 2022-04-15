@@ -29,7 +29,7 @@ public class StudentService {
         return repository.findStudentsById(studentId);
     }
 
-    public List<Student> getStudentsByCompanyId(int companyId) {
+    public List<Student> getAllStudentsByCompanyId(int companyId) {
         return repository.findStudentsByCompanyId(companyId);
     }
 
