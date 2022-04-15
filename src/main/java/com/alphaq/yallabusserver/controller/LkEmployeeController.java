@@ -1,7 +1,7 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.dao.CompanyDAO;
-import com.alphaq.yallabusserver.dao.LkEmployeeDAO;
+import com.alphaq.yallabusserver.service.CompanyService;
+import com.alphaq.yallabusserver.service.LkEmployeeService;
 import com.alphaq.yallabusserver.dto.LkEmployeeDTO;
 import com.alphaq.yallabusserver.entity.LkEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,30 +11,31 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("api/v1/lkEmployee")
 public class LkEmployeeController {
 
     @Autowired
-    private LkEmployeeDAO lkEmployeeDAO;
+    private LkEmployeeService lkEmployeeService;
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyService companyService;
 
-    @GetMapping("/lkEmployee/get-all")
+    @GetMapping
     public List<LkEmployee> getAllLkEmployees() {
-        return lkEmployeeDAO.getAllLkEmployees();
+        return lkEmployeeService.getAllLkEmployees();
     }
 
 
-    @RequestMapping(value = "/lkEmployee/get-by-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public LkEmployee getLkEmployeeById(@RequestParam("id") int lkEmployeeId) {
-        return lkEmployeeDAO.getLkEmployeeById(lkEmployeeId);
+        return lkEmployeeService.getLkEmployeeById(lkEmployeeId);
     }
 
-    @PostMapping("/lkEmployee/save-lkEmployee")
+    @PostMapping("/save-lk-Employee")
     public LkEmployee save(@RequestBody LkEmployeeDTO lkEmployeeDTO) {
         LkEmployee lkEmployee = new LkEmployee();
 
 
-        return lkEmployeeDAO.save(lkEmployee);
+        return lkEmployeeService.save(lkEmployee);
     }
 
 

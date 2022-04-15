@@ -1,4 +1,4 @@
-package com.alphaq.yallabusserver.dao;
+package com.alphaq.yallabusserver.service;
 
 import com.alphaq.yallabusserver.entity.LkTown;
 import com.alphaq.yallabusserver.repository.LkTownRepository;
@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class LkTownDAO {
+public class LkTownService {
     @Autowired
     private LkTownRepository repository;
 

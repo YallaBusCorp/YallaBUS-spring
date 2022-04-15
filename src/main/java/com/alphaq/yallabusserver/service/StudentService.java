@@ -1,21 +1,16 @@
-package com.alphaq.yallabusserver.dao;
+package com.alphaq.yallabusserver.service;
 
-import com.alphaq.yallabusserver.entity.LkTown;
 import com.alphaq.yallabusserver.entity.Student;
 import com.alphaq.yallabusserver.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class StudentDAO {
+public class StudentService {
     @Autowired
     private StudentRepository repository;
 

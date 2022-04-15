@@ -1,4 +1,4 @@
-package com.alphaq.yallabusserver.dao;
+package com.alphaq.yallabusserver.service;
 
 import com.alphaq.yallabusserver.entity.Admin;
 import com.alphaq.yallabusserver.repository.AdminRepository;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AdminDAO {
+public class AdminService {
 
     @Autowired
     private AdminRepository repository;

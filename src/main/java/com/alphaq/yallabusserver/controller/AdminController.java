@@ -1,10 +1,9 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.dao.AdminDAO;
-import com.alphaq.yallabusserver.dao.CompanyDAO;
+import com.alphaq.yallabusserver.service.AdminService;
+import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.dto.AdminDTO;
 import com.alphaq.yallabusserver.entity.Admin;
-import com.alphaq.yallabusserver.entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,27 +11,28 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("api/v1/admin")
 public class AdminController {
 
     @Autowired
-    private AdminDAO adminDAO;
+    private AdminService adminService;
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyService companyService;
 
-    @GetMapping("/admin/get-all")
+    @GetMapping
     public List<Admin> getAllAdmins() {
-        return adminDAO.getAllAdmins();
+        return adminService.getAllAdmins();
     }
 
-    @RequestMapping(value = "/admin/get-by-id", method = RequestMethod.GET)
+    @RequestMapping(value = "get-by-id", method = RequestMethod.GET)
     public Admin getAdminById(@RequestParam("id") int adminId) {
-        return adminDAO.getAdminById(adminId);
+        return adminService.getAdminById(adminId);
     }
 
-    @PostMapping("/admin/save-admin")
+    @PostMapping("save-admin")
     public Admin save(@RequestBody AdminDTO adminDTO) {
         Admin admin = new Admin();
-        return adminDAO.save(admin);
+        return adminService.save(admin);
     }
 
 

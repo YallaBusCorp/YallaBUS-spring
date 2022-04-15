@@ -1,7 +1,7 @@
 package com.alphaq.yallabusserver.controller;
 
 import com.alphaq.yallabusserver.entity.Company;
-import com.alphaq.yallabusserver.dao.CompanyDAO;
+import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.dto.CompanyDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,26 +10,27 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("api/v1/company")
 public class CompanyController {
 
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyService companyService;
 
-    @GetMapping("/company/get-all")
+    @GetMapping
     public List<Company> getAllCompanies() {
-        return companyDAO.getAllCompanies();
+        return companyService.getAllCompanies();
     }
 
-    @RequestMapping(value = "/company/get-by-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Company getAllCompanies(@RequestParam("id") int companyId) {
-        return companyDAO.getCompanyById(companyId);
+        return companyService.getCompanyById(companyId);
     }
 
-    @PostMapping("/company/save-company")
+    @PostMapping("/save-company")
     public Company save(@RequestBody CompanyDTO companyDTO) {
         Company company = new Company();
         company.setCompanyName(companyDTO.getCompanyName());
-        return companyDAO.save(company);
+        return companyService.save(company);
     }
 
 

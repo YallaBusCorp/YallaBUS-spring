@@ -1,4 +1,4 @@
-package com.alphaq.yallabusserver.dao;
+package com.alphaq.yallabusserver.service;
 
 import com.alphaq.yallabusserver.entity.LkEmployee;
 import com.alphaq.yallabusserver.repository.LkEmployeeRepository;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LkEmployeeDAO {
+public class LkEmployeeService {
 
     @Autowired
     private LkEmployeeRepository repository;

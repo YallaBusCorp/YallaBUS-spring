@@ -1,9 +1,9 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.dao.CompanyDAO;
-import com.alphaq.yallabusserver.dao.LkTownDAO;
-import com.alphaq.yallabusserver.dao.LkUniversityDAO;
-import com.alphaq.yallabusserver.dao.StudentDAO;
+import com.alphaq.yallabusserver.service.CompanyService;
+import com.alphaq.yallabusserver.service.LkTownService;
+import com.alphaq.yallabusserver.service.LkUniversityService;
+import com.alphaq.yallabusserver.service.StudentService;
 import com.alphaq.yallabusserver.dto.StudentDTO;
 import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.LkTown;
@@ -16,48 +16,49 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("api/v1/student")
 public class StudentController {
     @Autowired
-    private StudentDAO studentDAO;
+    private StudentService studentService;
 
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyService companyService;
 
     @Autowired
-    private LkUniversityDAO lkUniversityDAO;
+    private LkUniversityService lkUniversityService;
 
     @Autowired
-    private LkTownDAO lkTownDAO;
+    private LkTownService lkTownService;
 
-    @GetMapping("/student/get-all")
+    @GetMapping
     public List<Student> getAllStudents() {
-        return studentDAO.getAllStudents();
+        return studentService.getAllStudents();
     }
 
-    @RequestMapping(value = "/student/get-by-company-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-company-id", method = RequestMethod.GET)
     public List<Student> getStudentsByCompanyId(@RequestParam("id") int companyId) {
-        return studentDAO.getStudentsByCompanyId(companyId);
+        return studentService.getStudentsByCompanyId(companyId);
     }
 
-    @RequestMapping(value = "/student/get-by-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Student getStudentById(@RequestParam("id") int studentId) {
-        return studentDAO.getStudentById(studentId);
+        return studentService.getStudentById(studentId);
     }
 
-    @PostMapping("/student/save-student")
+    @PostMapping("/save-student")
     public Student save(@RequestBody StudentDTO studentDTO) {
         Student student = new Student();
-        Company company = companyDAO.getCompanyById(studentDTO.getCompany().getId());
-        LkTown lkTown = lkTownDAO.getLKTownById(studentDTO.getTown().getId());
-        LkUniversity lkUniversity = lkUniversityDAO.getLkUniversityById(studentDTO.getUniversity().getId());
+        Company company = companyService.getCompanyById(studentDTO.getCompany().getId());
+        LkTown lkTown = lkTownService.getLKTownById(studentDTO.getTown().getId());
+        LkUniversity lkUniversity = lkUniversityService.getLkUniversityById(studentDTO.getUniversity().getId());
 
         if (company != null)
             student.setCompany(company);
 
-        if (lkTown != null && lkTownDAO.checkExistenceTownInCompany(lkTown, company.getId()) != null)
+        if (lkTown != null && lkTownService.checkExistenceTownInCompany(lkTown, company.getId()) != null)
             student.setTown(lkTown);
 
-        if (lkUniversity != null && lkUniversityDAO.checkExistenceUniversityInCompany(lkUniversity, company.getId()) != null)
+        if (lkUniversity != null && lkUniversityService.checkExistenceUniversityInCompany(lkUniversity, company.getId()) != null)
             student.setUniversity(lkUniversity);
 
         student.setStdName(studentDTO.getStdName());
@@ -65,7 +66,7 @@ public class StudentController {
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
         student.setCode(studentDTO.getCode());
-        return studentDAO.save(student);
+        return studentService.save(student);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.dao.CompanyDAO;
-import com.alphaq.yallabusserver.dao.SubscriptionPriceDAO;
+import com.alphaq.yallabusserver.service.CompanyService;
+import com.alphaq.yallabusserver.service.SubscriptionPriceService;
 import com.alphaq.yallabusserver.dto.SubscriptionPriceDTO;
 import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.SubscriptionPrice;
@@ -12,35 +12,36 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("api/v1/subscriptionPrice")
 public class SubscriptionPriceController {
 
     @Autowired
-    private SubscriptionPriceDAO subscriptionPriceDAO;
+    private SubscriptionPriceService subscriptionPriceService;
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyService companyService;
 
-    @GetMapping("/subscriptionPrice/get-all")
+    @GetMapping
     public List<SubscriptionPrice> getAllSubscriptionPrices() {
-        return subscriptionPriceDAO.getAllSubscriptionPrices();
+        return subscriptionPriceService.getAllSubscriptionPrices();
     }
 
-    @RequestMapping(value = "/subscriptionPrice/get-by-company-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-company-id", method = RequestMethod.GET)
     public List<SubscriptionPrice> getSubscriptionPricesByCompanyId(@RequestParam("id") int companyId) {
-        return subscriptionPriceDAO.getSubscriptionPricesByCompanyId(companyId);
+        return subscriptionPriceService.getSubscriptionPricesByCompanyId(companyId);
     }
 
-    @RequestMapping(value = "/subscriptionPrice/get-by-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public SubscriptionPrice getSubscriptionPriceById(@RequestParam("id") int subscriptionPriceId) {
-        return subscriptionPriceDAO.getSubscriptionPriceById(subscriptionPriceId);
+        return subscriptionPriceService.getSubscriptionPriceById(subscriptionPriceId);
     }
 
-    @PostMapping("/subscriptionPrice/save-subscriptionPrice")
+    @PostMapping("/save-subscription-Price")
     public SubscriptionPrice save(@RequestBody SubscriptionPriceDTO subscriptionPriceDTO) {
         SubscriptionPrice subscriptionPrice = new SubscriptionPrice();
 
-        Company company = companyDAO.getCompanyById(subscriptionPriceDTO.getCompany().getId());
+        Company company = companyService.getCompanyById(subscriptionPriceDTO.getCompany().getId());
         subscriptionPrice.setCompany(company);
-        return subscriptionPriceDAO.save(subscriptionPrice);
+        return subscriptionPriceService.save(subscriptionPrice);
     }
 
 

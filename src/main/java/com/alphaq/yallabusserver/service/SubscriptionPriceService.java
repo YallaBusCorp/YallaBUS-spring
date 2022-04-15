@@ -1,4 +1,4 @@
-package com.alphaq.yallabusserver.dao;
+package com.alphaq.yallabusserver.service;
 
 import com.alphaq.yallabusserver.entity.SubscriptionPrice;
 import com.alphaq.yallabusserver.repository.SubscriptionPriceRepository;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SubscriptionPriceDAO {
+public class SubscriptionPriceService {
 
     @Autowired
     private SubscriptionPriceRepository repository;

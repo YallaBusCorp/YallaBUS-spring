@@ -1,7 +1,7 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.dao.CompanyDAO;
-import com.alphaq.yallabusserver.dao.EmployeeDAO;
+import com.alphaq.yallabusserver.service.CompanyService;
+import com.alphaq.yallabusserver.service.EmployeeService;
 import com.alphaq.yallabusserver.dto.EmployeeDTO;
 import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.Employee;
@@ -12,35 +12,36 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("api/v1/employee")
 public class EmployeeController {
 
     @Autowired
-    private EmployeeDAO employeeDAO;
+    private EmployeeService employeeService;
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyService companyService;
 
-    @GetMapping("/employee/get-all")
+    @GetMapping
     public List<Employee> getAllEmployees() {
-        return employeeDAO.getAllEmployees();
+        return employeeService.getAllEmployees();
     }
 
-    @RequestMapping(value = "/employee/get-by-company-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-company-id", method = RequestMethod.GET)
     public List<Employee> getEmployeesByCompanyId(@RequestParam("id") int companyId) {
-        return employeeDAO.getEmployeesByCompanyId(companyId);
+        return employeeService.getEmployeesByCompanyId(companyId);
     }
 
-    @RequestMapping(value = "/employee/get-by-id", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Employee getEmployeeById(@RequestParam("id") int employeeId) {
-        return employeeDAO.getEmployeeById(employeeId);
+        return employeeService.getEmployeeById(employeeId);
     }
 
-    @PostMapping("/employee/save-employee")
+    @PostMapping("/save-employee")
     public Employee save(@RequestBody EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
 
-        Company company = companyDAO.getCompanyById(employeeDTO.getCompany().getId());
+        Company company = companyService.getCompanyById(employeeDTO.getCompany().getId());
         employee.setCompany(company);
-        return employeeDAO.save(employee);
+        return employeeService.save(employee);
     }
 
 
