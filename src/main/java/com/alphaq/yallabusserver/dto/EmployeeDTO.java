@@ -13,6 +13,7 @@ public class EmployeeDTO {
     private Integer empSalary;
     private LocalDate empStartDate;
     private LocalDate empEndDate;
+    private CompanyDTO company;
 
     public EmployeeDTO() {
     }
@@ -100,6 +101,14 @@ public class EmployeeDTO {
 
     public void setEmpEndDate(LocalDate empEndDate) {
         this.empEndDate = empEndDate;
+    }
+
+    public CompanyDTO getCompany() {
+        return company;
+    }
+
+    public void setCompany(CompanyDTO company) {
+        this.company = company;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class LkEmployeeController {
     public List<LkEmployee> getAllLkEmployees() {
         return lkEmployeeDAO.getAllLkEmployees();
     }
-    
+
 
     @RequestMapping(value = "/lkEmployee/get-by-id", method = RequestMethod.GET)
     public LkEmployee getLkEmployeeById(@RequestParam("id") int lkEmployeeId) {
