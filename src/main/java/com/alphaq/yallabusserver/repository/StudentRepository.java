@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> {
     List<Student> findStudentsByCompanyId(int companyId);
+    List<Student> findStudentsByCompanyIdAndIsActiveEquals(int companyId,boolean isActive);
     Student findStudentsById(int studentId);
 }

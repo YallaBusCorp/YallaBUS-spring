@@ -35,9 +35,14 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @RequestMapping(value = "/get-by-company-id", method = RequestMethod.GET)
-    public List<Student> getStudentsByCompanyId(@RequestParam("id") int companyId) {
+    @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
+    public List<Student> getALLStudentsByCompanyId(@RequestParam("id") int companyId) {
         return studentService.getStudentsByCompanyId(companyId);
+    }
+
+    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
+    public List<Student> getAllActiveStudentsByCompanyId(@RequestParam("id") int companyId) {
+        return studentService.getAllActiveStudentsByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
