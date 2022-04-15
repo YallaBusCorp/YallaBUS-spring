@@ -1,6 +1,5 @@
 package com.alphaq.yallabusserver.dto;
 
-
 import java.util.Objects;
 
 public class AdminDTO {
@@ -18,6 +17,26 @@ public class AdminDTO {
         this.emp = emp;
         this.username = username;
         this.password = password;
+        this.accessToken = accessToken;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setEmp(EmployeeDTO emp) {
+        this.emp = emp;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
@@ -39,26 +58,6 @@ public class AdminDTO {
 
     public String getAccessToken() {
         return accessToken;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setEmp(EmployeeDTO emp) {
-        this.emp = emp;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
     }
 
     @Override

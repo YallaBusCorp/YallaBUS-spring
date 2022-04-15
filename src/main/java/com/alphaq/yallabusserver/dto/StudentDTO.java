@@ -1,7 +1,7 @@
 package com.alphaq.yallabusserver.dto;
 
-
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class StudentDTO {
     private Integer id;
@@ -15,107 +15,136 @@ public class StudentDTO {
     private Boolean isSubscribed;
     private Boolean isActive;
 
-    public Integer getId() {
-        return id;
+    public StudentDTO() {
+    }
+
+    public StudentDTO(Integer id, String code, String stdName, String stdPhone, LkTownDTO town, LkUniversityDTO university, CompanyDTO company, LocalDate endSubscriptionDate, Boolean isSubscribed, Boolean isActive) {
+        this.id = id;
+        this.code = code;
+        this.stdName = stdName;
+        this.stdPhone = stdPhone;
+        this.town = town;
+        this.university = university;
+        this.company = company;
+        this.endSubscriptionDate = endSubscriptionDate;
+        this.isSubscribed = isSubscribed;
+        this.isActive = isActive;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getStdName() {
-        return stdName;
     }
 
     public void setStdName(String stdName) {
         this.stdName = stdName;
     }
 
-    public String getStdPhone() {
-        return stdPhone;
-    }
-
     public void setStdPhone(String stdPhone) {
         this.stdPhone = stdPhone;
-    }
-
-    public LkTownDTO getTown() {
-        return town;
     }
 
     public void setTown(LkTownDTO town) {
         this.town = town;
     }
 
-    public LkUniversityDTO getUniversity() {
-        return university;
-    }
-
     public void setUniversity(LkUniversityDTO university) {
         this.university = university;
-    }
-
-    public CompanyDTO getCompany() {
-        return company;
     }
 
     public void setCompany(CompanyDTO company) {
         this.company = company;
     }
 
-    public LocalDate getEndSubscriptionDate() {
-        return endSubscriptionDate;
-    }
-
     public void setEndSubscriptionDate(LocalDate endSubscriptionDate) {
         this.endSubscriptionDate = endSubscriptionDate;
-    }
-
-    public Boolean getIsSubscribed() {
-        return isSubscribed;
-    }
-
-    public void setIsSubscribed(Boolean subscribed) {
-        isSubscribed = subscribed;
-    }
-
-    public Boolean getSubscribed() {
-        return isSubscribed;
     }
 
     public void setSubscribed(Boolean subscribed) {
         isSubscribed = subscribed;
     }
 
-    public Boolean getActive() {
-        return isActive;
-    }
-
     public void setActive(Boolean active) {
         isActive = active;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getStdName() {
+        return stdName;
+    }
+
+    public String getStdPhone() {
+        return stdPhone;
+    }
+
+    public LkTownDTO getTown() {
+        return town;
+    }
+
+    public LkUniversityDTO getUniversity() {
+        return university;
+    }
+
+    public CompanyDTO getCompany() {
+        return company;
+    }
+
+    public LocalDate getEndSubscriptionDate() {
+        return endSubscriptionDate;
+    }
+
+    public Boolean getIsSubscribed() {
+        return isSubscribed;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentDTO entity = (StudentDTO) o;
+        return Objects.equals(this.id, entity.id) &&
+                Objects.equals(this.code, entity.code) &&
+                Objects.equals(this.stdName, entity.stdName) &&
+                Objects.equals(this.stdPhone, entity.stdPhone) &&
+                Objects.equals(this.town, entity.town) &&
+                Objects.equals(this.university, entity.university) &&
+                Objects.equals(this.company, entity.company) &&
+                Objects.equals(this.endSubscriptionDate, entity.endSubscriptionDate) &&
+                Objects.equals(this.isSubscribed, entity.isSubscribed) &&
+                Objects.equals(this.isActive, entity.isActive);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, code, stdName, stdPhone, town, university, company, endSubscriptionDate, isSubscribed, isActive);
+    }
+
     @Override
     public String toString() {
-        return "StudentDTO{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", stdName='" + stdName + '\'' +
-                ", stdPhone='" + stdPhone + '\'' +
-                ", town=" + town +
-                ", university=" + university +
-                ", company=" + company +
-                ", endSubscriptionDate=" + endSubscriptionDate +
-                ", isSubscribed=" + isSubscribed +
-                ", isActive=" + isActive +
-                '}';
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "code = " + code + ", " +
+                "stdName = " + stdName + ", " +
+                "stdPhone = " + stdPhone + ", " +
+                "town = " + town + ", " +
+                "university = " + university + ", " +
+                "company = " + company + ", " +
+                "endSubscriptionDate = " + endSubscriptionDate + ", " +
+                "isSubscribed = " + isSubscribed + ", " +
+                "isActive = " + isActive + ")";
     }
 }

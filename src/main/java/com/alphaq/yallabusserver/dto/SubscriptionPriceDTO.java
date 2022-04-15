@@ -1,6 +1,5 @@
 package com.alphaq.yallabusserver.dto;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -11,15 +10,15 @@ public class SubscriptionPriceDTO {
     private LocalDate subscriptionEndDate;
     private CompanyDTO company;
 
+    public SubscriptionPriceDTO() {
+    }
+
     public SubscriptionPriceDTO(Integer id, Integer subscriptionPrice, LocalDate subscriptionStartDate, LocalDate subscriptionEndDate, CompanyDTO company) {
         this.id = id;
         this.subscriptionPrice = subscriptionPrice;
         this.subscriptionStartDate = subscriptionStartDate;
         this.subscriptionEndDate = subscriptionEndDate;
         this.company = company;
-    }
-
-    public SubscriptionPriceDTO() {
     }
 
     public void setId(Integer id) {
