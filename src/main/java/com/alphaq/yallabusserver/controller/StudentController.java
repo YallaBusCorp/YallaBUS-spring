@@ -71,6 +71,7 @@ public class StudentController {
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
         student.setCode(studentDTO.getCode());
+        student.setIsActive(true);
         return studentService.save(student);
     }
 

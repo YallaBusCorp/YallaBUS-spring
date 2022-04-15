@@ -53,11 +53,11 @@ public class Student {
     @Column(name = "is_Active", nullable = false)
     private Boolean isActive;
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 

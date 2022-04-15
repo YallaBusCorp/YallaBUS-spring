@@ -67,7 +67,7 @@ public class StudentDTO {
         isSubscribed = subscribed;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
