@@ -102,7 +102,7 @@ public class StudentController {
         return studentService.save(student);
     }
 
-    @RequestMapping(value = "/delete-student", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete-student", method = RequestMethod.GET)
     public boolean delete(@RequestParam("id") int studentId) {
         Student student = studentService.getStudentById(studentId);
         student.setIsActive(false);
