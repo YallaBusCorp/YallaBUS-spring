@@ -102,7 +102,10 @@ public class StudentController {
         return studentService.save(student);
     }
 
-    @RequestMapping(value = "/delete-student", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/delete-student",
+            produces = "application/json",
+            method = {RequestMethod.GET, RequestMethod.PUT})
     public Student delete(@RequestBody StudentDTO studentDTO) {
         Student student = studentService.getStudentById(studentDTO.getId());
         student.setIsActive(false);
