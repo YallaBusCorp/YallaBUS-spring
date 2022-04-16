@@ -98,30 +98,18 @@ public class StudentController {
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
         student.setCode(studentDTO.getCode());
-        student.setIsActive(true); //Not Sure
+        student.setIsActive(studentDTO.getIsActive());
         return studentService.save(student);
     }
 
-    @PutMapping("/delete-student")
-    public Student delete(@RequestBody StudentDTO studentDTO) {
-        Student student = new Student();
-
-        Company company = companyService.getCompanyById(studentDTO.getCompany().getId());
-        LkTown lkTown = lkTownService.getLKTownById(studentDTO.getTown().getId());
-        LkUniversity lkUniversity = lkUniversityService.getLkUniversityById(studentDTO.getUniversity().getId());
-
-        student.setId(studentDTO.getId());
-        student.setCompany(company);
-        student.setTown(lkTown);
-        student.setUniversity(lkUniversity);
-        student.setStdName(studentDTO.getStdName());
-        student.setStdPhone(studentDTO.getStdPhone());
-        student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
-        student.setIsSubscribed(studentDTO.getIsSubscribed());
-        student.setCode(studentDTO.getCode());
+    @RequestMapping(value = "/delete-student", method = RequestMethod.DELETE)
+    public boolean delete(@RequestParam("id") int studentId) {
+        Student student = studentService.getStudentById(studentId);
         student.setIsActive(false);
-
-        return studentService.save(student);
+        student = studentService.save(student);
+        if(!student.getIsActive())
+            return true;
+        return false;
     }
 
 }
