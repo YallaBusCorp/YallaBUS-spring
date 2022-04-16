@@ -75,4 +75,31 @@ public class StudentController {
         return studentService.save(student);
     }
 
+    @PutMapping("/update-student")
+    public Student update(@RequestBody StudentDTO studentDTO) {
+        Student student = new Student();
+
+        student.setId(studentDTO.getId());
+        Company company = companyService.getCompanyById(studentDTO.getCompany().getId());
+        LkTown lkTown = lkTownService.getLKTownById(studentDTO.getTown().getId());
+        LkUniversity lkUniversity = lkUniversityService.getLkUniversityById(studentDTO.getUniversity().getId());
+
+        if (company != null)
+            student.setCompany(company);
+
+        if (lkTown != null && lkTownService.checkExistenceTownInCompany(lkTown, company.getId()) != null)
+            student.setTown(lkTown);
+
+        if (lkUniversity != null && lkUniversityService.checkExistenceUniversityInCompany(lkUniversity, company.getId()) != null)
+            student.setUniversity(lkUniversity);
+
+        student.setStdName(studentDTO.getStdName());
+        student.setStdPhone(studentDTO.getStdPhone());
+        student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
+        student.setIsSubscribed(studentDTO.getIsSubscribed());
+        student.setCode(studentDTO.getCode());
+        student.setIsActive(true);
+        return studentService.save(student);
+    }
+
 }
