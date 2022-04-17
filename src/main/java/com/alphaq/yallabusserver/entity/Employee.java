@@ -143,4 +143,17 @@ public class Employee {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", empCode='" + empCode + '\'' +
+                ", empName='" + empName + '\'' +
+                ", empPhone='" + empPhone + '\'' +
+                ", empNationalId='" + empNationalId + '\'' +
+                ", empSalary=" + empSalary +
+                ", empStartDate=" + empStartDate +
+                ", empEndDate=" + empEndDate +
+                '}';
+    }
 }

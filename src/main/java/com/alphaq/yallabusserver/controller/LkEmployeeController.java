@@ -16,8 +16,7 @@ public class LkEmployeeController {
 
     @Autowired
     private LkEmployeeService lkEmployeeService;
-    @Autowired
-    private CompanyService companyService;
+
 
     @GetMapping
     public List<LkEmployee> getAllLkEmployees() {

@@ -69,4 +69,15 @@ public class SubscriptionPrice {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "SubscriptionPrice{" +
+                "id=" + id +
+                ", subscriptionPrice=" + subscriptionPrice +
+                ", subscriptionStartDate=" + subscriptionStartDate +
+                ", subscriptionEndDate=" + subscriptionEndDate +
+                ", company=" + company +
+                '}';
+    }
 }

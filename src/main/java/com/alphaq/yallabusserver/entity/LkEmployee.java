@@ -49,4 +49,12 @@ public class LkEmployee {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "LkEmployee{" +
+                "id=" + id +
+                ", lkName='" + lkName + '\'' +
+                '}';
+    }
 }
