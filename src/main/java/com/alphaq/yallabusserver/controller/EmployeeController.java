@@ -1,6 +1,7 @@
 package com.alphaq.yallabusserver.controller;
 
 import com.alphaq.yallabusserver.entity.LkEmployee;
+import com.alphaq.yallabusserver.entity.LkTown;
 import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.service.EmployeeService;
 import com.alphaq.yallabusserver.dto.EmployeeDTO;
@@ -30,8 +31,13 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
-    public List<Employee> getEmployeesByCompanyId(@RequestParam("id") int companyId) {
-        return employeeService.getEmployeesByCompanyId(companyId);
+    public List<Employee> getAllEmployeesByCompanyId(@RequestParam("id") int companyId) {
+        return employeeService.getAllEmployeesByCompanyId(companyId);
+    }
+
+    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
+    public List<Employee> getAllActiveEmployeesByCompanyId(@RequestParam("id") int companyId){
+        return employeeService.getAllActiveEmployeesByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)

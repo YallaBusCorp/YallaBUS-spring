@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class EmployeeTest {
     @Autowired
@@ -22,7 +24,7 @@ public class EmployeeTest {
     @Autowired
     CompanyService companyService;
 
-    @Test
+    //@Test
     void saveEmployee(){
         int companyId = 1;
         CompanyDTO companyDTO = new CompanyDTO();
@@ -58,5 +60,13 @@ public class EmployeeTest {
         System.out.println(result);
 
 
+    }
+
+    @Test
+    void getAllActive(){
+        int companyId=1;
+        List<Employee> employees = employeeService.getAllActiveEmployeesByCompanyId(companyId);
+        System.out.println(employees.stream().count());
+        System.out.println(employees);
     }
 }

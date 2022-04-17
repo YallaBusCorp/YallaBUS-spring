@@ -26,8 +26,12 @@ public class EmployeeService {
         return employees;
     }
 
-    public List<Employee> getEmployeesByCompanyId(int companyId) {
+    public List<Employee> getAllEmployeesByCompanyId(int companyId) {
         return repository.findEmployeesByCompanyId(companyId);
+    }
+
+    public List<Employee> getAllActiveEmployeesByCompanyId(int companyId){
+        return repository.findEmployeesByCompanyIdAndEmpEndDateIsNull(companyId);
     }
 
     public Employee checkExistenceEmployeeInCompany(Employee employee, int companyId) {
