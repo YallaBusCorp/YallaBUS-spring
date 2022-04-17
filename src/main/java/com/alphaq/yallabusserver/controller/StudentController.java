@@ -112,4 +112,16 @@ public class StudentController {
             return true;
         return false;
     }
+
+    @PutMapping("/subscription")
+    public Boolean subscription(@RequestBody StudentDTO studentDTO){
+        Student student = studentService.getStudentById(studentDTO.getId());
+        student.setIsSubscribed(true);
+        student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
+
+        Student result = studentService.save(student);
+        Boolean flag = result.getIsSubscribed()? true:false;
+
+        return flag;
+    }
 }
