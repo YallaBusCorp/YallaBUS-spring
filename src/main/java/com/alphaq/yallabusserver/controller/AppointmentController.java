@@ -35,8 +35,8 @@ public class AppointmentController {
         return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId,"AM");
     }
 
-    @RequestMapping(value = "/company/get-all-bm", method = RequestMethod.GET)
-    public List<Appointment> getAllBMAppointmentsByCompanyId(@RequestParam("id") int companyId){
+    @RequestMapping(value = "/company/get-all-pm", method = RequestMethod.GET)
+    public List<Appointment> getAllPMAppointmentsByCompanyId(@RequestParam("id") int companyId){
         return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId,"BM");
     }
 
@@ -50,8 +50,8 @@ public class AppointmentController {
         return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId,"AM");
     }
 
-    @RequestMapping(value = "/company/active/get-all-bm", method = RequestMethod.GET)
-    public List<Appointment> getAllActiveBMAppointmentsByCompanyId(@RequestParam("id") int companyId){
+    @RequestMapping(value = "/company/active/get-all-pm", method = RequestMethod.GET)
+    public List<Appointment> getAllActivePMAppointmentsByCompanyId(@RequestParam("id") int companyId){
         return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId,"BM");
     }
 
