@@ -106,14 +106,17 @@ public class StudentController {
             value = "/delete-student",
             produces = "application/json",
             method = {RequestMethod.POST, RequestMethod.PUT})
-    public Student delete(@RequestBody StudentDTO studentDTO) {
+    public boolean delete(@RequestBody StudentDTO studentDTO) {
+//        Student student = studentService.getStudentById(studentDTO.getId());
+//        student.setIsActive(false);
+//        return studentService.save(student);
+
         Student student = studentService.getStudentById(studentDTO.getId());
         student.setIsActive(false);
-        return studentService.save(student);
-//        student = studentService.save(student);
-//        if(!student.getIsActive())
-//            return true;
-//        return false;
+        student = studentService.save(student);
+        if (!student.getIsActive())
+            return true;
+        return false;
     }
 
 }
