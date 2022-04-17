@@ -29,6 +29,10 @@ public class StudentService {
         return repository.findStudentsById(studentId);
     }
 
+    public Student getStudentByUid(String studentUID){
+        return repository.findStudentByUid(studentUID);
+    }
+
     public List<Student> getAllStudentsByCompanyId(int companyId) {
         return repository.findStudentsByCompanyId(companyId);
     }

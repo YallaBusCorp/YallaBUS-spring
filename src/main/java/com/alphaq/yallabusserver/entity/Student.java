@@ -17,8 +17,8 @@ public class Student {
     @Column(name = "std_id", nullable = false)
     private Integer id;
 
-    @Column(name = "std_code", nullable = true, unique = true)
-    private String code;
+    @Column(name = "std_uid", nullable = true, unique = true)
+    private String uid;
 
     @Column(name = "std_name", nullable = true)
     private String stdName;
@@ -117,12 +117,12 @@ public class Student {
         this.stdName = stdName;
     }
 
-    public String getCode() {
-        return code;
+    public String getUid() {
+        return uid;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setUid(String code) {
+        this.uid = code;
     }
 
 
@@ -139,7 +139,7 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", code='" + code + '\'' +
+                ", uid='" + uid + '\'' +
                 ", stdName='" + stdName + '\'' +
                 ", stdPhone='" + stdPhone + '\'' +
                 ", endSubscriptionDate=" + endSubscriptionDate +

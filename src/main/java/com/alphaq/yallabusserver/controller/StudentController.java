@@ -12,6 +12,7 @@ import com.alphaq.yallabusserver.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -50,6 +51,11 @@ public class StudentController {
         return studentService.getStudentById(studentId);
     }
 
+    @RequestMapping(value = "/get-by-uid", method = RequestMethod.GET)
+    public Student getStudentByUID(@RequestParam("uid") String studentUID) {
+        return studentService.getStudentByUid(studentUID);
+    }
+
     @PostMapping("/save-student")
     public Student save(@RequestBody StudentDTO studentDTO) {
         Student student = new Student();
@@ -70,7 +76,7 @@ public class StudentController {
         student.setStdPhone(studentDTO.getStdPhone());
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
-        student.setCode(studentDTO.getCode());
+        student.setUid(studentDTO.getUid());
         student.setIsActive(true);
         return studentService.save(student);
     }
@@ -97,7 +103,7 @@ public class StudentController {
         student.setStdPhone(studentDTO.getStdPhone());
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
-        student.setCode(studentDTO.getCode());
+        student.setUid(studentDTO.getUid());
         student.setIsActive(studentDTO.getIsActive());
         return studentService.save(student);
     }
@@ -114,13 +120,23 @@ public class StudentController {
     }
 
     @PutMapping("/subscription")
-    public Boolean subscription(@RequestBody StudentDTO studentDTO){
-        Student student = studentService.getStudentById(studentDTO.getId());
-        student.setIsSubscribed(true);
-        student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
-
+    public Boolean subscription(@RequestBody StudentDTO studentDTO) {
+        Boolean flag;
+        Student student;
+        if (studentDTO.getEndSubscriptionDate() != null && studentDTO.getId() != null) {
+            student = studentService.getStudentById(studentDTO.getId());
+            student.setIsSubscribed(true);
+            student.setIsActive(true);
+            student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
+        } else if (studentDTO.getEndSubscriptionDate() == null && studentDTO.getUid() != null) {
+            student = studentService.getStudentByUid(studentDTO.getUid());
+            student.setIsSubscribed(true);
+            student.setIsActive(true);
+            student.setEndSubscriptionDate(LocalDate.now().plusDays(30));
+        } else
+            student = null;
         Student result = studentService.save(student);
-        Boolean flag = result.getIsSubscribed()? true:false;
+        flag = result.getIsSubscribed() ? true : false;
 
         return flag;
     }

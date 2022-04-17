@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class StudentDTO {
     private Integer id;
-    private String code;
+    private String uid;
     private String stdName;
     private String stdPhone;
     private LkTownDTO town;
@@ -18,9 +18,9 @@ public class StudentDTO {
     public StudentDTO() {
     }
 
-    public StudentDTO(Integer id, String code, String stdName, String stdPhone, LkTownDTO town, LkUniversityDTO university, CompanyDTO company, LocalDate endSubscriptionDate, Boolean isSubscribed, Boolean isActive) {
+    public StudentDTO(Integer id, String uid, String stdName, String stdPhone, LkTownDTO town, LkUniversityDTO university, CompanyDTO company, LocalDate endSubscriptionDate, Boolean isSubscribed, Boolean isActive) {
         this.id = id;
-        this.code = code;
+        this.uid = uid;
         this.stdName = stdName;
         this.stdPhone = stdPhone;
         this.town = town;
@@ -35,8 +35,8 @@ public class StudentDTO {
         this.id = id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public void setStdName(String stdName) {
@@ -75,8 +75,8 @@ public class StudentDTO {
         return id;
     }
 
-    public String getCode() {
-        return code;
+    public String getUid() {
+        return uid;
     }
 
     public String getStdName() {
@@ -117,7 +117,7 @@ public class StudentDTO {
         if (o == null || getClass() != o.getClass()) return false;
         StudentDTO entity = (StudentDTO) o;
         return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.code, entity.code) &&
+                Objects.equals(this.uid, entity.uid) &&
                 Objects.equals(this.stdName, entity.stdName) &&
                 Objects.equals(this.stdPhone, entity.stdPhone) &&
                 Objects.equals(this.town, entity.town) &&
@@ -130,14 +130,14 @@ public class StudentDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, code, stdName, stdPhone, town, university, company, endSubscriptionDate, isSubscribed, isActive);
+        return Objects.hash(id, uid, stdName, stdPhone, town, university, company, endSubscriptionDate, isSubscribed, isActive);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "code = " + code + ", " +
+                "uid = " + uid + ", " +
                 "stdName = " + stdName + ", " +
                 "stdPhone = " + stdPhone + ", " +
                 "town = " + town + ", " +
