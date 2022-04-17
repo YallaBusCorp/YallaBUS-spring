@@ -17,30 +17,30 @@ public class Student {
     @Column(name = "std_id", nullable = false)
     private Integer id;
 
-    @Column(name = "std_code", nullable = false, unique = true)
+    @Column(name = "std_code", nullable = true, unique = true)
     private String code;
 
-    @Column(name = "std_name", nullable = false)
+    @Column(name = "std_name", nullable = true)
     private String stdName;
 
-    @Column(name = "std_phone", nullable = false)
+    @Column(name = "std_phone", nullable = true)
     private String stdPhone;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonManagedReference()
-    @JoinColumn(name = "town_id", nullable = false)
+    @JoinColumn(name = "town_id", nullable = true)
     @Fetch(FetchMode.JOIN)
     private LkTown town;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonManagedReference()
-    @JoinColumn(name = "university_id", nullable = false)
+    @JoinColumn(name = "university_id", nullable = true)
     @Fetch(FetchMode.JOIN)
     private LkUniversity university;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonManagedReference()
-    @JoinColumn(name = "company_id", nullable = false)
+    @JoinColumn(name = "company_id", nullable = true)
     @Fetch(FetchMode.JOIN)
     private Company company;
 
@@ -50,7 +50,7 @@ public class Student {
     @Column(name = "is_subscribed", nullable = true)
     private Boolean isSubscribed = false;
 
-    @Column(name = "is_Active", nullable = false)
+    @Column(name = "is_Active", nullable = true)
     private Boolean isActive;
 
     public Boolean getIsActive() {
