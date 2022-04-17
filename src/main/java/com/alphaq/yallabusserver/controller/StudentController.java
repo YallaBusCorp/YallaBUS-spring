@@ -102,19 +102,13 @@ public class StudentController {
         return studentService.save(student);
     }
 
-    @RequestMapping(
-            value = "/delete-student",
-            produces = "application/json",
-            method = {RequestMethod.POST, RequestMethod.PUT})
-    public boolean delete(@RequestBody StudentDTO studentDTO) {
-//        Student student = studentService.getStudentById(studentDTO.getId());
-//        student.setIsActive(false);
-//        return studentService.save(student);
-
+    @PutMapping("/delete-student")
+    public Boolean delete(@RequestBody StudentDTO studentDTO) {
         Student student = studentService.getStudentById(studentDTO.getId());
         student.setIsActive(false);
-        student = studentService.save(student);
-        if (!student.getIsActive())
+        Student result = studentService.save(student);
+
+        if (!result.getIsActive())
             return true;
         return false;
     }
