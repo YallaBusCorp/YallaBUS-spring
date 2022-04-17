@@ -31,13 +31,13 @@ public class AppointmentController {
     }
 
     @RequestMapping(value = "/company/get-all-am", method = RequestMethod.GET)
-    public List<Appointment> getAllAMAppointmentsByCompanyId(@RequestParam("id") int companyId){
-        return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId,"AM");
+    public List<Appointment> getAllAMAppointmentsByCompanyId(@RequestParam("id") int companyId) {
+        return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId, "AM");
     }
 
     @RequestMapping(value = "/company/get-all-pm", method = RequestMethod.GET)
-    public List<Appointment> getAllPMAppointmentsByCompanyId(@RequestParam("id") int companyId){
-        return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId,"PM");
+    public List<Appointment> getAllPMAppointmentsByCompanyId(@RequestParam("id") int companyId) {
+        return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId, "PM");
     }
 
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
@@ -46,13 +46,13 @@ public class AppointmentController {
     }
 
     @RequestMapping(value = "/company/active/get-all-am", method = RequestMethod.GET)
-    public List<Appointment> getAllActiveAMAppointmentsByCompanyId(@RequestParam("id") int companyId){
-        return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId,"AM");
+    public List<Appointment> getAllActiveAMAppointmentsByCompanyId(@RequestParam("id") int companyId) {
+        return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId, "AM");
     }
 
     @RequestMapping(value = "/company/active/get-all-pm", method = RequestMethod.GET)
-    public List<Appointment> getAllActivePMAppointmentsByCompanyId(@RequestParam("id") int companyId){
-        return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId,"PM");
+    public List<Appointment> getAllActivePMAppointmentsByCompanyId(@RequestParam("id") int companyId) {
+        return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId, "PM");
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
@@ -69,6 +69,27 @@ public class AppointmentController {
         appointment.setAppointmentType(appointmentDTO.getAppointmentType());
         appointment.setIsActive(true);
         return appointmentService.save(appointment);
+    }
+
+    @PutMapping("/update-appointment")
+    public Appointment update(@RequestBody AppointmentDTO appointmentDTO){
+        Appointment appointment = new Appointment();
+        appointment.setId(appointmentDTO.getId());
+        Company company = companyService.getCompanyById(appointmentDTO.getCompany().getId());
+        appointment.setCompany(company);
+        appointment.setAppointmentStartTime(appointmentDTO.getAppointmentStartTime());
+        appointment.setAppointmentType(appointmentDTO.getAppointmentType());
+        appointment.setIsActive(appointmentDTO.getIsActive());
+        return appointmentService.save(appointment);
+    }
+
+    @PutMapping("/delete-appointment")
+    public Boolean delete(@RequestParam("id") int appointmentId) {
+        Appointment appointment = appointmentService.getAppointmentById(appointmentId);
+        appointment.setIsActive(false);
+        Appointment result = appointmentService.save(appointment);
+        Boolean flag = !result.getIsActive() ? true : false;
+        return flag;
     }
 
 
