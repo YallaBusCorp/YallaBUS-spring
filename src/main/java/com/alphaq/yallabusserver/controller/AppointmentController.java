@@ -63,9 +63,11 @@ public class AppointmentController {
     @PostMapping("/save-appointment")
     public Appointment save(@RequestBody AppointmentDTO appointmentDTO) {
         Appointment appointment = new Appointment();
-
         Company company = companyService.getCompanyById(appointmentDTO.getCompany().getId());
         appointment.setCompany(company);
+        appointment.setAppointmentStartTime(appointmentDTO.getAppointmentStartTime());
+        appointment.setAppointmentType(appointmentDTO.getAppointmentType());
+        appointment.setIsActive(true);
         return appointmentService.save(appointment);
     }
 
