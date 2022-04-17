@@ -16,11 +16,12 @@ public class CompanyDTO {
     private Set<LkUniversityDTO> lkUniversities;
     private Set<EmployeeDTO> employees;
     private Set<SubscriptionPriceDTO> subscriptionPrices;
+    private Set<AppointmentDTO> appointments;
 
     public CompanyDTO() {
     }
 
-    public CompanyDTO(Integer id, String companyName, String companyPhone, String description, String companyLocation, String imgURL, String facebookURL, Set<StudentDTO> students, Set<LkTownDTO> lkTowns, Set<LkUniversityDTO> lkUniversities, Set<EmployeeDTO> employees, Set<SubscriptionPriceDTO> subscriptionPrices) {
+    public CompanyDTO(Integer id, String companyName, String companyPhone, String description, String companyLocation, String imgURL, String facebookURL, Set<StudentDTO> students, Set<LkTownDTO> lkTowns, Set<LkUniversityDTO> lkUniversities, Set<EmployeeDTO> employees, Set<SubscriptionPriceDTO> subscriptionPrices, Set<AppointmentDTO> appointments) {
         this.id = id;
         this.companyName = companyName;
         this.companyPhone = companyPhone;
@@ -33,6 +34,7 @@ public class CompanyDTO {
         this.lkUniversities = lkUniversities;
         this.employees = employees;
         this.subscriptionPrices = subscriptionPrices;
+        this.appointments = appointments;
     }
 
     public void setId(Integer id) {
@@ -83,6 +85,10 @@ public class CompanyDTO {
         this.subscriptionPrices = subscriptionPrices;
     }
 
+    public void setAppointments(Set<AppointmentDTO> appointments) {
+        this.appointments = appointments;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -131,44 +137,39 @@ public class CompanyDTO {
         return subscriptionPrices;
     }
 
+    public Set<AppointmentDTO> getAppointments() {
+        return appointments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CompanyDTO entity = (CompanyDTO) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.companyName, entity.companyName) &&
-                Objects.equals(this.companyPhone, entity.companyPhone) &&
-                Objects.equals(this.description, entity.description) &&
-                Objects.equals(this.companyLocation, entity.companyLocation) &&
-                Objects.equals(this.imgURL, entity.imgURL) &&
-                Objects.equals(this.facebookURL, entity.facebookURL) &&
-                Objects.equals(this.students, entity.students) &&
-                Objects.equals(this.lkTowns, entity.lkTowns) &&
-                Objects.equals(this.lkUniversities, entity.lkUniversities) &&
-                Objects.equals(this.employees, entity.employees) &&
-                Objects.equals(this.subscriptionPrices, entity.subscriptionPrices);
+        CompanyDTO that = (CompanyDTO) o;
+        return Objects.equals(id, that.id) && Objects.equals(companyName, that.companyName) && Objects.equals(companyPhone, that.companyPhone) && Objects.equals(description, that.description) && Objects.equals(companyLocation, that.companyLocation) && Objects.equals(imgURL, that.imgURL) && Objects.equals(facebookURL, that.facebookURL) && Objects.equals(students, that.students) && Objects.equals(lkTowns, that.lkTowns) && Objects.equals(lkUniversities, that.lkUniversities) && Objects.equals(employees, that.employees) && Objects.equals(subscriptionPrices, that.subscriptionPrices) && Objects.equals(appointments, that.appointments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, companyName, companyPhone, description, companyLocation, imgURL, facebookURL, students, lkTowns, lkUniversities, employees, subscriptionPrices);
+        return Objects.hash(id, companyName, companyPhone, description, companyLocation, imgURL, facebookURL, students, lkTowns, lkUniversities, employees, subscriptionPrices, appointments);
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "companyName = " + companyName + ", " +
-                "companyPhone = " + companyPhone + ", " +
-                "description = " + description + ", " +
-                "companyLocation = " + companyLocation + ", " +
-                "imgURL = " + imgURL + ", " +
-                "facebookURL = " + facebookURL + ", " +
-                "students = " + students + ", " +
-                "lkTowns = " + lkTowns + ", " +
-                "lkUniversities = " + lkUniversities + ", " +
-                "employees = " + employees + ", " +
-                "subscriptionPrices = " + subscriptionPrices + ")";
+        return "CompanyDTO{" +
+                "id=" + id +
+                ", companyName='" + companyName + '\'' +
+                ", companyPhone='" + companyPhone + '\'' +
+                ", description='" + description + '\'' +
+                ", companyLocation='" + companyLocation + '\'' +
+                ", imgURL='" + imgURL + '\'' +
+                ", facebookURL='" + facebookURL + '\'' +
+                ", students=" + students +
+                ", lkTowns=" + lkTowns +
+                ", lkUniversities=" + lkUniversities +
+                ", employees=" + employees +
+                ", subscriptionPrices=" + subscriptionPrices +
+                ", appointments=" + appointments +
+                '}';
     }
 }
