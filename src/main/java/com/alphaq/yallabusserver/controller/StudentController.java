@@ -103,8 +103,8 @@ public class StudentController {
     }
 
     @PutMapping("/delete-student")
-    public Boolean delete(@RequestBody StudentDTO studentDTO) {
-        Student student = studentService.getStudentById(studentDTO.getId());
+    public Boolean delete(@RequestParam("id") int studentId) {
+        Student student = studentService.getStudentById(studentId);
         student.setIsActive(false);
         Student result = studentService.save(student);
 
