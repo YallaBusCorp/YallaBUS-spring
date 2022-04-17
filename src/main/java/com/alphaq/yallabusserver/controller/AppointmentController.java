@@ -37,7 +37,7 @@ public class AppointmentController {
 
     @RequestMapping(value = "/company/get-all-pm", method = RequestMethod.GET)
     public List<Appointment> getAllPMAppointmentsByCompanyId(@RequestParam("id") int companyId){
-        return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId,"BM");
+        return appointmentService.getAllAppointmentsByCompanyIdAndAppointmentType(companyId,"PM");
     }
 
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
@@ -52,7 +52,7 @@ public class AppointmentController {
 
     @RequestMapping(value = "/company/active/get-all-pm", method = RequestMethod.GET)
     public List<Appointment> getAllActivePMAppointmentsByCompanyId(@RequestParam("id") int companyId){
-        return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId,"BM");
+        return appointmentService.getAllActiveAppointmentsByCompanyIdAndAppointmentType(companyId,"PM");
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
