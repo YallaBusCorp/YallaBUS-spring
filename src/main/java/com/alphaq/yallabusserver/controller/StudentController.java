@@ -52,8 +52,8 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/get-by-uid", method = RequestMethod.GET)
-    public Student getStudentByUID(@RequestParam("uid") String studentUID) {
-        return studentService.getStudentByUid(studentUID);
+    public Student getStudentByStdUid(@RequestParam("stdUid") String stdUid) {
+        return studentService.getStudentByStdUid(stdUid);
     }
 
     @PostMapping("/save-student")
@@ -76,7 +76,7 @@ public class StudentController {
         student.setStdPhone(studentDTO.getStdPhone());
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
-        student.setUid(studentDTO.getUid());
+        student.setStdUid(studentDTO.getStdUid());
         student.setIsActive(true);
         return studentService.save(student);
     }
@@ -103,7 +103,7 @@ public class StudentController {
         student.setStdPhone(studentDTO.getStdPhone());
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         student.setIsSubscribed(studentDTO.getIsSubscribed());
-        student.setUid(studentDTO.getUid());
+        student.setStdUid(studentDTO.getStdUid());
         student.setIsActive(studentDTO.getIsActive());
         return studentService.save(student);
     }
@@ -128,8 +128,8 @@ public class StudentController {
             student.setIsSubscribed(true);
             student.setIsActive(true);
             student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
-        } else if (studentDTO.getEndSubscriptionDate() == null && studentDTO.getUid() != null) {
-            student = studentService.getStudentByUid(studentDTO.getUid());
+        } else if (studentDTO.getEndSubscriptionDate() == null && studentDTO.getStdUid() != null) {
+            student = studentService.getStudentByStdUid(studentDTO.getStdUid());
             student.setIsSubscribed(true);
             student.setIsActive(true);
             student.setEndSubscriptionDate(LocalDate.now().plusDays(30));

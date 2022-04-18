@@ -7,20 +7,16 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "admin", indexes = {
-        @Index(name = "admin_access_token_uk", columnList = "access_token", unique = true),
-        @Index(name = "admin_emp_id_uk", columnList = "emp_id", unique = true),
-        @Index(name = "admin_username_uk", columnList = "username", unique = true)
-})
+@Table(name = "admin")
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "admin_id", nullable = false)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_id")
     @JsonManagedReference()
-    @JoinColumn(name = "emp_id", nullable = false)
     @Fetch(FetchMode.JOIN)
     private Employee emp;
 
@@ -83,4 +79,5 @@ public class Admin {
                 ", accessToken='" + accessToken + '\'' +
                 '}';
     }
+
 }

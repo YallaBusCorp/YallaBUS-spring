@@ -10,39 +10,29 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "lk_town", indexes = {
-        @Index(name = "Town_name_uk", columnList = "town_name, company_id", unique = true)
-})
+@Table(name = "lk_town")
 public class LkTown {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "town_id", nullable = false)
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    @JsonManagedReference()
+    @Fetch(FetchMode.JOIN)
+    private Company company;
+
     @Column(name = "town_name", nullable = false)
     private String townName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonManagedReference()
-    @JoinColumn(name = "company_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
-    private Company company;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = false;
 
     @OneToMany(mappedBy = "town")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
     private Set<Student> students = new LinkedHashSet<>();
-
-    @Column(name = "is_Active", nullable = false)
-    private Boolean isActive;
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
 
     public Set<Student> getStudents() {
         return students;
@@ -52,12 +42,12 @@ public class LkTown {
         this.students = students;
     }
 
-    public Company getCompany() {
-        return company;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getTownName() {
@@ -66,6 +56,14 @@ public class LkTown {
 
     public void setTownName(String townName) {
         this.townName = townName;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Integer getId() {
@@ -83,4 +81,5 @@ public class LkTown {
                 ", townName='" + townName + '\'' +
                 '}';
     }
+
 }

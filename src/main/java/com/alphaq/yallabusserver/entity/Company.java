@@ -49,12 +49,12 @@ public class Company {
     @OneToMany(mappedBy = "company")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<LkUniversity> lkUniversities = new LinkedHashSet<>();
+    private Set<Employee> employees = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<Employee> employees = new LinkedHashSet<>();
+    private Set<Appointment> appointments = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
@@ -64,14 +64,14 @@ public class Company {
     @OneToMany(mappedBy = "company")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<Appointment> appointments = new LinkedHashSet<>();
+    private Set<LkUniversity> lkUniversities = new LinkedHashSet<>();
 
-    public Set<Appointment> getAppointments() {
-        return appointments;
+    public Set<LkUniversity> getLkUniversities() {
+        return lkUniversities;
     }
 
-    public void setAppointments(Set<Appointment> appointments) {
-        this.appointments = appointments;
+    public void setLkUniversities(Set<LkUniversity> lkUniversities) {
+        this.lkUniversities = lkUniversities;
     }
 
     public Set<SubscriptionPrice> getSubscriptionPrices() {
@@ -82,20 +82,12 @@ public class Company {
         this.subscriptionPrices = subscriptionPrices;
     }
 
-    public Set<LkUniversity> getLkUniversities() {
-        return lkUniversities;
+    public Set<Appointment> getAppointments() {
+        return appointments;
     }
 
-    public void setLkUniversities(Set<LkUniversity> lkUniversities) {
-        this.lkUniversities = lkUniversities;
-    }
-
-    public Set<LkTown> getLkTowns() {
-        return lkTowns;
-    }
-
-    public void setLkTowns(Set<LkTown> lkTowns) {
-        this.lkTowns = lkTowns;
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     public Set<Employee> getEmployees() {
@@ -104,6 +96,14 @@ public class Company {
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
+    }
+
+    public Set<LkTown> getLkTowns() {
+        return lkTowns;
+    }
+
+    public void setLkTowns(Set<LkTown> lkTowns) {
+        this.lkTowns = lkTowns;
     }
 
     public Set<Student> getStudents() {
@@ -182,4 +182,5 @@ public class Company {
                 ", facebookURL='" + facebookURL + '\'' +
                 '}';
     }
+
 }

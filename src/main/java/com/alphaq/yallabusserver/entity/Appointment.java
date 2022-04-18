@@ -8,26 +8,24 @@ import javax.persistence.*;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "appointment", indexes = {
-        @Index(name = "Appointment_start_time_uk", columnList = "appointment_start_time, company_id, appointment_type", unique = true)
-})
+@Table(name = "appointment")
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "appointment_id", nullable = false)
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    @JsonManagedReference()
+    @Fetch(FetchMode.JOIN)
+    private Company company;
+
     @Column(name = "appointment_start_time", nullable = false)
     private LocalTime appointmentStartTime;
 
     @Column(name = "appointment_type", nullable = false, length = 2)
     private String appointmentType;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonManagedReference()
-    @JoinColumn(name = "company_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
-    private Company company;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
@@ -38,14 +36,6 @@ public class Appointment {
 
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public String getAppointmentType() {
@@ -64,6 +54,14 @@ public class Appointment {
         this.appointmentStartTime = appointmentStartTime;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -72,14 +70,4 @@ public class Appointment {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "id=" + id +
-                ", appointmentStartTime=" + appointmentStartTime +
-                ", appointmentType='" + appointmentType + '\'' +
-                ", company=" + company +
-                ", isActive=" + isActive +
-                '}';
-    }
 }

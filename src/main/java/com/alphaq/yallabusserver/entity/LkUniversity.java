@@ -10,39 +10,29 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "lk_university", indexes = {
-        @Index(name = "LK_University_name_uk", columnList = "university_name, company_id", unique = true)
-})
+@Table(name = "lk_university")
 public class LkUniversity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "university_id", nullable = false)
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    @JsonManagedReference()
+    @Fetch(FetchMode.JOIN)
+    private Company company;
+
     @Column(name = "university_name", nullable = false)
     private String universityName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonManagedReference()
-    @JoinColumn(name = "company_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
-    private Company company;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = false;
 
     @OneToMany(mappedBy = "university")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
     private Set<Student> students = new LinkedHashSet<>();
-
-    @Column(name = "is_Active", nullable = false)
-    private Boolean isActive;
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
 
     public Set<Student> getStudents() {
         return students;
@@ -52,12 +42,12 @@ public class LkUniversity {
         this.students = students;
     }
 
-    public Company getCompany() {
-        return company;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getUniversityName() {
@@ -66,6 +56,14 @@ public class LkUniversity {
 
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Integer getId() {
@@ -83,4 +81,5 @@ public class LkUniversity {
                 ", universityName='" + universityName + '\'' +
                 '}';
     }
+
 }

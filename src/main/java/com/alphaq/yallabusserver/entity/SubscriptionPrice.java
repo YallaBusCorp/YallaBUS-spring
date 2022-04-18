@@ -15,6 +15,12 @@ public class SubscriptionPrice {
     @Column(name = "subscription_id", nullable = false)
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    @JsonManagedReference()
+    @Fetch(FetchMode.JOIN)
+    private Company company;
+
     @Column(name = "subscription_price", nullable = false)
     private Integer subscriptionPrice;
 
@@ -23,20 +29,6 @@ public class SubscriptionPrice {
 
     @Column(name = "subscription_end_date")
     private LocalDate subscriptionEndDate;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonManagedReference()
-    @JoinColumn(name = "company_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
-    private Company company;
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 
     public LocalDate getSubscriptionEndDate() {
         return subscriptionEndDate;
@@ -62,6 +54,14 @@ public class SubscriptionPrice {
         this.subscriptionPrice = subscriptionPrice;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -80,4 +80,5 @@ public class SubscriptionPrice {
                 ", company=" + company +
                 '}';
     }
+
 }

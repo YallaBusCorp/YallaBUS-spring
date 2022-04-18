@@ -9,9 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "lk_employee", indexes = {
-        @Index(name = "LK_employee_name_uk", columnList = "LK_name", unique = true)
-})
+@Table(name = "lk_employee")
 public class LkEmployee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,4 +55,5 @@ public class LkEmployee {
                 ", lkName='" + lkName + '\'' +
                 '}';
     }
+
 }

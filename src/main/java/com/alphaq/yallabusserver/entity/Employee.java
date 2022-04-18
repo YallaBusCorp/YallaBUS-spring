@@ -17,21 +17,10 @@ public class Employee {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference()
-    @JoinColumn(name = "emp_lk_id")
-    @Fetch(FetchMode.JOIN)
-    private LkEmployee empLk;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference()
     @JoinColumn(name = "company_id")
+    @JsonManagedReference()
     @Fetch(FetchMode.JOIN)
     private Company company;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "emp")
-    @JsonBackReference
-    @Fetch(FetchMode.JOIN)
-    private Admin admin;
 
     @Column(name = "emp_code", nullable = false)
     private String empCode;
@@ -48,12 +37,22 @@ public class Employee {
     @Column(name = "emp_salary", nullable = false)
     private Integer empSalary;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "emp_lk_id", nullable = false)
+    @JsonManagedReference()
+    @Fetch(FetchMode.JOIN)
+    private LkEmployee empLk;
+
     @Column(name = "emp_start_date")
     private LocalDate empStartDate;
 
     @Column(name = "emp_end_date")
     private LocalDate empEndDate;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "emp")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Admin admin;
 
     public Admin getAdmin() {
         return admin;
@@ -77,6 +76,14 @@ public class Employee {
 
     public void setEmpStartDate(LocalDate empStartDate) {
         this.empStartDate = empStartDate;
+    }
+
+    public LkEmployee getEmpLk() {
+        return empLk;
+    }
+
+    public void setEmpLk(LkEmployee empLk) {
+        this.empLk = empLk;
     }
 
     public Integer getEmpSalary() {
@@ -127,14 +134,6 @@ public class Employee {
         this.company = company;
     }
 
-    public LkEmployee getEmpLk() {
-        return empLk;
-    }
-
-    public void setEmpLk(LkEmployee empLk) {
-        this.empLk = empLk;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -156,4 +155,5 @@ public class Employee {
                 ", empEndDate=" + empEndDate +
                 '}';
     }
+
 }
