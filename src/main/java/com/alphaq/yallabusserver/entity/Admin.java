@@ -26,7 +26,7 @@ public class Admin {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "access_token", nullable = false)
+    @Column(name = "access_token", nullable = true)
     private String accessToken;
 
     public String getAccessToken() {
