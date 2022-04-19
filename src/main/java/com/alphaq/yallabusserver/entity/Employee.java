@@ -54,6 +54,19 @@ public class Employee {
     @Fetch(FetchMode.JOIN)
     private Admin admin;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "emp")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private DriverInfo driverInfo;
+
+    public DriverInfo getDriverInfo() {
+        return driverInfo;
+    }
+
+    public void setDriverInfo(DriverInfo driverInfo) {
+        this.driverInfo = driverInfo;
+    }
+
     public Admin getAdmin() {
         return admin;
     }

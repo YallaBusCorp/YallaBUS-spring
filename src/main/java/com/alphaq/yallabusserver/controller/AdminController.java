@@ -47,6 +47,7 @@ public class AdminController {
         employee.setEmpPhone(adminDTO.getEmp().getEmpPhone());
         employee.setEmpNationalId(adminDTO.getEmp().getEmpNationalId());
         employee.setEmpSalary(adminDTO.getEmp().getEmpSalary());
+        employee.setEmpStartDate(adminDTO.getEmp().getEmpStartDate());
         Company company = companyService.getCompanyById(adminDTO.getEmp().getCompany().getId());
         employee.setCompany(company);
         LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(adminDTO.getEmp().getEmpLk().getId());

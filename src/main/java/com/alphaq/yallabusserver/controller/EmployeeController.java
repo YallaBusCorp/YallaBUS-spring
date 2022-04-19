@@ -52,6 +52,7 @@ public class EmployeeController {
         employee.setEmpPhone(employeeDTO.getEmpPhone());
         employee.setEmpNationalId(employeeDTO.getEmpNationalId());
         employee.setEmpSalary(employeeDTO.getEmpSalary());
+        employee.setEmpStartDate(employeeDTO.getEmpStartDate());
         Company company = companyService.getCompanyById(employeeDTO.getCompany().getId());
         employee.setCompany(company);
         LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(employeeDTO.getEmpLk().getId());
