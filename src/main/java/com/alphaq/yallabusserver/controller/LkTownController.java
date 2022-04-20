@@ -26,12 +26,12 @@ public class LkTownController {
     }
 
     @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
-    public List<LkTown> getAllLkTownsByCompanyId(@RequestParam("id") int companyId){
+    public List<LkTown> getAllLkTownsByCompanyId(@RequestParam("id") int companyId) {
         return lkTownService.getAllLkTownsByCompanyId(companyId);
     }
 
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
-    public List<LkTown> getAllActiveLkTownsByCompanyId(@RequestParam("id") int companyId){
+    public List<LkTown> getAllActiveLkTownsByCompanyId(@RequestParam("id") int companyId) {
         return lkTownService.getAllActiveLkTownsByCompanyId(companyId);
     }
 
@@ -44,9 +44,19 @@ public class LkTownController {
     public LkTown save(@RequestBody LkTownDTO lkTownDTO) {
         LkTown lkTown = new LkTown();
         lkTown.setTownName(lkTownDTO.getTownName());
+        lkTown.setIsActive(true);
         Company company = companyService.getCompanyById(lkTownDTO.getCompany().getId());
         lkTown.setCompany(company);
         return lkTownService.save(lkTown);
+    }
+
+    @PutMapping("/delete-lk-town")
+    public Boolean delete(@RequestParam("id") int id) {
+        LkTown lkTown = lkTownService.getLKTownById(id);
+        lkTown.setIsActive(false);
+        lkTown = lkTownService.save(lkTown);
+        boolean flag = !lkTown.getIsActive() ? true : false;
+        return flag;
     }
 
 }
