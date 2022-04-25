@@ -70,4 +70,14 @@ public class Appointment {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", company=" + company +
+                ", appointmentStartTime=" + appointmentStartTime +
+                ", appointmentType='" + appointmentType + '\'' +
+                ", isActive=" + isActive +
+                '}';
+    }
 }
