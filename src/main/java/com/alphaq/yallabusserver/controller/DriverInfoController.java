@@ -54,9 +54,7 @@ public class DriverInfoController {
         employee.setCompany(company);
         LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(driverInfoDTO.getEmp().getEmpLk().getId());
         employee.setEmpLk(lkEmployee);
-
         Employee result = employeeService.save(employee);
-
         driverInfo.setEmp(result);
         driverInfo.setDriverLicenceNumber(driverInfoDTO.getDriverLicenceNumber());
         driverInfo.setDriverLicenceExpirationDate(driverInfoDTO.getDriverLicenceExpirationDate());

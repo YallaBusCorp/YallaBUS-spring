@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 public class AdminTest {
 
     @Autowired
@@ -28,7 +28,7 @@ public class AdminTest {
     @Autowired
     AdminService adminService;
 
-    @Test
+    //@Test
     public void addAdmin(){
         int companyId = 1;
         CompanyDTO companyDTO = new CompanyDTO();

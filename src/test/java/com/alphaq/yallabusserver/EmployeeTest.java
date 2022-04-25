@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class EmployeeTest {
     @Autowired
     EmployeeService employeeService;
@@ -62,7 +62,7 @@ public class EmployeeTest {
 
     }
 
-    @Test
+    //@Test
     void getAllActive(){
         int companyId=1;
         List<Employee> employees = employeeService.getAllActiveEmployeesByCompanyId(companyId);

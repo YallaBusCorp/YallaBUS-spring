@@ -12,14 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalTime;
 
-@SpringBootTest
+//@SpringBootTest
 public class AppointmentTest {
     @Autowired
     CompanyService companyService;
     @Autowired
     AppointmentService appointmentService;
 
-    @Test
+    //@Test
     void addAppointment(){
         int companyId = 1;
         CompanyDTO companyDTO = new CompanyDTO();

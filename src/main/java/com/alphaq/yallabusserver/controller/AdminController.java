@@ -52,9 +52,7 @@ public class AdminController {
         employee.setCompany(company);
         LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(adminDTO.getEmp().getEmpLk().getId());
         employee.setEmpLk(lkEmployee);
-
         Employee result = employeeService.save(employee);
-
         admin.setEmp(result);
         admin.setUsername(adminDTO.getUsername());
         admin.setPassword(adminDTO.getPassword());

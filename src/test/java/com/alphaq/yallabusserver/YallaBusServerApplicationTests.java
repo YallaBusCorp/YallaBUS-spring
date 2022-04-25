@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 class YallaBusServerApplicationTests {
 
     @Autowired
