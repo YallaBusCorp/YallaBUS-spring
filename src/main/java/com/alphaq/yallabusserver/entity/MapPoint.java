@@ -8,8 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "map_point", indexes = {
-        @Index(name = "Map_Point_location_uk", columnList = "longitude, latitude", unique = true),
-        @Index(name = "Map_Point_title_uk", columnList = "map_point_title", unique = true)
+        @Index(name = "Map_Point_location_uk", columnList = "longitude, latitude, company_id", unique = true),
+        @Index(name = "Map_Point_title_uk", columnList = "map_point_title_en, map_point_title_ar, company_id", unique = true)
 })
 public class MapPoint {
     @Id
@@ -17,8 +17,11 @@ public class MapPoint {
     @Column(name = "map_point_id", nullable = false)
     private Integer id;
 
-    @Column(name = "map_point_title", nullable = false)
-    private String mapPointTitle;
+    @Column(name = "map_point_title_en ", nullable = false)
+    private String mapPointTitleEn;
+
+    @Column(name = "map_point_title_ar ", nullable = false)
+    private String mapPointTitleAr;
 
     @Column(name = "map_point_type", nullable = false)
     private Character mapPointType;
@@ -46,12 +49,20 @@ public class MapPoint {
         this.id = id;
     }
 
-    public String getMapPointTitle() {
-        return mapPointTitle;
+    public String getMapPointTitleEn() {
+        return mapPointTitleEn;
     }
 
-    public void setMapPointTitle(String mapPointTitle) {
-        this.mapPointTitle = mapPointTitle;
+    public void setMapPointTitleEn(String mapPointTitleEn) {
+        this.mapPointTitleEn = mapPointTitleEn;
+    }
+
+    public String getMapPointTitleAr() {
+        return mapPointTitleAr;
+    }
+
+    public void setMapPointTitleAr(String mapPointTitle) {
+        this.mapPointTitleAr = mapPointTitle;
     }
 
     public Character getMapPointType() {

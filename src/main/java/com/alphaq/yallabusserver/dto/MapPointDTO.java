@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class MapPointDTO {
     private Integer id;
-    private String mapPointTitle;
+    private String mapPointTitleEn;
+    private String mapPointTitleAr;
     private Character mapPointType;
     private Double longitude;
     private Double latitude;
@@ -14,9 +15,10 @@ public class MapPointDTO {
     public MapPointDTO() {
     }
 
-    public MapPointDTO(Integer id, String mapPointTitle, Character mapPointType, Double longitude, Double latitude, CompanyDTO company, Boolean isActive) {
+    public MapPointDTO(Integer id, String mapPointTitleEn, String mapPointTitleAr, Character mapPointType, Double longitude, Double latitude, CompanyDTO company, Boolean isActive) {
         this.id = id;
-        this.mapPointTitle = mapPointTitle;
+        this.mapPointTitleEn = mapPointTitleEn;
+        this.mapPointTitleAr = mapPointTitleAr;
         this.mapPointType = mapPointType;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -28,8 +30,12 @@ public class MapPointDTO {
         this.id = id;
     }
 
-    public void setMapPointTitle(String mapPointTitle) {
-        this.mapPointTitle = mapPointTitle;
+    public void setMapPointTitleEn(String mapPointTitleEn) {
+        this.mapPointTitleEn = mapPointTitleEn;
+    }
+
+    public void setMapPointTitleAr(String mapPointTitleAr) {
+        this.mapPointTitleAr = mapPointTitleAr;
     }
 
     public void setMapPointType(Character mapPointType) {
@@ -56,8 +62,12 @@ public class MapPointDTO {
         return id;
     }
 
-    public String getMapPointTitle() {
-        return mapPointTitle;
+    public String getMapPointTitleEn() {
+        return mapPointTitleEn;
+    }
+
+    public String getMapPointTitleAr() {
+        return mapPointTitleAr;
     }
 
     public Character getMapPointType() {
@@ -86,7 +96,7 @@ public class MapPointDTO {
         if (o == null || getClass() != o.getClass()) return false;
         MapPointDTO entity = (MapPointDTO) o;
         return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.mapPointTitle, entity.mapPointTitle) &&
+                Objects.equals(this.mapPointTitleAr, entity.mapPointTitleAr) &&
                 Objects.equals(this.mapPointType, entity.mapPointType) &&
                 Objects.equals(this.longitude, entity.longitude) &&
                 Objects.equals(this.latitude, entity.latitude) &&
@@ -96,14 +106,15 @@ public class MapPointDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, mapPointTitle, mapPointType, longitude, latitude, company, isActive);
+        return Objects.hash(id, mapPointTitleAr, mapPointType, longitude, latitude, company, isActive);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "mapPointTitle = " + mapPointTitle + ", " +
+                "mapPointTitleEn = " + mapPointTitleEn + ", " +
+                "mapPointTitleAr = " + mapPointTitleAr + ", " +
                 "mapPointType = " + mapPointType + ", " +
                 "longitude = " + longitude + ", " +
                 "latitude = " + latitude + ", " +

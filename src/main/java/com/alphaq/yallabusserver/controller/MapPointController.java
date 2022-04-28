@@ -66,7 +66,8 @@ public class MapPointController {
         MapPoint mapPoint = new MapPoint();
         Company company = companyService.getCompanyById(mapPointDTO.getCompany().getId());
         mapPoint.setCompany(company);
-        mapPoint.setMapPointTitle(mapPointDTO.getMapPointTitle());
+        mapPoint.setMapPointTitleEn(mapPointDTO.getMapPointTitleEn());
+        mapPoint.setMapPointTitleAr(mapPointDTO.getMapPointTitleAr());
         mapPoint.setMapPointType(mapPointDTO.getMapPointType());
         mapPoint.setLatitude(mapPointDTO.getLatitude());
         mapPoint.setLongitude(mapPointDTO.getLongitude());
@@ -80,7 +81,8 @@ public class MapPointController {
         mapPoint.setId(mapPointDTO.getId());
         Company company = companyService.getCompanyById(mapPointDTO.getCompany().getId());
         mapPoint.setCompany(company);
-        mapPoint.setMapPointTitle(mapPointDTO.getMapPointTitle());
+        mapPoint.setMapPointTitleEn(mapPointDTO.getMapPointTitleEn());
+        mapPoint.setMapPointTitleAr(mapPointDTO.getMapPointTitleAr());
         mapPoint.setMapPointType(mapPointDTO.getMapPointType());
         mapPoint.setLatitude(mapPointDTO.getLatitude());
         mapPoint.setLongitude(mapPointDTO.getLongitude());
