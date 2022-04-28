@@ -1,17 +1,15 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.entity.Company;
-import com.alphaq.yallabusserver.entity.Employee;
-import com.alphaq.yallabusserver.entity.LkEmployee;
+import com.alphaq.yallabusserver.entity.*;
 import com.alphaq.yallabusserver.service.AdminService;
 import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.dto.AdminDTO;
-import com.alphaq.yallabusserver.entity.Admin;
 import com.alphaq.yallabusserver.service.EmployeeService;
 import com.alphaq.yallabusserver.service.LkEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -48,6 +46,7 @@ public class AdminController {
         employee.setEmpNationalId(adminDTO.getEmp().getEmpNationalId());
         employee.setEmpSalary(adminDTO.getEmp().getEmpSalary());
         employee.setEmpStartDate(adminDTO.getEmp().getEmpStartDate());
+        employee.setEmpEndDate(null);
         Company company = companyService.getCompanyById(adminDTO.getEmp().getCompany().getId());
         employee.setCompany(company);
         LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(adminDTO.getEmp().getEmpLk().getId());
@@ -59,5 +58,13 @@ public class AdminController {
         return adminService.save(admin);
     }
 
+    @PutMapping("/delete-admin")
+    public Boolean delete(@RequestParam("id") int adminId) {
+        Admin admin = adminService.getAdminById(adminId);
+        Employee employee = employeeService.getEmployeeById(admin.getEmp().getId());
+        employee.setEmpEndDate(LocalDate.now());
+        employeeService.save(employee);
+        return employee.getEmpEndDate()!= null ? true : false;
+    }
 
 }

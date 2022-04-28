@@ -12,6 +12,7 @@ import com.alphaq.yallabusserver.service.LkEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -39,6 +40,11 @@ public class DriverInfoController {
         return driverInfoService.getDriverInfoById(driverInfoId);
     }
 
+    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
+    public List<DriverInfo> getAllActiveDriverInfoById(@RequestParam("id") int companyId) {
+        return driverInfoService.getAllActiveDriverInfosByCompanyId(companyId);
+    }
+
     @PostMapping("/save-driverInfo")
     public DriverInfo save(@RequestBody DriverInfoDTO driverInfoDTO) {
         DriverInfo driverInfo = new DriverInfo();
@@ -50,6 +56,7 @@ public class DriverInfoController {
         employee.setEmpNationalId(driverInfoDTO.getEmp().getEmpNationalId());
         employee.setEmpSalary(driverInfoDTO.getEmp().getEmpSalary());
         employee.setEmpStartDate(driverInfoDTO.getEmp().getEmpStartDate());
+        employee.setEmpEndDate(null);
         Company company = companyService.getCompanyById(driverInfoDTO.getEmp().getCompany().getId());
         employee.setCompany(company);
         LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(driverInfoDTO.getEmp().getEmpLk().getId());
@@ -63,5 +70,13 @@ public class DriverInfoController {
         return driverInfoService.save(driverInfo);
     }
 
+    @PutMapping("/delete-driverInfo")
+    public Boolean delete(@RequestParam("id") int driverInfoId) {
+        DriverInfo driverInfo = driverInfoService.getDriverInfoById(driverInfoId);
+        Employee employee = employeeService.getEmployeeById(driverInfo.getEmp().getId());
+        employee.setEmpEndDate(LocalDate.now());
+        employeeService.save(employee);
+        return employee.getEmpEndDate()!= null ? true : false;
+    }
 
 }

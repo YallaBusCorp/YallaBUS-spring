@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,11 @@ public class DriverInfoService {
 
     public DriverInfo save(DriverInfo driverInfo) {
         return repository.save(driverInfo);
+    }
+
+    public List<DriverInfo> getAllActiveDriverInfosByCompanyId(int companyId)
+    {
+     return repository.findDriverInfosByEmp_CompanyIdAndEmp_EmpEndDate(companyId,null);
     }
 
     public List<DriverInfo> getAllDriverInfos() {

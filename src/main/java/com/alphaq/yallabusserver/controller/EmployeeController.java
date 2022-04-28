@@ -1,5 +1,6 @@
 package com.alphaq.yallabusserver.controller;
 
+import com.alphaq.yallabusserver.entity.DriverInfo;
 import com.alphaq.yallabusserver.entity.LkEmployee;
 import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.service.EmployeeService;
@@ -10,6 +11,7 @@ import com.alphaq.yallabusserver.service.LkEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -53,6 +55,7 @@ public class EmployeeController {
         employee.setEmpNationalId(employeeDTO.getEmpNationalId());
         employee.setEmpSalary(employeeDTO.getEmpSalary());
         employee.setEmpStartDate(employeeDTO.getEmpStartDate());
+        employee.setEmpEndDate(null);
         Company company = companyService.getCompanyById(employeeDTO.getCompany().getId());
         employee.setCompany(company);
         LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(employeeDTO.getEmpLk().getId());
@@ -60,5 +63,12 @@ public class EmployeeController {
         return employeeService.save(employee);
     }
 
+    @PutMapping("/delete-employee")
+    public Boolean delete(@RequestParam("id") int employeeId) {
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        employee.setEmpEndDate(LocalDate.now());
+        employeeService.save(employee);
+        return employee.getEmpEndDate()!= null ? true : false;
+    }
 
 }
