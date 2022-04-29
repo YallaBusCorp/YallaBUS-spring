@@ -1,6 +1,5 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.entity.DriverInfo;
 import com.alphaq.yallabusserver.entity.LkEmployee;
 import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.service.EmployeeService;
@@ -41,6 +40,16 @@ public class EmployeeController {
         return employeeService.getAllActiveEmployeesByCompanyId(companyId);
     }
 
+    @RequestMapping(value = "/company/supervisor/active",method = RequestMethod.GET)
+    public List<Employee> getAllActiveSupervisorByCompanyId(@RequestParam("id") int companyId){
+        return employeeService.getAllActiveEmployeeByLkEmployeeAndCompanyId(2,companyId);
+    }
+
+    @RequestMapping(value = "/supervisor/get-by-id", method = RequestMethod.GET)
+    public Employee getSupervisorById(@RequestParam("id") int employeeId) {
+        return employeeService.getEmployeeByIdAndEmpLk(employeeId,2);
+    }
+
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Employee getEmployeeById(@RequestParam("id") int employeeId) {
         return employeeService.getEmployeeById(employeeId);
@@ -49,6 +58,24 @@ public class EmployeeController {
     @PostMapping("/save-employee")
     public Employee save(@RequestBody EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
+        employee.setEmpCode(employeeDTO.getEmpCode());
+        employee.setEmpName(employeeDTO.getEmpName());
+        employee.setEmpPhone(employeeDTO.getEmpPhone());
+        employee.setEmpNationalId(employeeDTO.getEmpNationalId());
+        employee.setEmpSalary(employeeDTO.getEmpSalary());
+        employee.setEmpStartDate(employeeDTO.getEmpStartDate());
+        employee.setEmpEndDate(null);
+        Company company = companyService.getCompanyById(employeeDTO.getCompany().getId());
+        employee.setCompany(company);
+        LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(employeeDTO.getEmpLk().getId());
+        employee.setEmpLk(lkEmployee);
+        return employeeService.save(employee);
+    }
+
+    @PutMapping("/update-supervisor")
+    public Employee update(@RequestBody EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        employee.setId(employeeDTO.getId());
         employee.setEmpCode(employeeDTO.getEmpCode());
         employee.setEmpName(employeeDTO.getEmpName());
         employee.setEmpPhone(employeeDTO.getEmpPhone());

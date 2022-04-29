@@ -58,13 +58,29 @@ public class AdminController {
         return adminService.save(admin);
     }
 
-    @PutMapping("/delete-admin")
-    public Boolean delete(@RequestParam("id") int adminId) {
-        Admin admin = adminService.getAdminById(adminId);
-        Employee employee = employeeService.getEmployeeById(admin.getEmp().getId());
-        employee.setEmpEndDate(LocalDate.now());
-        employeeService.save(employee);
-        return employee.getEmpEndDate()!= null ? true : false;
+    @PutMapping("/update-admin")
+    public Admin update(@RequestBody AdminDTO adminDTO) {
+        Admin admin = new Admin();
+        admin.setId(adminDTO.getId());
+        Employee employee = new Employee();
+        employee.setId(adminDTO.getEmp().getId());
+        employee.setEmpCode(adminDTO.getEmp().getEmpCode());
+        employee.setEmpName(adminDTO.getEmp().getEmpName());
+        employee.setEmpPhone(adminDTO.getEmp().getEmpPhone());
+        employee.setEmpNationalId(adminDTO.getEmp().getEmpNationalId());
+        employee.setEmpSalary(adminDTO.getEmp().getEmpSalary());
+        employee.setEmpStartDate(adminDTO.getEmp().getEmpStartDate());
+        employee.setEmpEndDate(null);
+        Company company = companyService.getCompanyById(adminDTO.getEmp().getCompany().getId());
+        employee.setCompany(company);
+        LkEmployee lkEmployee = lkEmployeeService.getLkEmployeeById(adminDTO.getEmp().getEmpLk().getId());
+        employee.setEmpLk(lkEmployee);
+        Employee result = employeeService.save(employee);
+        admin.setEmp(result);
+        admin.setUsername(adminDTO.getUsername());
+        admin.setPassword(adminDTO.getPassword());
+        return adminService.save(admin);
     }
+
 
 }
