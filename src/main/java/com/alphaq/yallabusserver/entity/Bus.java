@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "bus")
+@Table(name = "bus")//Constrains
 public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
