@@ -39,7 +39,6 @@ public class StudentService {
 
     public List<Student> getAllActiveStudentsByCompanyId(int companyId){
         return repository.findStudentsByCompanyIdAndIsActiveEquals(companyId,true);
-
     }
 
     public int getCount() {
