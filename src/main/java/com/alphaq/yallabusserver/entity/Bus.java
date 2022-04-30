@@ -8,10 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "bus", indexes = {
-        @Index(name = "Bus_bus_code_uk", columnList = "bus_code", unique = true),
-        @Index(name = "Bus_phone_uk", columnList = "phone", unique = true)
-})
+@Table(name = "bus")
 public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
