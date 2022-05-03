@@ -62,6 +62,11 @@ public class Company {
     @Fetch(FetchMode.JOIN)
     private Set<LkUniversity> lkUniversities = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "company")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<Bus> buses = new LinkedHashSet<>();
+
     public Set<LkUniversity> getLkUniversities() {
         return lkUniversities;
     }
