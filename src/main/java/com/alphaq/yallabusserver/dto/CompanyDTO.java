@@ -15,13 +15,12 @@ public class CompanyDTO {
     private Set<LkTownDTO> lkTowns;
     private Set<LkUniversityDTO> lkUniversities;
     private Set<EmployeeDTO> employees;
-    private Set<SubscriptionPriceDTO> subscriptionPrices;
     private Set<AppointmentDTO> appointments;
 
     public CompanyDTO() {
     }
 
-    public CompanyDTO(Integer id, String companyName, String companyPhone, String description, String companyLocation, String imgURL, String facebookURL, Set<StudentDTO> students, Set<LkTownDTO> lkTowns, Set<LkUniversityDTO> lkUniversities, Set<EmployeeDTO> employees, Set<SubscriptionPriceDTO> subscriptionPrices, Set<AppointmentDTO> appointments) {
+    public CompanyDTO(Integer id, String companyName, String companyPhone, String description, String companyLocation, String imgURL, String facebookURL, Set<StudentDTO> students, Set<LkTownDTO> lkTowns, Set<LkUniversityDTO> lkUniversities, Set<EmployeeDTO> employees, Set<AppointmentDTO> appointments) {
         this.id = id;
         this.companyName = companyName;
         this.companyPhone = companyPhone;
@@ -33,7 +32,6 @@ public class CompanyDTO {
         this.lkTowns = lkTowns;
         this.lkUniversities = lkUniversities;
         this.employees = employees;
-        this.subscriptionPrices = subscriptionPrices;
         this.appointments = appointments;
     }
 
@@ -81,9 +79,6 @@ public class CompanyDTO {
         this.employees = employees;
     }
 
-    public void setSubscriptionPrices(Set<SubscriptionPriceDTO> subscriptionPrices) {
-        this.subscriptionPrices = subscriptionPrices;
-    }
 
     public void setAppointments(Set<AppointmentDTO> appointments) {
         this.appointments = appointments;
@@ -133,9 +128,6 @@ public class CompanyDTO {
         return employees;
     }
 
-    public Set<SubscriptionPriceDTO> getSubscriptionPrices() {
-        return subscriptionPrices;
-    }
 
     public Set<AppointmentDTO> getAppointments() {
         return appointments;
@@ -146,12 +138,12 @@ public class CompanyDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CompanyDTO that = (CompanyDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(companyName, that.companyName) && Objects.equals(companyPhone, that.companyPhone) && Objects.equals(description, that.description) && Objects.equals(companyLocation, that.companyLocation) && Objects.equals(imgURL, that.imgURL) && Objects.equals(facebookURL, that.facebookURL) && Objects.equals(students, that.students) && Objects.equals(lkTowns, that.lkTowns) && Objects.equals(lkUniversities, that.lkUniversities) && Objects.equals(employees, that.employees) && Objects.equals(subscriptionPrices, that.subscriptionPrices) && Objects.equals(appointments, that.appointments);
+        return Objects.equals(id, that.id) && Objects.equals(companyName, that.companyName) && Objects.equals(companyPhone, that.companyPhone) && Objects.equals(description, that.description) && Objects.equals(companyLocation, that.companyLocation) && Objects.equals(imgURL, that.imgURL) && Objects.equals(facebookURL, that.facebookURL) && Objects.equals(students, that.students) && Objects.equals(lkTowns, that.lkTowns) && Objects.equals(lkUniversities, that.lkUniversities) && Objects.equals(employees, that.employees)  && Objects.equals(appointments, that.appointments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, companyName, companyPhone, description, companyLocation, imgURL, facebookURL, students, lkTowns, lkUniversities, employees, subscriptionPrices, appointments);
+        return Objects.hash(id, companyName, companyPhone, description, companyLocation, imgURL, facebookURL, students, lkTowns, lkUniversities, employees, appointments);
     }
 
     @Override
@@ -168,7 +160,6 @@ public class CompanyDTO {
                 ", lkTowns=" + lkTowns +
                 ", lkUniversities=" + lkUniversities +
                 ", employees=" + employees +
-                ", subscriptionPrices=" + subscriptionPrices +
                 ", appointments=" + appointments +
                 '}';
     }
