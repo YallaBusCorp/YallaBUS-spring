@@ -41,5 +41,4 @@ public class SubscriptionPriceService {
     public int getCount() {
         return (int) repository.count();
     }
-
 }
