@@ -59,12 +59,20 @@ public class Company {
     @OneToMany(mappedBy = "company")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<SubscriptionPrice> subscriptionPrices = new LinkedHashSet<>();
+    private Set<LkUniversity> lkUniversities = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<LkUniversity> lkUniversities = new LinkedHashSet<>();
+    private Set<MapPoint> mapPoints = new LinkedHashSet<>();
+
+    public Set<MapPoint> getMapPoints() {
+        return mapPoints;
+    }
+
+    public void setMapPoints(Set<MapPoint> mapPoints) {
+        this.mapPoints = mapPoints;
+    }
 
     public Set<LkUniversity> getLkUniversities() {
         return lkUniversities;
@@ -72,14 +80,6 @@ public class Company {
 
     public void setLkUniversities(Set<LkUniversity> lkUniversities) {
         this.lkUniversities = lkUniversities;
-    }
-
-    public Set<SubscriptionPrice> getSubscriptionPrices() {
-        return subscriptionPrices;
-    }
-
-    public void setSubscriptionPrices(Set<SubscriptionPrice> subscriptionPrices) {
-        this.subscriptionPrices = subscriptionPrices;
     }
 
     public Set<Appointment> getAppointments() {
