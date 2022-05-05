@@ -66,6 +66,19 @@ public class Company {
     @Fetch(FetchMode.JOIN)
     private Set<MapPoint> mapPoints = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "company")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<Bus> buses = new LinkedHashSet<>();
+
+    public Set<Bus> getBuses() {
+        return buses;
+    }
+
+    public void setBuses(Set<Bus> buses) {
+        this.buses = buses;
+    }
+
     public Set<MapPoint> getMapPoints() {
         return mapPoints;
     }
