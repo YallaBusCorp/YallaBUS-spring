@@ -9,7 +9,6 @@ import com.alphaq.yallabusserver.service.LkEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -34,6 +33,11 @@ public class AdminController {
     @RequestMapping(value = "get-by-id", method = RequestMethod.GET)
     public Admin getAdminById(@RequestParam("id") int adminId) {
         return adminService.getAdminById(adminId);
+    }
+
+    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
+    public List<Admin> getAllActiveAdminsById(@RequestParam("id") int companyId) {
+        return adminService.getAllActiveAdminsByCompanyId(companyId);
     }
 
     @PostMapping("save-admin")

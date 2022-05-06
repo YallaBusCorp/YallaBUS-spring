@@ -26,6 +26,10 @@ public class AdminService {
         return admins;
     }
 
+    public List<Admin> getAllActiveAdminsByCompanyId(int companyId) {
+        return repository.findAdminsByEmp_CompanyIdAndEmp_EmpEndDate(companyId,null);
+    }
+
     public Admin getAdminById(int adminId) {
         return repository.findAdminById(adminId);
     }
