@@ -1,6 +1,12 @@
 package com.alphaq.yallabusserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "lk_fees", indexes = {
@@ -17,6 +23,11 @@ public class LKFee {
 
     @Column(name = "LK_name_en", nullable = false)
     private String lkNameEn;
+
+    @OneToMany(mappedBy = "feesLk")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<Fee> fees = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
