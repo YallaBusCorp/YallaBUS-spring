@@ -56,6 +56,35 @@ public class Bus {
     @Fetch(FetchMode.JOIN)
     private Set<Fee> fees = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "bus")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<TxBus> txBuses = new LinkedHashSet<>();
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Set<Fee> getFees() {
+        return fees;
+    }
+
+    public void setFees(Set<Fee> fees) {
+        this.fees = fees;
+    }
+
+    public Set<TxBus> getTxBuses() {
+        return txBuses;
+    }
+
+    public void setTxBuses(Set<TxBus> txBuses) {
+        this.txBuses = txBuses;
+    }
+
     public Boolean getIsActive() {
         return isActive;
     }

@@ -29,6 +29,14 @@ public class LKFee {
     @Fetch(FetchMode.JOIN)
     private Set<Fee> fees = new LinkedHashSet<>();
 
+    public Set<Fee> getFees() {
+        return fees;
+    }
+
+    public void setFees(Set<Fee> fees) {
+        this.fees = fees;
+    }
+
     public Integer getId() {
         return id;
     }

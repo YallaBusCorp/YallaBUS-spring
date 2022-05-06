@@ -7,6 +7,8 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "employee")
@@ -58,6 +60,19 @@ public class Employee {
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
     private DriverInfo driverInfo;
+
+    @OneToMany(mappedBy = "emp")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<TxBus> txBuses = new LinkedHashSet<>();
+
+    public Set<TxBus> getTxBuses() {
+        return txBuses;
+    }
+
+    public void setTxBuses(Set<TxBus> txBuses) {
+        this.txBuses = txBuses;
+    }
 
     public DriverInfo getDriverInfo() {
         return driverInfo;
