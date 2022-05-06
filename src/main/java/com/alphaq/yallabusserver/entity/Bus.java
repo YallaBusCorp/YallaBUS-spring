@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "bus", indexes = {
-        @Index(name = "Bus_bus_code_uk", columnList = "bus_code", unique = true),
+        @Index(name = "Bus_bus_code_uk", columnList = "bus_uid", unique = true),
         @Index(name = "Bus_phone_uk", columnList = "phone", unique = true)
 })
 public class Bus {
@@ -21,8 +21,8 @@ public class Bus {
     @Column(name = "bus_id", nullable = false)
     private Integer id;
 
-    @Column(name = "bus_code", nullable = false)
-    private String busCode;
+    @Column(name = "bus_uid", nullable = false)
+    private String busUid;
 
     @Column(name = "phone", nullable = false)
     private String phone;
@@ -149,12 +149,12 @@ public class Bus {
         this.phone = phone;
     }
 
-    public String getBusCode() {
-        return busCode;
+    public String getBusUid() {
+        return busUid;
     }
 
-    public void setBusCode(String busCode) {
-        this.busCode = busCode;
+    public void setBusUid(String busUid) {
+        this.busUid = busUid;
     }
 
     public Integer getId() {

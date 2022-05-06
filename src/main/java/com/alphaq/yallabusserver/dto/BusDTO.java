@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class BusDTO {
     private Integer id;
-    private String busCode;
+    private String busUid;
     private String phone;
     private String model;
     private Integer capacity;
@@ -18,9 +18,9 @@ public class BusDTO {
     public BusDTO() {
     }
 
-    public BusDTO(Integer id, String busCode, String phone, String model, Integer capacity, String busLicenceNumber, LocalDate busLicenceExpirationDate, LocalDate busLicenceExpirationDateAlarm, CompanyDTO company, Boolean isActive) {
+    public BusDTO(Integer id, String busUid, String phone, String model, Integer capacity, String busLicenceNumber, LocalDate busLicenceExpirationDate, LocalDate busLicenceExpirationDateAlarm, CompanyDTO company, Boolean isActive) {
         this.id = id;
-        this.busCode = busCode;
+        this.busUid = busUid;
         this.phone = phone;
         this.model = model;
         this.capacity = capacity;
@@ -35,8 +35,8 @@ public class BusDTO {
         this.id = id;
     }
 
-    public void setBusCode(String busCode) {
-        this.busCode = busCode;
+    public void setBusUid(String busUid) {
+        this.busUid = busUid;
     }
 
     public void setPhone(String phone) {
@@ -75,8 +75,8 @@ public class BusDTO {
         return id;
     }
 
-    public String getBusCode() {
-        return busCode;
+    public String getBusUid() {
+        return busUid;
     }
 
     public String getPhone() {
@@ -117,7 +117,7 @@ public class BusDTO {
         if (o == null || getClass() != o.getClass()) return false;
         BusDTO entity = (BusDTO) o;
         return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.busCode, entity.busCode) &&
+                Objects.equals(this.busUid, entity.busUid) &&
                 Objects.equals(this.phone, entity.phone) &&
                 Objects.equals(this.model, entity.model) &&
                 Objects.equals(this.capacity, entity.capacity) &&
@@ -130,14 +130,14 @@ public class BusDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, busCode, phone, model, capacity, busLicenceNumber, busLicenceExpirationDate, busLicenceExpirationDateAlarm, company, isActive);
+        return Objects.hash(id, busUid, phone, model, capacity, busLicenceNumber, busLicenceExpirationDate, busLicenceExpirationDateAlarm, company, isActive);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "busCode = " + busCode + ", " +
+                "busUid = " + busUid + ", " +
                 "phone = " + phone + ", " +
                 "model = " + model + ", " +
                 "capacity = " + capacity + ", " +

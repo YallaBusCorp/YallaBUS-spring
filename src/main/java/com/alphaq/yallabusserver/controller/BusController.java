@@ -35,6 +35,11 @@ public class BusController {
         return busService.getBusById(busId);
     }
 
+    @RequestMapping(value = "/get-by-uid", method = RequestMethod.GET)
+    public Bus getBusByUid(@RequestParam("busUid") String busUid) {
+        return busService.getBusByUId(busUid);
+    }
+
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
     public List<Bus> getAllActiveBusesByCompanyId(@RequestParam("id") int companyId) {
         return busService.getAllActiveBusesByCompanyId(companyId);
@@ -49,7 +54,7 @@ public class BusController {
 
         Company company = companyService.getCompanyById(busDTO.getCompany().getId());
         bus.setCompany(company);
-        bus.setBusCode(busDTO.getBusCode());
+        bus.setBusUid(busDTO.getBusUid());
         bus.setPhone(busDTO.getPhone());
         bus.setModel(busDTO.getModel());
         bus.setCapacity(busDTO.getCapacity());

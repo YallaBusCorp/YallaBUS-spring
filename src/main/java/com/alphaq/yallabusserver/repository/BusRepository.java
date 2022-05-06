@@ -10,6 +10,7 @@ import java.util.List;
 public interface BusRepository extends JpaRepository<Bus, Integer> {
 
     Bus findBusById(int busId);
+    Bus findBusByBusUid(String busUid);
     Bus findBusByIdAndCompanyId(int busId, int companyId);
     List<Bus> findBussByCompanyId(int companyId);
     List<Bus> findBusesByCompanyIdAndAndIsActiveEquals(int companyId,boolean isActive);
