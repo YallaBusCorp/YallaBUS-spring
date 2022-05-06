@@ -1,6 +1,5 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.service.LkEmployeeService;
 import com.alphaq.yallabusserver.dto.LkEmployeeDTO;
 import com.alphaq.yallabusserver.entity.LkEmployee;
