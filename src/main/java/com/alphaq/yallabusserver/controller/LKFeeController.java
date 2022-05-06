@@ -1,6 +1,8 @@
 package com.alphaq.yallabusserver.controller;
 
+import com.alphaq.yallabusserver.dto.BusDTO;
 import com.alphaq.yallabusserver.dto.LKFeeDTO;
+import com.alphaq.yallabusserver.entity.Bus;
 import com.alphaq.yallabusserver.entity.Company;
 import com.alphaq.yallabusserver.entity.LKFee;
 import com.alphaq.yallabusserver.service.CompanyService;
@@ -25,24 +27,34 @@ public class LKFeeController {
         return lKFeeService.getAllLKFees();
     }
 
-//    @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
-//    public List<LKFee> getAllLKFeesByCompanyId(@RequestParam("id") int companyId) {
-//        return lKFeeService.getAllLKFeesByCompanyId(companyId);
-//    }
-
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public LKFee getLKFeeById(@RequestParam("id") int lKFeeId) {
         return lKFeeService.getLKFeeById(lKFeeId);
     }
 
-//    @PostMapping("/save-lKFee")
-//    public LKFee save(@RequestBody LKFeeDTO lKFeeDTO) {
-//        LKFee lKFee = new LKFee();
-//
-//        Company company = companyService.getCompanyById(lKFeeDTO.getCompany().getId());
-//        lKFee.setCompany(company);
-//        return lKFeeService.save(lKFee);
-//    }
+    @PostMapping("/save-lKFee")
+    public LKFee save(@RequestBody LKFeeDTO lKFeeDTO) {
+        LKFee lKFee = new LKFee();
+
+        if (lKFeeDTO.getId() != null)
+            lKFee.setId(lKFeeDTO.getId());
+
+        lKFee.setLkNameAr(lKFeeDTO.getLkNameAr());
+        lKFee.setLkNameEn(lKFeeDTO.getLkNameEn());
+
+        return lKFeeService.save(lKFee);
+    }
+
+    @PutMapping("/update-lKFee")
+    public LKFee update(@RequestBody LKFeeDTO lKFeeDTO) {
+        return save(lKFeeDTO);
+    }
+
+    @DeleteMapping("/delete-lKFee")
+    public void delete(@RequestParam("id") int lkFeeId) {
+        LKFee lKFee = lKFeeService.getLKFeeById(lkFeeId);
+        lKFeeService.delete(lKFee);
+    }
 
 
 }

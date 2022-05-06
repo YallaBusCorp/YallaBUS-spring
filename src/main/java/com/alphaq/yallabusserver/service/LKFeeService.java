@@ -15,9 +15,13 @@ public class LKFeeService {
     @Autowired
     private LKFeeRepository repository;
 
-//    public LKFee save(LKFee lKFee) {
-//        return repository.save(lKFee);
-//    }
+    public LKFee save(LKFee lKFee) {
+        return repository.save(lKFee);
+    }
+
+    public void delete(LKFee lKFee) {
+        repository.delete(lKFee);
+    }
 
     public List<LKFee> getAllLKFees() {
         List<LKFee> lKFees = new ArrayList<>();
@@ -25,14 +29,6 @@ public class LKFeeService {
                 .forEach(lKFees::add);
         return lKFees;
     }
-
-//    public List<LKFee> getAllLKFeesByCompanyId(int companyId) {
-//        return repository.findLKFeesByCompanyId(companyId);
-//    }
-
-//    public LKFee checkExistenceLKFeeInCompany(LKFee lKFee, int companyId) {
-//        return repository.findLKFeeByIdAndCompanyId(lKFee.getId(), companyId);
-//    }
 
     public LKFee getLKFeeById(int lKFeeId) {
         return repository.findLKFeeById(lKFeeId);
