@@ -1,6 +1,5 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.dto.EmployeeDTO;
 import com.alphaq.yallabusserver.dto.SalaryDTO;
 import com.alphaq.yallabusserver.entity.Employee;
 import com.alphaq.yallabusserver.entity.Salary;
@@ -41,9 +40,8 @@ public class SalaryController {
     @PostMapping("company/save-salaries")
     public List<Salary> saveSalaries(@RequestParam("id") int companyId){
         List<Salary> salaries = new ArrayList<>();
-        EmployeeController employeeController = new EmployeeController();
         Salary salary;
-        List<Employee> employees = employeeController.getAllActiveEmployeesByCompanyId(companyId);
+        List<Employee> employees = employeeService.getAllActiveEmployeesByCompanyId(companyId);
         for (Employee employee: employees) {
             salary = new Salary();
             salary.setEmp(employee);
