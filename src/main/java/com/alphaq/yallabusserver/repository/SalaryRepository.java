@@ -10,8 +10,8 @@ import java.util.List;
 public interface SalaryRepository extends JpaRepository<Salary, Integer> {
 
     Salary findSalaryById(int salaryId);
-
     List<Salary> findSalariesByEmp_CompanyId(int companyId);
+    List<Salary> findSalariesByEmp_CompanyIdAndIsReceivedEquals(int companyId,Boolean isReceived);
 
 
 }

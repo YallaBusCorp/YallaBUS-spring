@@ -30,6 +30,13 @@ public class SalaryService {
         return repository.findSalariesByEmp_CompanyId(companyId);
     }
 
+    public List<Salary> getAllReceivedSalariesInCompany(int companyId){
+        return repository.findSalariesByEmp_CompanyIdAndIsReceivedEquals(companyId,true);
+    }
+    public List<Salary> getAllNotReceivedSalariesInCompany(int companyId){
+        return repository.findSalariesByEmp_CompanyIdAndIsReceivedEquals(companyId,false);
+    }
+
 
     public Salary getSalaryById(int salaryId) {
         return repository.findSalaryById(salaryId);

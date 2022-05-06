@@ -32,6 +32,16 @@ public class SalaryController {
         return salaryService.getAllSalariesInCompany(companyId);
     }
 
+    @RequestMapping(value = "/company/received", method = RequestMethod.GET)
+    public List<Salary> getAllReceivedSalariesInCompany(@RequestParam("id") int companyId){
+        return salaryService.getAllReceivedSalariesInCompany(companyId);
+    }
+
+    @RequestMapping(value = "/company/not-received", method = RequestMethod.GET)
+    public List<Salary> getAllNotReceivedSalariesInCompany(@RequestParam("id") int companyId){
+        return salaryService.getAllNotReceivedSalariesInCompany(companyId);
+    }
+
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Salary getSalaryById(@RequestParam("id") int salaryId) {
         return salaryService.getSalaryById(salaryId);
