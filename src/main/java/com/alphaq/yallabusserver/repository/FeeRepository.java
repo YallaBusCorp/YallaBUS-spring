@@ -11,9 +11,15 @@ public interface FeeRepository extends JpaRepository<Fee, Integer> {
 
     Fee findFeeById(int feeId);
 
-    //Fee findFeeByIdAndCompanyId(int feeId, int companyId);
-
     List<Fee> findFeesByBus_Id(int busId);
-    List<Fee> findFeesByBus_IdAndIsApprovedEquals(int busId,Character c);
 
+    List<Fee> findFeesByBus_IdAndIsApprovedEquals(int busId, Character c);
+
+    List<Fee> findFeesByBus_CompanyId(int companyId);
+
+    List<Fee> findFeesByBus_CompanyIdAndIsApprovedEquals(int companyId, Character c);
+
+    List<Fee> findFeesByBus_CompanyIdAndFeesLkId(int companyId, int lkFeeId);
+
+    List<Fee> findFeesByBus_CompanyIdAndFeesLkIdAndIsApprovedEquals(int companyId, int lkFeeId, Character c);
 }

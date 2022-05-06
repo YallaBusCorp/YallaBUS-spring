@@ -26,6 +26,30 @@ public class FeeService {
         return fees;
     }
 
+    public List<Fee> getAllFeesByCompanyIdAndLkFeeId(int companyId, int lkFeeId) {
+        return repository.findFeesByBus_CompanyIdAndFeesLkId(companyId, lkFeeId);
+    }
+
+    public List<Fee> getAllApprovedFeesByCompanyIdAndLkFeeId(int companyId, int lkFeeId) {
+        return repository.findFeesByBus_CompanyIdAndFeesLkIdAndIsApprovedEquals(companyId, lkFeeId, 'Y');
+    }
+
+    public List<Fee> getAllNotApprovedFeesByCompanyIdAndLkFeeId(int companyId, int lkFeeId) {
+        return repository.findFeesByBus_CompanyIdAndFeesLkIdAndIsApprovedEquals(companyId, lkFeeId, 'N');
+    }
+
+    public List<Fee> getAllFeesByCompanyId(int companyId) {
+        return repository.findFeesByBus_CompanyId(companyId);
+    }
+
+    public List<Fee> getAllApprovedFeesByCompanyId(int companyId) {
+        return repository.findFeesByBus_CompanyIdAndIsApprovedEquals(companyId, 'Y');
+    }
+
+    public List<Fee> getAllNotApprovedFeesByCompanyId(int companyId) {
+        return repository.findFeesByBus_CompanyIdAndIsApprovedEquals(companyId, 'N');
+    }
+
     public List<Fee> getAllFeesByBusId(int busId) {
         return repository.findFeesByBus_Id(busId);
     }
@@ -37,10 +61,6 @@ public class FeeService {
     public List<Fee> getAllNotApprovedFeesByBusId(int busId) {
         return repository.findFeesByBus_IdAndIsApprovedEquals(busId, 'N');
     }
-
-//    public Fee checkExistenceFeeInCompany(Fee fee, int companyId) {
-//        return repository.findFeeByIdAndCompanyId(fee.getId(), companyId);
-//    }
 
     public Fee getFeeById(int feeId) {
         return repository.findFeeById(feeId);

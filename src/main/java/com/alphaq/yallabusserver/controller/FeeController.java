@@ -31,26 +31,53 @@ public class FeeController {
     public List<Fee> getAllFees() {
         return feeService.getAllFees();
     }
-
-    @RequestMapping(value = "/bus/get-all", method = RequestMethod.GET)
-    public List<Fee> getAllFeesByBusId(@RequestParam("id") int busId) {
-        return feeService.getAllFeesByBusId(busId);
-    }
-
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Fee getFeeById(@RequestParam("id") int feeId) {
         return feeService.getFeeById(feeId);
     }
 
+
+    @RequestMapping(value = "/bus/get-all", method = RequestMethod.GET)
+    public List<Fee> getAllFeesByBusId(@RequestParam("id") int busId) {
+        return feeService.getAllFeesByBusId(busId);
+    }
     @RequestMapping(value = "/bus/get-all-Approved", method = RequestMethod.GET)
     public List<Fee> getAllApprovedFeesByBusId(@RequestParam("id") int busId) {
         return feeService.getAllApprovedFeesByBusId(busId);
     }
-
     @RequestMapping(value = "/bus/get-all-NotApproved", method = RequestMethod.GET)
     public List<Fee> getAllNotApprovedFeesByBusId(@RequestParam("id") int busId) {
         return feeService.getAllNotApprovedFeesByBusId(busId);
     }
+
+
+    @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
+    public List<Fee> getAllFeesByCompanyId(@RequestParam("id") int companyId) {
+        return feeService.getAllFeesByCompanyId(companyId);
+    }
+    @RequestMapping(value = "/company/get-all-Approved", method = RequestMethod.GET)
+    public List<Fee> getAllApprovedFeesByCompanyId(@RequestParam("id") int companyId) {
+        return feeService.getAllApprovedFeesByCompanyId(companyId);
+    }
+    @RequestMapping(value = "/company/get-all-NotApproved", method = RequestMethod.GET)
+    public List<Fee> getAllNotApprovedFeesByCompanyId(@RequestParam("id") int companyId) {
+        return feeService.getAllNotApprovedFeesByCompanyId(companyId);
+    }
+
+
+    @RequestMapping(value = "/companyAndLkFee/get-all", method = RequestMethod.GET)
+    public List<Fee> getAllFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
+        return feeService.getAllFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
+    }
+    @RequestMapping(value = "/companyAndLkFee/get-all-Approved", method = RequestMethod.GET)
+    public List<Fee> getAllApprovedFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
+        return feeService.getAllApprovedFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
+    }
+    @RequestMapping(value = "/companyAndLkFee/get-all-NotApproved", method = RequestMethod.GET)
+    public List<Fee> getAllNotApprovedFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
+        return feeService.getAllNotApprovedFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
+    }
+
 
     @PostMapping("/save-fee")
     public Fee save(@RequestBody FeeDTO feeDTO) {
