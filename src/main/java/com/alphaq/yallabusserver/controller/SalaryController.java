@@ -42,6 +42,11 @@ public class SalaryController {
         return salaryService.getAllNotReceivedSalariesInCompany(companyId);
     }
 
+    @RequestMapping(value = "/employee",method = RequestMethod.GET)
+    public List<Salary> getAllEmployeesSalaries(@RequestParam("id") int employeeId){
+        return salaryService.getAllEmployeesSalaries(employeeId);
+    }
+
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Salary getSalaryById(@RequestParam("id") int salaryId) {
         return salaryService.getSalaryById(salaryId);

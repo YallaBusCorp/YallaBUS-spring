@@ -11,6 +11,7 @@ public interface SalaryRepository extends JpaRepository<Salary, Integer> {
 
     Salary findSalaryById(int salaryId);
     List<Salary> findSalariesByEmp_CompanyId(int companyId);
+    List<Salary> findSalariesByEmpId(int employeeId);
     List<Salary> findSalariesByEmp_CompanyIdAndIsReceivedEquals(int companyId,Boolean isReceived);
 
 
