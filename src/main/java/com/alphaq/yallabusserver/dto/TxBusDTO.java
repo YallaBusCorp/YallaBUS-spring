@@ -1,19 +1,19 @@
 package com.alphaq.yallabusserver.dto;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+
 import java.util.Objects;
+import java.time.LocalDateTime;
 
 public class TxBusDTO {
     private Integer id;
     private EmployeeDTO emp;
     private BusDTO bus;
-    private LocalDate loginDate;
+    private LocalDateTime loginDate;
 
     public TxBusDTO() {
     }
 
-    public TxBusDTO(Integer id, EmployeeDTO emp, BusDTO bus, LocalDate loginDate) {
+    public TxBusDTO(Integer id, EmployeeDTO emp, BusDTO bus, LocalDateTime loginDate) {
         this.id = id;
         this.emp = emp;
         this.bus = bus;
@@ -32,7 +32,7 @@ public class TxBusDTO {
         this.bus = bus;
     }
 
-    public void setLoginDate(LocalDate loginDate) {
+    public void setLoginDate(LocalDateTime loginDate) {
         this.loginDate = loginDate;
     }
 
@@ -48,7 +48,7 @@ public class TxBusDTO {
         return bus;
     }
 
-    public LocalDate getLoginDate() {
+    public LocalDateTime getLoginDate() {
         return loginDate;
     }
 

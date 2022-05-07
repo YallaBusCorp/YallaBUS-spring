@@ -30,19 +30,19 @@ public class EmployeeService {
         return repository.findEmployeesByCompanyId(companyId);
     }
 
-    public List<Employee> getAllActiveEmployeesByCompanyId(int companyId){
+    public List<Employee> getAllActiveEmployeesByCompanyId(int companyId) {
         return repository.findEmployeesByCompanyIdAndEmpEndDateIsNull(companyId);
     }
 
-    public List<Employee> getAllEmployeeByLkEmployeeId(int lkEmployeeId){
+    public List<Employee> getAllEmployeeByLkEmployeeId(int lkEmployeeId) {
         return repository.findEmployeesByEmpLkId(lkEmployeeId);
     }
 
-    public List<Employee> getAllEmployeeByLkEmployeeAndCompanyId(int lkEmployeeId,int companyId){
-        return repository.findEmployeesByEmpLkIdAndCompanyId(lkEmployeeId,companyId);
+    public List<Employee> getAllEmployeeByLkEmployeeAndCompanyId(int lkEmployeeId, int companyId) {
+        return repository.findEmployeesByEmpLkIdAndCompanyId(lkEmployeeId, companyId);
     }
 
-    public List<Employee> getAllActiveEmployeeByLkEmployeeAndCompanyId(int lkEmployeeId,int companyId){
+    public List<Employee> getAllActiveEmployeeByLkEmployeeAndCompanyId(int lkEmployeeId, int companyId) {
         return repository.findEmployeesByEmpLkIdAndCompanyIdAndEmpEndDateIsNull(lkEmployeeId, companyId);
     }
 
@@ -54,8 +54,12 @@ public class EmployeeService {
         return repository.findEmployeeById(employeeId);
     }
 
-    public Employee getEmployeeByIdAndEmpLk(int employeeId, int lkEmployeeId){
-        return repository.findEmployeeByIdAndEmpLkId(employeeId,lkEmployeeId);
+    public Employee getEmployeeByEmpCode(String employeeCode) {
+        return repository.findEmployeeByEmpCode(employeeCode);
+    }
+
+    public Employee getEmployeeByIdAndEmpLk(int employeeId, int lkEmployeeId) {
+        return repository.findEmployeeByIdAndEmpLkId(employeeId, lkEmployeeId);
     }
 
     public int getCount() {

@@ -1,11 +1,12 @@
 package com.alphaq.yallabusserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tx_bus")
@@ -27,8 +28,9 @@ public class TxBus {
     @Fetch(FetchMode.JOIN)
     private Bus bus;
 
-    @Column(name = "login_date", nullable = false)
-    private LocalDate loginDate;
+    @Column(name = "login_date")
+    @CreationTimestamp
+    private LocalDateTime loginDate;
 
     public Integer getId() {
         return id;
@@ -54,11 +56,11 @@ public class TxBus {
         this.bus = bus;
     }
 
-    public LocalDate getLoginDate() {
+    public LocalDateTime getLoginDate() {
         return loginDate;
     }
 
-    public void setLoginDate(LocalDate loginDate) {
+    public void setLoginDate(LocalDateTime loginDate) {
         this.loginDate = loginDate;
     }
 

@@ -37,23 +37,28 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
-    public List<Employee> getAllActiveEmployeesByCompanyId(@RequestParam("id") int companyId){
+    public List<Employee> getAllActiveEmployeesByCompanyId(@RequestParam("id") int companyId) {
         return employeeService.getAllActiveEmployeesByCompanyId(companyId);
     }
 
-    @RequestMapping(value = "/company/supervisor/active",method = RequestMethod.GET)
-    public List<Employee> getAllActiveSupervisorByCompanyId(@RequestParam("id") int companyId){
-        return employeeService.getAllActiveEmployeeByLkEmployeeAndCompanyId(2,companyId);
+    @RequestMapping(value = "/company/supervisor/active", method = RequestMethod.GET)
+    public List<Employee> getAllActiveSupervisorByCompanyId(@RequestParam("id") int companyId) {
+        return employeeService.getAllActiveEmployeeByLkEmployeeAndCompanyId(2, companyId);
     }
 
     @RequestMapping(value = "/supervisor/get-by-id", method = RequestMethod.GET)
     public Employee getSupervisorById(@RequestParam("id") int employeeId) {
-        return employeeService.getEmployeeByIdAndEmpLk(employeeId,2);
+        return employeeService.getEmployeeByIdAndEmpLk(employeeId, 2);
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Employee getEmployeeById(@RequestParam("id") int employeeId) {
         return employeeService.getEmployeeById(employeeId);
+    }
+
+    @RequestMapping(value = "/get-by-empCode", method = RequestMethod.GET)
+    public Employee getEmployeeByEmpCode(@RequestParam("empCode") String employeeCode) {
+        return employeeService.getEmployeeByEmpCode(employeeCode);
     }
 
     @PostMapping("/save-employee")
@@ -96,7 +101,7 @@ public class EmployeeController {
         Employee employee = employeeService.getEmployeeById(employeeId);
         employee.setEmpEndDate(LocalDate.now());
         employeeService.save(employee);
-        return employee.getEmpEndDate()!= null ? true : false;
+        return employee.getEmpEndDate() != null ? true : false;
     }
 
 }

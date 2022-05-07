@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +28,24 @@ public class TxBusService {
         return txBuss;
     }
 
-//    public List<TxBus> getAllTxBussByCompanyId(int companyId) {
-//        return repository.findTxBussByCompanyId(companyId);
+    public List<TxBus> getAllTxBusesByCompanyId(int companyId) {
+        return repository.findTxBusesByBus_CompanyId(companyId);
+    }
+
+    public List<TxBus> getAllTxBusesByEmployeeId(int employeeId) {
+        return repository.findTxBusesByEmpId(employeeId);
+    }
+
+    public List<TxBus> getAllTxBusesByBusId(int busId) {
+        return repository.findTxBusesByBusId(busId);
+    }
+//    public List<TxBus> getAllTxBusesByDate(LocalDateTime localDateTime) {
+//        return repository.findTxBusesByLoginDateEquals(localDateTime);
 //    }
+
+    public List<TxBus> getAllTxBusesByDate(LocalDateTime startLocalDateTime, LocalDateTime endLocalDateTime) {
+        return repository.findTxBusesByLoginDateBetween(startLocalDateTime, endLocalDateTime);
+    }
 
 //    public TxBus checkExistenceTxBusInCompany(TxBus txBus, int companyId) {
 //        return repository.findTxBusByIdAndCompanyId(txBus.getId(), companyId);
