@@ -28,6 +28,7 @@ public class FeeService {
         return fees;
     }
 
+
     public List<Fee> getAllFeesByCompanyIdAndLkFeeId(int companyId, int lkFeeId) {
         return repository.findFeesByBus_CompanyIdAndFeesLkId(companyId, lkFeeId);
     }
@@ -39,6 +40,11 @@ public class FeeService {
     public List<Fee> getAllNotApprovedFeesByCompanyIdAndLkFeeId(int companyId, int lkFeeId) {
         return repository.findFeesByBus_CompanyIdAndFeesLkIdAndIsApprovedEquals(companyId, lkFeeId, false);
     }
+
+    public List<Fee> getAllPendingFeesByCompanyIdAndLkFeeId(int companyId, int lkFeeId) {
+        return repository.findFeesByBus_CompanyIdAndFeesLkIdAndIsApprovedEquals(companyId, lkFeeId, null);
+    }
+
 
     public List<Fee> getAllFeesByCompanyId(int companyId) {
         return repository.findFeesByBus_CompanyId(companyId);
@@ -52,6 +58,11 @@ public class FeeService {
         return repository.findFeesByBus_CompanyIdAndIsApprovedEquals(companyId, false);
     }
 
+    public List<Fee> getAllPendingFeesByCompanyId(int companyId) {
+        return repository.findFeesByBus_CompanyIdAndIsApprovedEquals(companyId, null);
+    }
+
+
     public List<Fee> getAllFeesByBusId(int busId) {
         return repository.findFeesByBus_Id(busId);
     }
@@ -63,6 +74,11 @@ public class FeeService {
     public List<Fee> getAllNotApprovedFeesByBusId(int busId) {
         return repository.findFeesByBus_IdAndIsApprovedEquals(busId, false);
     }
+
+    public List<Fee> getAllPendingFeesByBusId(int busId) {
+        return repository.findFeesByBus_IdAndIsApprovedEquals(busId, null);
+    }
+
 
     public List<Fee> getAllFeesByDateBetween(LocalDateTime startLocalDateTime, LocalDateTime endLocalDateTime) {
         return repository.findFeesByFessDateBetween(startLocalDateTime, endLocalDateTime);

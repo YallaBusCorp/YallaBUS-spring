@@ -51,6 +51,11 @@ public class FeeController {
         return feeService.getAllNotApprovedFeesByBusId(busId);
     }
 
+    @RequestMapping(value = "/bus/get-all-Pending", method = RequestMethod.GET)
+    public List<Fee> getAllPendingFeesByBusId(@RequestParam("id") int busId) {
+        return feeService.getAllPendingFeesByBusId(busId);
+    }
+
 
     @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
     public List<Fee> getAllFeesByCompanyId(@RequestParam("id") int companyId) {
@@ -67,6 +72,11 @@ public class FeeController {
         return feeService.getAllNotApprovedFeesByCompanyId(companyId);
     }
 
+    @RequestMapping(value = "/company/get-all-Pending", method = RequestMethod.GET)
+    public List<Fee> getAllPendingFeesByCompanyId(@RequestParam("id") int companyId) {
+        return feeService.getAllPendingFeesByCompanyId(companyId);
+    }
+
 
     @RequestMapping(value = "/companyAndLkFee/get-all", method = RequestMethod.GET)
     public List<Fee> getAllFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
@@ -81,6 +91,11 @@ public class FeeController {
     @RequestMapping(value = "/companyAndLkFee/get-all-NotApproved", method = RequestMethod.GET)
     public List<Fee> getAllNotApprovedFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
         return feeService.getAllNotApprovedFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
+    }
+
+    @RequestMapping(value = "/companyAndLkFee/get-all-Pending", method = RequestMethod.GET)
+    public List<Fee> getAllPendingFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
+        return feeService.getAllPendingFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
     }
 
 
