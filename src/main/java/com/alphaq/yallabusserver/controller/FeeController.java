@@ -1,10 +1,7 @@
 package com.alphaq.yallabusserver.controller;
 
 import com.alphaq.yallabusserver.dto.FeeDTO;
-import com.alphaq.yallabusserver.entity.Bus;
-import com.alphaq.yallabusserver.entity.Company;
-import com.alphaq.yallabusserver.entity.Fee;
-import com.alphaq.yallabusserver.entity.LKFee;
+import com.alphaq.yallabusserver.entity.*;
 import com.alphaq.yallabusserver.service.BusService;
 import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.service.FeeService;
@@ -12,6 +9,7 @@ import com.alphaq.yallabusserver.service.LKFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -85,6 +83,11 @@ public class FeeController {
         return feeService.getAllNotApprovedFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
     }
 
+
+    @RequestMapping(value = "/date/get-all", method = RequestMethod.GET)
+    public List<Fee> getAllFeesByDateBetween(@RequestParam("startDate") String startLocalDateTime, @RequestParam("endDate") String endLocalDateTime) {
+        return feeService.getAllFeesByDateBetween(LocalDateTime.parse(startLocalDateTime),LocalDateTime.parse(endLocalDateTime));
+    }
 
     @PostMapping("/save-fee")
     public Fee save(@RequestBody FeeDTO feeDTO) {

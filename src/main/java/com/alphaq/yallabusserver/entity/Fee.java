@@ -1,11 +1,12 @@
 package com.alphaq.yallabusserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "fees")
@@ -34,7 +35,8 @@ public class Fee {
     private byte[] image;
 
     @Column(name = "fess_date")
-    private LocalDate fessDate;
+    @CreationTimestamp
+    private LocalDateTime fessDate;
 
     @Column(name = "is_approved", nullable = true)
     private Boolean isApproved;
@@ -79,11 +81,11 @@ public class Fee {
         this.image = image;
     }
 
-    public LocalDate getFessDate() {
+    public LocalDateTime getFessDate() {
         return fessDate;
     }
 
-    public void setFessDate(LocalDate fessDate) {
+    public void setFessDate(LocalDateTime fessDate) {
         this.fessDate = fessDate;
     }
 

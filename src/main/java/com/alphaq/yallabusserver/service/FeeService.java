@@ -1,11 +1,13 @@
 package com.alphaq.yallabusserver.service;
 
 import com.alphaq.yallabusserver.entity.Fee;
+import com.alphaq.yallabusserver.entity.TxBus;
 import com.alphaq.yallabusserver.repository.FeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +62,10 @@ public class FeeService {
 
     public List<Fee> getAllNotApprovedFeesByBusId(int busId) {
         return repository.findFeesByBus_IdAndIsApprovedEquals(busId, false);
+    }
+
+    public List<Fee> getAllFeesByDateBetween(LocalDateTime startLocalDateTime, LocalDateTime endLocalDateTime) {
+        return repository.findFeesByFessDateBetween(startLocalDateTime, endLocalDateTime);
     }
 
     public Fee getFeeById(int feeId) {

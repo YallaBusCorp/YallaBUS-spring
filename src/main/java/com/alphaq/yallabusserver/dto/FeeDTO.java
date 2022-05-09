@@ -1,6 +1,6 @@
 package com.alphaq.yallabusserver.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class FeeDTO {
@@ -9,13 +9,13 @@ public class FeeDTO {
     private LKFeeDTO feesLk;
     private Integer price;
     private byte[] image;
-    private LocalDate fessDate;
+    private LocalDateTime fessDate;
     private Boolean isApproved;
 
     public FeeDTO() {
     }
 
-    public FeeDTO(Integer id, BusDTO bus, LKFeeDTO feesLk, Integer price, byte[] image, LocalDate fessDate, Boolean isApproved) {
+    public FeeDTO(Integer id, BusDTO bus, LKFeeDTO feesLk, Integer price, byte[] image, LocalDateTime fessDate, Boolean isApproved) {
         this.id = id;
         this.bus = bus;
         this.feesLk = feesLk;
@@ -45,7 +45,7 @@ public class FeeDTO {
         this.image = image;
     }
 
-    public void setFessDate(LocalDate fessDate) {
+    public void setFessDate(LocalDateTime fessDate) {
         this.fessDate = fessDate;
     }
 
@@ -73,7 +73,7 @@ public class FeeDTO {
         return image;
     }
 
-    public LocalDate getFessDate() {
+    public LocalDateTime getFessDate() {
         return fessDate;
     }
 
