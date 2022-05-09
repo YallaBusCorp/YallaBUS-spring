@@ -36,8 +36,8 @@ public class Fee {
     @Column(name = "fess_date")
     private LocalDate fessDate;
 
-    @Column(name = "is_approved", nullable = false)
-    private Character isApproved;
+    @Column(name = "is_approved", nullable = true)
+    private Boolean isApproved;
 
     public Integer getId() {
         return id;
@@ -87,11 +87,11 @@ public class Fee {
         this.fessDate = fessDate;
     }
 
-    public Character getIsApproved() {
+    public Boolean getIsApproved() {
         return isApproved;
     }
 
-    public void setIsApproved(Character isApproved) {
+    public void setIsApproved(Boolean isApproved) {
         this.isApproved = isApproved;
     }
 

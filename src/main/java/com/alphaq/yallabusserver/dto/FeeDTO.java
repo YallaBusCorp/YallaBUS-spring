@@ -10,12 +10,12 @@ public class FeeDTO {
     private Integer price;
     private byte[] image;
     private LocalDate fessDate;
-    private Character isApproved;
+    private Boolean isApproved;
 
     public FeeDTO() {
     }
 
-    public FeeDTO(Integer id, BusDTO bus, LKFeeDTO feesLk, Integer price, byte[] image, LocalDate fessDate, Character isApproved) {
+    public FeeDTO(Integer id, BusDTO bus, LKFeeDTO feesLk, Integer price, byte[] image, LocalDate fessDate, Boolean isApproved) {
         this.id = id;
         this.bus = bus;
         this.feesLk = feesLk;
@@ -49,7 +49,7 @@ public class FeeDTO {
         this.fessDate = fessDate;
     }
 
-    public void setIsApproved(Character isApproved) {
+    public void setIsApproved(Boolean isApproved) {
         this.isApproved = isApproved;
     }
 
@@ -77,7 +77,7 @@ public class FeeDTO {
         return fessDate;
     }
 
-    public Character getIsApproved() {
+    public Boolean getIsApproved() {
         return isApproved;
     }
 

@@ -31,6 +31,7 @@ public class FeeController {
     public List<Fee> getAllFees() {
         return feeService.getAllFees();
     }
+
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Fee getFeeById(@RequestParam("id") int feeId) {
         return feeService.getFeeById(feeId);
@@ -41,10 +42,12 @@ public class FeeController {
     public List<Fee> getAllFeesByBusId(@RequestParam("id") int busId) {
         return feeService.getAllFeesByBusId(busId);
     }
+
     @RequestMapping(value = "/bus/get-all-Approved", method = RequestMethod.GET)
     public List<Fee> getAllApprovedFeesByBusId(@RequestParam("id") int busId) {
         return feeService.getAllApprovedFeesByBusId(busId);
     }
+
     @RequestMapping(value = "/bus/get-all-NotApproved", method = RequestMethod.GET)
     public List<Fee> getAllNotApprovedFeesByBusId(@RequestParam("id") int busId) {
         return feeService.getAllNotApprovedFeesByBusId(busId);
@@ -55,10 +58,12 @@ public class FeeController {
     public List<Fee> getAllFeesByCompanyId(@RequestParam("id") int companyId) {
         return feeService.getAllFeesByCompanyId(companyId);
     }
+
     @RequestMapping(value = "/company/get-all-Approved", method = RequestMethod.GET)
     public List<Fee> getAllApprovedFeesByCompanyId(@RequestParam("id") int companyId) {
         return feeService.getAllApprovedFeesByCompanyId(companyId);
     }
+
     @RequestMapping(value = "/company/get-all-NotApproved", method = RequestMethod.GET)
     public List<Fee> getAllNotApprovedFeesByCompanyId(@RequestParam("id") int companyId) {
         return feeService.getAllNotApprovedFeesByCompanyId(companyId);
@@ -69,10 +74,12 @@ public class FeeController {
     public List<Fee> getAllFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
         return feeService.getAllFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
     }
+
     @RequestMapping(value = "/companyAndLkFee/get-all-Approved", method = RequestMethod.GET)
     public List<Fee> getAllApprovedFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
         return feeService.getAllApprovedFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
     }
+
     @RequestMapping(value = "/companyAndLkFee/get-all-NotApproved", method = RequestMethod.GET)
     public List<Fee> getAllNotApprovedFeesByCompanyIdAndLkFeeId(@RequestParam("companyId") int companyId, @RequestParam("lkFeeId") int lkFeeId) {
         return feeService.getAllNotApprovedFeesByCompanyIdAndLkFeeId(companyId, lkFeeId);
@@ -91,17 +98,22 @@ public class FeeController {
         fee.setPrice(feeDTO.getPrice());
         fee.setImage(feeDTO.getImage());
         fee.setFessDate(feeDTO.getFessDate());
-        fee.setIsApproved('N');
 
         return feeService.save(fee);
     }
 
     @PutMapping("/approve-by-fee-id")
-    public Boolean approve(@RequestParam("id") int feeId) {
+    public String approve(@RequestParam("feeId") int feeId, @RequestParam("isApproved") Boolean isApproved) {
         Fee fee = feeService.getFeeById(feeId);
-        fee.setIsApproved('Y');
+        fee.setIsApproved(isApproved);
+        Boolean status = feeService.save(fee).getIsApproved();
 
-        return (feeService.save(fee).getIsApproved().equals('Y')) ? true : false;
+        if (isApproved && status)
+            return "Fee have been Approved";
+        if (!isApproved && !status)
+            return "Fee have been Refused";
+
+        return "There is an Error !";
     }
 
 
