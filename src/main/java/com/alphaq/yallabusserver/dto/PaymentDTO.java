@@ -10,17 +10,19 @@ public class PaymentDTO {
     private LocalDate paymentEndDate;
     private String paymentCode;
     private Integer paymentPrice;
+    private String paymentMethodType;
 
     public PaymentDTO() {
     }
 
-    public PaymentDTO(Integer id, StudentDTO std, LocalDate paymentStartDate, LocalDate paymentEndDate, String paymentCode, Integer paymentPrice) {
+    public PaymentDTO(Integer id, StudentDTO std, LocalDate paymentStartDate, LocalDate paymentEndDate, String paymentCode, Integer paymentPrice, String paymentMethodType) {
         this.id = id;
         this.std = std;
         this.paymentStartDate = paymentStartDate;
         this.paymentEndDate = paymentEndDate;
         this.paymentCode = paymentCode;
         this.paymentPrice = paymentPrice;
+        this.paymentMethodType = paymentMethodType;
     }
 
     public void setId(Integer id) {
@@ -47,6 +49,10 @@ public class PaymentDTO {
         this.paymentPrice = paymentPrice;
     }
 
+    public void setPaymentMethodType(String paymentMethodType) {
+        this.paymentMethodType = paymentMethodType;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -71,32 +77,33 @@ public class PaymentDTO {
         return paymentPrice;
     }
 
+    public String getPaymentMethodType() {
+        return paymentMethodType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PaymentDTO entity = (PaymentDTO) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.std, entity.std) &&
-                Objects.equals(this.paymentStartDate, entity.paymentStartDate) &&
-                Objects.equals(this.paymentEndDate, entity.paymentEndDate) &&
-                Objects.equals(this.paymentCode, entity.paymentCode) &&
-                Objects.equals(this.paymentPrice, entity.paymentPrice);
+        PaymentDTO that = (PaymentDTO) o;
+        return id.equals(that.id) && std.equals(that.std) && paymentStartDate.equals(that.paymentStartDate) && paymentEndDate.equals(that.paymentEndDate) && Objects.equals(paymentCode, that.paymentCode) && paymentPrice.equals(that.paymentPrice) && paymentMethodType.equals(that.paymentMethodType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, std, paymentStartDate, paymentEndDate, paymentCode, paymentPrice);
+        return Objects.hash(id, std, paymentStartDate, paymentEndDate, paymentCode, paymentPrice, paymentMethodType);
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "std = " + std + ", " +
-                "paymentStartDate = " + paymentStartDate + ", " +
-                "paymentEndDate = " + paymentEndDate + ", " +
-                "paymentCode = " + paymentCode + ", " +
-                "paymentPrice = " + paymentPrice + ")";
+        return "PaymentDTO{" +
+                "id=" + id +
+                ", std=" + std +
+                ", paymentStartDate=" + paymentStartDate +
+                ", paymentEndDate=" + paymentEndDate +
+                ", paymentCode='" + paymentCode + '\'' +
+                ", paymentPrice=" + paymentPrice +
+                ", paymentMethodType='" + paymentMethodType + '\'' +
+                '}';
     }
 }

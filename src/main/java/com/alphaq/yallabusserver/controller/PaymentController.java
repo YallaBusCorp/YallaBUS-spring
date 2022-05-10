@@ -50,7 +50,7 @@ public class PaymentController {
         payment.setPaymentEndDate(paymentDTO.getPaymentEndDate());
         payment.setPaymentCode(paymentDTO.getPaymentCode());
         payment.setPaymentPrice(paymentDTO.getPaymentPrice());
-
+        payment.setPaymentMethodType(paymentDTO.getPaymentMethodType());
         return paymentService.save(payment);
     }
 

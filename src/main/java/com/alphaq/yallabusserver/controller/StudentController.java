@@ -91,6 +91,7 @@ public class StudentController {
             payment.setPaymentStartDate(student.getEndSubscriptionDate().minusDays(30));
             payment.setPaymentEndDate(student.getEndSubscriptionDate());
             payment.setPaymentPrice(subscriptionPrice.getSubscriptionPrice());
+            payment.setPaymentMethodType("C");
             paymentService.save(payment);
         }
 
@@ -139,15 +140,18 @@ public class StudentController {
     public Boolean subscribe(@RequestBody StudentDTO studentDTO) {
         Boolean flag;
         Student student;
+        Payment payment = new Payment();
         if (studentDTO.getEndSubscriptionDate() != null && studentDTO.getId() != null) {
             student = studentService.getStudentById(studentDTO.getId());
             student.setIsSubscribed(true);
             student.setIsActive(true);
+            payment.setPaymentMethodType("C");
             student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
         } else if (studentDTO.getEndSubscriptionDate() == null && studentDTO.getStdUid() != null) {
             student = studentService.getStudentByStdUid(studentDTO.getStdUid());
             student.setIsSubscribed(true);
             student.setIsActive(true);
+            payment.setPaymentMethodType("O");
             student.setEndSubscriptionDate(LocalDate.now().plusDays(30));
         } else
             student = null;
@@ -156,8 +160,6 @@ public class StudentController {
 
         if (flag) {
             SubscriptionPrice subscriptionPrice = subscriptionPriceService.getCurrentSubscriptionPriceInCompany(result.getCompany().getId());
-            Payment payment = new Payment();
-
             payment.setStd(result);
             payment.setPaymentStartDate(result.getEndSubscriptionDate().minusDays(30));
             payment.setPaymentEndDate(result.getEndSubscriptionDate());

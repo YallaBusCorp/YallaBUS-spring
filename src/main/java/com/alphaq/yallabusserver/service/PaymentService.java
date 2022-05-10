@@ -30,16 +30,14 @@ public class PaymentService {
         return repository.findPaymentsByStd_CompanyId(companyId);
     }
 
-//    public Payment checkExistencePaymentInCompany(Payment payment, int companyId) {
-//        return repository.findPaymentByIdAndCompanyId(payment.getId(), companyId);
-//    }
+    public List<Payment> getPaymentsByStdId(int stdId) {
+        return repository.findPaymentsByStdId(stdId);
+    }
+
+
 
     public Payment getPaymentById(int paymentId) {
         return repository.findPaymentById(paymentId);
-    }
-
-    public List<Payment> getPaymentsByStdId(int stdId) {
-        return repository.findPaymentsByStdId(stdId);
     }
 
     public int getCount() {

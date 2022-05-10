@@ -33,6 +33,17 @@ public class Payment {
     @Column(name = "payment_price", nullable = false)
     private Integer paymentPrice;
 
+    @Column(name = "payment_method_type", nullable = false, length = 1)
+    private String paymentMethodType;
+
+    public String getPaymentMethodType() {
+        return paymentMethodType;
+    }
+
+    public void setPaymentMethodType(String paymentMethodType) {
+        this.paymentMethodType = paymentMethodType;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -81,4 +92,16 @@ public class Payment {
         this.paymentPrice = paymentPrice;
     }
 
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", std=" + std +
+                ", paymentStartDate=" + paymentStartDate +
+                ", paymentEndDate=" + paymentEndDate +
+                ", paymentCode='" + paymentCode + '\'' +
+                ", paymentPrice=" + paymentPrice +
+                ", paymentMethodType='" + paymentMethodType + '\'' +
+                '}';
+    }
 }
