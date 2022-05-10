@@ -13,21 +13,17 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/student")
 public class StudentController {
+
     @Autowired
     private StudentService studentService;
-
     @Autowired
     private CompanyService companyService;
-
     @Autowired
     private LkUniversityService lkUniversityService;
-
     @Autowired
     private LkTownService lkTownService;
-
     @Autowired
     private SubscriptionPriceService subscriptionPriceService;
-
     @Autowired
     private PaymentService paymentService;
 
@@ -136,37 +132,4 @@ public class StudentController {
         return false;
     }
 
-    @PutMapping("/subscription")
-    public Boolean subscribe(@RequestBody StudentDTO studentDTO) {
-        Boolean flag;
-        Student student;
-        Payment payment = new Payment();
-        if (studentDTO.getEndSubscriptionDate() != null && studentDTO.getId() != null) {
-            student = studentService.getStudentById(studentDTO.getId());
-            student.setIsSubscribed(true);
-            student.setIsActive(true);
-            payment.setPaymentMethodType("C");
-            student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
-        } else if (studentDTO.getEndSubscriptionDate() == null && studentDTO.getStdUid() != null) {
-            student = studentService.getStudentByStdUid(studentDTO.getStdUid());
-            student.setIsSubscribed(true);
-            student.setIsActive(true);
-            payment.setPaymentMethodType("O");
-            student.setEndSubscriptionDate(LocalDate.now().plusDays(30));
-        } else
-            student = null;
-        Student result = studentService.save(student);
-        flag = result.getIsSubscribed() ? true : false;
-
-        if (flag) {
-            SubscriptionPrice subscriptionPrice = subscriptionPriceService.getCurrentSubscriptionPriceInCompany(result.getCompany().getId());
-            payment.setStd(result);
-            payment.setPaymentStartDate(result.getEndSubscriptionDate().minusDays(30));
-            payment.setPaymentEndDate(result.getEndSubscriptionDate());
-            payment.setPaymentPrice(subscriptionPrice.getSubscriptionPrice());
-            paymentService.save(payment);
-        }
-
-        return flag;
-    }
 }

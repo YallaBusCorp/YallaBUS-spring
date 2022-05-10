@@ -1,52 +1,48 @@
-package com.alphaq.yallabusserver.controller;
+package com.alphaq.yallabusserver;
 
 import com.alphaq.yallabusserver.dto.PaymentDTO;
+import com.alphaq.yallabusserver.dto.StudentDTO;
 import com.alphaq.yallabusserver.entity.Payment;
 import com.alphaq.yallabusserver.entity.Student;
 import com.alphaq.yallabusserver.entity.SubscriptionPrice;
 import com.alphaq.yallabusserver.service.PaymentService;
 import com.alphaq.yallabusserver.service.StudentService;
 import com.alphaq.yallabusserver.service.SubscriptionPriceService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.util.List;
 
-@CrossOrigin(origins = "*")
-@RestController
-@RequestMapping("api/v1/payment")
-public class PaymentController {
-
+//@SpringBootTest
+public class PaymentTest {
     @Autowired
-    private PaymentService paymentService;
+    PaymentService paymentService;
     @Autowired
-    private StudentService studentService;
+    StudentService studentService;
     @Autowired
-    private SubscriptionPriceService subscriptionPriceService;
+    SubscriptionPriceService subscriptionPriceService;
 
-    @GetMapping
-    public List<Payment> getAllPayments() {
-        return paymentService.getAllPayments();
-    }
+    //@Test
+    void save() {
 
-    @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
-    public List<Payment> getAllPaymentsByCompanyId(@RequestParam("id") int companyId) {
-        return paymentService.getAllPaymentsByCompanyId(companyId);
-    }
+        //int stdId = 6;
+        String stdUid = "97641616215615612aas";
 
-    @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
-    public Payment getPaymentById(@RequestParam("id") int paymentId) {
-        return paymentService.getPaymentById(paymentId);
-    }
+        StudentDTO studentDTO = new StudentDTO();
+        //Dashboard
+//        studentDTO.setId(stdId);
+//        studentDTO.setEndSubscriptionDate(LocalDate.now().plusDays(30));
+        //mobile
+        studentDTO.setStdUid(stdUid);
 
-    @RequestMapping(value = "/get-by-StdId", method = RequestMethod.GET)
-    public List<Payment> getPaymentsByStdId(@RequestParam("id") int stdId) {
-        return paymentService.getPaymentsByStdId(stdId);
-    }
+        PaymentDTO paymentDTO = new PaymentDTO();
+        paymentDTO.setStd(studentDTO);
+        //Dashboard
 
-    @PostMapping("/save-payment")
-    public Payment save(@RequestBody PaymentDTO paymentDTO) {
+        //mobile
+        paymentDTO.setPaymentCode("54g5fs5a448");
+
         Payment payment = new Payment();
         Student student = null;
         if (paymentDTO.getStd().getEndSubscriptionDate() != null && paymentDTO.getStd().getId() != null) {
@@ -73,8 +69,6 @@ public class PaymentController {
             payment.setPaymentPrice(subscriptionPrice.getSubscriptionPrice());
             payment = paymentService.save(payment);
         }
-        return payment;
+        System.out.println(payment);
     }
-
-
 }
