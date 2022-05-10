@@ -59,6 +59,19 @@ public class Student {
     @Fetch(FetchMode.JOIN)
     private Set<Payment> payments = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "std")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<TxBooking> txBookings = new LinkedHashSet<>();
+
+    public Set<TxBooking> getTxBookings() {
+        return txBookings;
+    }
+
+    public void setTxBookings(Set<TxBooking> txBookings) {
+        this.txBookings = txBookings;
+    }
+
     public Set<Payment> getPayments() {
         return payments;
     }

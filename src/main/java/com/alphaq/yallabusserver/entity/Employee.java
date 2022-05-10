@@ -71,6 +71,19 @@ public class Employee {
     @Fetch(FetchMode.JOIN)
     private Set<Salary> salaries = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "emp")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<TxBooking> txBookings = new LinkedHashSet<>();
+
+    public Set<TxBooking> getTxBookings() {
+        return txBookings;
+    }
+
+    public void setTxBookings(Set<TxBooking> txBookings) {
+        this.txBookings = txBookings;
+    }
+
     public Set<Salary> getSalaries() {
         return salaries;
     }

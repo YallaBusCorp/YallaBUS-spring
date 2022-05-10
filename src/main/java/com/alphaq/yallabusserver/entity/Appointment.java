@@ -1,11 +1,14 @@
 package com.alphaq.yallabusserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "appointment")
@@ -29,6 +32,19 @@ public class Appointment {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
+
+    @OneToMany(mappedBy = "appointment")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<TxBooking> txBookings = new LinkedHashSet<>();
+
+    public Set<TxBooking> getTxBookings() {
+        return txBookings;
+    }
+
+    public void setTxBookings(Set<TxBooking> txBookings) {
+        this.txBookings = txBookings;
+    }
 
     public Boolean getIsActive() {
         return isActive;

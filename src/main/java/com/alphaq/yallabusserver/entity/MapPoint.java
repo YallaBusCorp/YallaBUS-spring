@@ -1,10 +1,13 @@
 package com.alphaq.yallabusserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "map_point", indexes = {
@@ -37,6 +40,32 @@ public class MapPoint {
     @JsonManagedReference()
     @Fetch(FetchMode.JOIN)
     private Company company;
+
+    @OneToMany(mappedBy = "pickupPoint")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<TxBooking> txPickBookings = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "dropoffPoint")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<TxBooking> txDropBookings = new LinkedHashSet<>();
+
+    public Set<TxBooking> getTxPickBookings() {
+        return txPickBookings;
+    }
+
+    public void setTxPickBookings(Set<TxBooking> txPickBookings) {
+        this.txPickBookings = txPickBookings;
+    }
+
+    public Set<TxBooking> getTxDropBookings() {
+        return txDropBookings;
+    }
+
+    public void setTxDropBookings(Set<TxBooking> txDropBookings) {
+        this.txDropBookings = txDropBookings;
+    }
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
