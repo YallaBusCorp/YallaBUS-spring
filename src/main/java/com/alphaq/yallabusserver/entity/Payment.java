@@ -8,9 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "payment", indexes = {
-        @Index(name = "Payment_code_uk", columnList = "payment_code", unique = true)
-})
+@Table(name = "payment")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
