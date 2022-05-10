@@ -57,7 +57,7 @@ public class PaymentController {
 
     @RequestMapping(value = "/student/get-all", method = RequestMethod.GET)
     public List<Payment> getAllPaymentsByStdId(@RequestParam("id") int stdId) {
-        return paymentService.getPaymentsByStdId(stdId);
+        return paymentService.getAllPaymentsByStdId(stdId);
     }
 
     @RequestMapping(value = "/student/get-cash", method = RequestMethod.GET)
@@ -68,6 +68,21 @@ public class PaymentController {
     @RequestMapping(value = "/student/get-online", method = RequestMethod.GET)
     public List<Payment> getAllOnlinePaymentsByStdId(@RequestParam("id") int stdId) {
         return paymentService.getAllPaymentsByStdIdAndPaymentMethodType(stdId,"O");
+    }
+
+    @RequestMapping(value = "/student/get-all/uid", method = RequestMethod.GET)
+    public List<Payment> getAllPaymentsByStdUid(@RequestParam("stdUid") String stdUid) {
+        return paymentService.getAllPaymentsByStdUid(stdUid);
+    }
+
+    @RequestMapping(value = "/student/get-cash/uid", method = RequestMethod.GET)
+    public List<Payment> getAllCashPaymentsByStdUid(@RequestParam("stdUid") String stdUid) {
+        return paymentService.getAllPaymentsByStdUidAndPaymentMethodType(stdUid,"C");
+    }
+
+    @RequestMapping(value = "/student/get-online/uid", method = RequestMethod.GET)
+    public List<Payment> getAllOnlinePaymentsByStdUid(@RequestParam("stdUid") String stdUid) {
+        return paymentService.getAllPaymentsByStdUidAndPaymentMethodType(stdUid,"O");
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)

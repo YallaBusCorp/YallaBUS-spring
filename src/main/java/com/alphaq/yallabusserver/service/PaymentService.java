@@ -42,8 +42,16 @@ public class PaymentService {
         return repository.findPaymentsByStdIdAndPaymentMethodType(stdId,type);
     }
 
-    public List<Payment> getPaymentsByStdId(int stdId) {
+    public List<Payment> getAllPaymentsByStdUidAndPaymentMethodType(String stdUid,String type){
+        return repository.findPaymentsByStd_StdUidAndPaymentMethodType(stdUid,type);
+    }
+
+    public List<Payment> getAllPaymentsByStdId(int stdId) {
         return repository.findPaymentsByStdId(stdId);
+    }
+
+    public List<Payment> getAllPaymentsByStdUid(String stdUid) {
+        return repository.findPaymentsByStd_StdUid(stdUid);
     }
 
 
