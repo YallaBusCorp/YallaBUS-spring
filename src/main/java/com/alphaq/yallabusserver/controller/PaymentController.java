@@ -36,8 +36,8 @@ public class PaymentController {
     }
 
     @RequestMapping(value = "/get-by-StdId", method = RequestMethod.GET)
-    public Payment getPaymentByStdId(@RequestParam("id") int stdId) {
-        return paymentService.getPaymentByStdId(stdId);
+    public List<Payment> getPaymentsByStdId(@RequestParam("id") int stdId) {
+        return paymentService.getPaymentsByStdId(stdId);
     }
 
     @PostMapping("/save-payment")

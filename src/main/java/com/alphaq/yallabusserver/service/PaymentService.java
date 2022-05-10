@@ -38,8 +38,8 @@ public class PaymentService {
         return repository.findPaymentById(paymentId);
     }
 
-    public Payment getPaymentByStdId(int stdId) {
-        return repository.findPaymentByStdId(stdId);
+    public List<Payment> getPaymentsByStdId(int stdId) {
+        return repository.findPaymentsByStdId(stdId);
     }
 
     public int getCount() {
