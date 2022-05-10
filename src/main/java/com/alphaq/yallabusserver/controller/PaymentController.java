@@ -30,19 +30,49 @@ public class PaymentController {
         return paymentService.getAllPayments();
     }
 
+    @RequestMapping(value = "/get-all-cash", method = RequestMethod.GET)
+    public List<Payment> getAllCashPayments() {
+        return paymentService.getAllPaymentsByPaymentMethodType("C");
+    }
+
+    @RequestMapping(value = "/get-all-online", method = RequestMethod.GET)
+    public List<Payment> getAllOnlinePayments() {
+        return paymentService.getAllPaymentsByPaymentMethodType("O");
+    }
+
     @RequestMapping(value = "/company/get-all", method = RequestMethod.GET)
     public List<Payment> getAllPaymentsByCompanyId(@RequestParam("id") int companyId) {
         return paymentService.getAllPaymentsByCompanyId(companyId);
     }
 
+    @RequestMapping(value = "/company/get-cash", method = RequestMethod.GET)
+    public List<Payment> getAllCashPaymentsByCompanyId(@RequestParam("id") int companyId) {
+        return paymentService.getAllPaymentsByCompanyIdAndPaymentMethodType(companyId,"C");
+    }
+
+    @RequestMapping(value = "/company/get-online", method = RequestMethod.GET)
+    public List<Payment> getAllOnlinePaymentsByCompanyId(@RequestParam("id") int companyId) {
+        return paymentService.getAllPaymentsByCompanyIdAndPaymentMethodType(companyId,"O");
+    }
+
+    @RequestMapping(value = "/student/get-all", method = RequestMethod.GET)
+    public List<Payment> getAllPaymentsByStdId(@RequestParam("id") int stdId) {
+        return paymentService.getPaymentsByStdId(stdId);
+    }
+
+    @RequestMapping(value = "/student/get-cash", method = RequestMethod.GET)
+    public List<Payment> getAllCashPaymentsByStdId(@RequestParam("id") int stdId) {
+        return paymentService.getAllPaymentsByStdIdAndPaymentMethodType(stdId,"C");
+    }
+
+    @RequestMapping(value = "/student/get-online", method = RequestMethod.GET)
+    public List<Payment> getAllOnlinePaymentsByStdId(@RequestParam("id") int stdId) {
+        return paymentService.getAllPaymentsByStdIdAndPaymentMethodType(stdId,"O");
+    }
+
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public Payment getPaymentById(@RequestParam("id") int paymentId) {
         return paymentService.getPaymentById(paymentId);
-    }
-
-    @RequestMapping(value = "/get-by-StdId", method = RequestMethod.GET)
-    public List<Payment> getPaymentsByStdId(@RequestParam("id") int stdId) {
-        return paymentService.getPaymentsByStdId(stdId);
     }
 
     @PostMapping("/save-payment")

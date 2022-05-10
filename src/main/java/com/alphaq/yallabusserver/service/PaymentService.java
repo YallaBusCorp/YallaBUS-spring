@@ -30,6 +30,18 @@ public class PaymentService {
         return repository.findPaymentsByStd_CompanyId(companyId);
     }
 
+    public List<Payment> getAllPaymentsByPaymentMethodType(String type){
+        return repository.findPaymentsByPaymentMethodType(type);
+    }
+
+    public List<Payment> getAllPaymentsByCompanyIdAndPaymentMethodType(int companyId,String type){
+        return repository.findPaymentsByStd_CompanyIdAndPaymentMethodType(companyId,type);
+    }
+
+    public List<Payment> getAllPaymentsByStdIdAndPaymentMethodType(int stdId,String type){
+        return repository.findPaymentsByStdIdAndPaymentMethodType(stdId,type);
+    }
+
     public List<Payment> getPaymentsByStdId(int stdId) {
         return repository.findPaymentsByStdId(stdId);
     }
