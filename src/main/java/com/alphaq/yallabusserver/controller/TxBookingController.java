@@ -1,10 +1,8 @@
 package com.alphaq.yallabusserver.controller;
 
 import com.alphaq.yallabusserver.dto.TxBookingDTO;
-import com.alphaq.yallabusserver.entity.Company;
-import com.alphaq.yallabusserver.entity.TxBooking;
-import com.alphaq.yallabusserver.service.CompanyService;
-import com.alphaq.yallabusserver.service.TxBookingService;
+import com.alphaq.yallabusserver.entity.*;
+import com.alphaq.yallabusserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +16,15 @@ public class TxBookingController {
     @Autowired
     private TxBookingService txBookingService;
     @Autowired
-    private CompanyService companyService;
+    EmployeeService employeeService;
+    @Autowired
+    MapPointService mapPointService;
+    @Autowired
+    AppointmentService appointmentService;
+    @Autowired
+    BusService busService;
+    @Autowired
+    StudentService studentService;
 
     @GetMapping
     public List<TxBooking> getAllTxBookings() {
@@ -49,9 +55,16 @@ public class TxBookingController {
     @PostMapping("/save-txBooking")
     public TxBooking save(@RequestBody TxBookingDTO txBookingDTO) {
         TxBooking txBooking = new TxBooking();
+        MapPoint pickupPoint = mapPointService.getMapPointById(txBookingDTO.getPickupPoint().getId());
+        MapPoint dropoffPoint = mapPointService.getMapPointById(txBookingDTO.getDropoffPoint().getId());
+        Appointment appointment = appointmentService.getAppointmentById(txBookingDTO.getAppointment().getId());
+        Student student = studentService.getStudentById(txBookingDTO.getStd().getId());
 
-//        Company company = companyService.getCompanyById(txBookingDTO.getCompany().getId());
-//        txBooking.setCompany(company);
+        txBooking.setQrCode(txBookingDTO.getQrCode());
+        txBooking.setPickupPoint(pickupPoint);
+        txBooking.setDropoffPoint(dropoffPoint);
+        txBooking.setAppointment(appointment);
+        txBooking.setStd(student);
         return txBookingService.save(txBooking);
     }
 

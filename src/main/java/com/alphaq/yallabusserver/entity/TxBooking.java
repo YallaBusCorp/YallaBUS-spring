@@ -21,15 +21,15 @@ public class TxBooking {
     @Column(name = "QR_code", nullable = false)
     private String qrCode;
 
-    @Column(name = "is_scanned")
+    @Column(name = "is_scanned", nullable = true)
     private Boolean isScanned = false;
 
     @Column(name = "booking_data", nullable = false)
     @CreationTimestamp
     private LocalDateTime bookingData;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "emp_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "emp_id", nullable = true)
     @JsonManagedReference()
     @Fetch(FetchMode.JOIN)
     private Employee emp;
@@ -52,8 +52,8 @@ public class TxBooking {
     @Fetch(FetchMode.JOIN)
     private Appointment appointment;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bus_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "bus_id", nullable = true)
     @JsonManagedReference()
     @Fetch(FetchMode.JOIN)
     private Bus bus;
