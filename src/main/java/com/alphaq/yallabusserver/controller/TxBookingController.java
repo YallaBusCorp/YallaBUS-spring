@@ -6,6 +6,7 @@ import com.alphaq.yallabusserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -66,6 +67,23 @@ public class TxBookingController {
         txBooking.setAppointment(appointment);
         txBooking.setStd(student);
         return txBookingService.save(txBooking);
+    }
+
+    @PutMapping("/assign")
+    public List<TxBooking> assign(@RequestBody List<TxBookingDTO> txBookingDTOS) {
+        List<TxBooking> txBookings = new ArrayList<>();
+        TxBooking txBooking;
+        Employee employee;
+        Bus bus;
+        for (TxBookingDTO txBookingDTO : txBookingDTOS) {
+            txBooking = txBookingService.getTxBookingById(txBookingDTO.getId());
+            employee = employeeService.getEmployeeById(txBookingDTO.getEmp().getId());
+            bus = busService.getBusById(txBookingDTO.getBus().getId());
+            txBooking.setEmp(employee);
+            txBooking.setBus(bus);
+            txBookings.add(txBooking);
+        }
+        return txBookingService.saveList(txBookings);
     }
 
 

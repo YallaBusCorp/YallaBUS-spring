@@ -19,6 +19,10 @@ public class TxBookingService {
         return repository.save(txBooking);
     }
 
+    public List<TxBooking> saveList(List<TxBooking> txBookings){
+        return repository.saveAll(txBookings);
+    }
+
     public List<TxBooking> getAllTxBookings() {
         List<TxBooking> txBookings = new ArrayList<>();
         Streamable.of(repository.findAll())
