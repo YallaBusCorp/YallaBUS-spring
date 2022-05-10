@@ -1,14 +1,8 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.service.CompanyService;
-import com.alphaq.yallabusserver.service.LkTownService;
-import com.alphaq.yallabusserver.service.LkUniversityService;
-import com.alphaq.yallabusserver.service.StudentService;
+import com.alphaq.yallabusserver.entity.*;
+import com.alphaq.yallabusserver.service.*;
 import com.alphaq.yallabusserver.dto.StudentDTO;
-import com.alphaq.yallabusserver.entity.Company;
-import com.alphaq.yallabusserver.entity.LkTown;
-import com.alphaq.yallabusserver.entity.LkUniversity;
-import com.alphaq.yallabusserver.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +24,13 @@ public class StudentController {
 
     @Autowired
     private LkTownService lkTownService;
+
+    @Autowired
+    private SubscriptionPriceService subscriptionPriceService;
+
+    @Autowired
+    private PaymentService paymentService;
+
 
     @GetMapping
     public List<Student> getAllStudents() {
@@ -75,10 +76,25 @@ public class StudentController {
         student.setStdName(studentDTO.getStdName());
         student.setStdPhone(studentDTO.getStdPhone());
         student.setEndSubscriptionDate(studentDTO.getEndSubscriptionDate());
+
         student.setIsSubscribed(studentDTO.getIsSubscribed());
         student.setStdUid(studentDTO.getStdUid());
         student.setIsActive(true);
-        return studentService.save(student);
+
+        student = studentService.save(student);
+
+        if (student.getEndSubscriptionDate() != null && student.getId() != null) {
+            SubscriptionPrice subscriptionPrice = subscriptionPriceService.getCurrentSubscriptionPriceInCompany(student.getCompany().getId());
+            Payment payment = new Payment();
+
+            payment.setStd(student);
+            payment.setPaymentStartDate(student.getEndSubscriptionDate().minusDays(30));
+            payment.setPaymentEndDate(student.getEndSubscriptionDate());
+            payment.setPaymentPrice(subscriptionPrice.getSubscriptionPrice());
+            paymentService.save(payment);
+        }
+
+        return student;
     }
 
     @PutMapping("/update-student")
@@ -120,7 +136,7 @@ public class StudentController {
     }
 
     @PutMapping("/subscription")
-    public Boolean subscription(@RequestBody StudentDTO studentDTO) {
+    public Boolean subscribe(@RequestBody StudentDTO studentDTO) {
         Boolean flag;
         Student student;
         if (studentDTO.getEndSubscriptionDate() != null && studentDTO.getId() != null) {
@@ -137,6 +153,17 @@ public class StudentController {
             student = null;
         Student result = studentService.save(student);
         flag = result.getIsSubscribed() ? true : false;
+
+        if (flag) {
+            SubscriptionPrice subscriptionPrice = subscriptionPriceService.getCurrentSubscriptionPriceInCompany(result.getCompany().getId());
+            Payment payment = new Payment();
+
+            payment.setStd(result);
+            payment.setPaymentStartDate(result.getEndSubscriptionDate().minusDays(30));
+            payment.setPaymentEndDate(result.getEndSubscriptionDate());
+            payment.setPaymentPrice(subscriptionPrice.getSubscriptionPrice());
+            paymentService.save(payment);
+        }
 
         return flag;
     }

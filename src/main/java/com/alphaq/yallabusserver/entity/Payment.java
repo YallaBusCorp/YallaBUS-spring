@@ -29,7 +29,7 @@ public class Payment {
     @Column(name = "payment_end_date", nullable = false)
     private LocalDate paymentEndDate;
 
-    @Column(name = "payment_code", nullable = false)
+    @Column(name = "payment_code")
     private String paymentCode;
 
     @Column(name = "payment_price", nullable = false)

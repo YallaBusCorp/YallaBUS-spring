@@ -59,22 +59,6 @@ public class Student {
     @Fetch(FetchMode.JOIN)
     private Set<Payment> payments = new LinkedHashSet<>();
 
-    public Boolean getSubscribed() {
-        return isSubscribed;
-    }
-
-    public void setSubscribed(Boolean subscribed) {
-        isSubscribed = subscribed;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
     public Set<Payment> getPayments() {
         return payments;
     }

@@ -2,7 +2,9 @@ package com.alphaq.yallabusserver.controller;
 
 import com.alphaq.yallabusserver.dto.PaymentDTO;
 import com.alphaq.yallabusserver.entity.Payment;
+import com.alphaq.yallabusserver.entity.Student;
 import com.alphaq.yallabusserver.service.PaymentService;
+import com.alphaq.yallabusserver.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,8 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping
     public List<Payment> getAllPayments() {
@@ -31,7 +35,7 @@ public class PaymentController {
         return paymentService.getPaymentById(paymentId);
     }
 
-    @RequestMapping(value = "/get-by-Stdid", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-by-StdId", method = RequestMethod.GET)
     public Payment getPaymentByStdId(@RequestParam("id") int stdId) {
         return paymentService.getPaymentByStdId(stdId);
     }
@@ -40,8 +44,13 @@ public class PaymentController {
     public Payment save(@RequestBody PaymentDTO paymentDTO) {
         Payment payment = new Payment();
 
-//        Company company = companyService.getCompanyById(paymentDTO.getCompany().getId());
-//        payment.setCompany(company);
+        Student student = studentService.getStudentById(paymentDTO.getStd().getId());
+        payment.setStd(student);
+        payment.setPaymentStartDate(paymentDTO.getPaymentStartDate());
+        payment.setPaymentEndDate(paymentDTO.getPaymentEndDate());
+        payment.setPaymentCode(paymentDTO.getPaymentCode());
+        payment.setPaymentPrice(paymentDTO.getPaymentPrice());
+
         return paymentService.save(payment);
     }
 
