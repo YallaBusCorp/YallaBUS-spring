@@ -17,4 +17,6 @@ public interface TxBookingRepository extends JpaRepository<TxBooking, Integer> {
 
     List<TxBooking> findTxBookingsByStd_CompanyIdAndAppointmentIdAndEmpIsNullAndBusIsNull(int companyId, int appointmentId);
 
+    TxBooking findTxBookingByQrCode(String qrCode);
+
 }

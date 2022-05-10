@@ -26,6 +26,8 @@ public class TxBookingController {
     BusService busService;
     @Autowired
     StudentService studentService;
+    @Autowired
+    TxBusService txBusService;
 
     @GetMapping
     public List<TxBooking> getAllTxBookings() {
@@ -86,5 +88,24 @@ public class TxBookingController {
         return txBookingService.saveList(txBookings);
     }
 
+    @RequestMapping(value = "/scan-qrCode", method = RequestMethod.GET)
+    public String scanQrCode(@RequestParam("qrCode") String qrCode, @RequestParam("busId") int busId) {
+        String result = "";
 
+        TxBooking txBooking = txBookingService.getTxBookingByQrCode(qrCode);
+        if (txBooking == null)
+            result = "Invalid QR Code";
+        else if (txBooking.getIsScanned())
+            result = "QR Code is Already Scanned";
+        else if (txBooking.getBus().getId() != busId)
+            result = "It is Not Your Booked Ride";
+        else if (txBooking.getBus().getId() == busId) {
+            result = "Valid QR Code";
+            txBooking.setIsScanned(true);
+            txBookingService.save(txBooking);
+        }
+
+
+        return result;
+    }
 }

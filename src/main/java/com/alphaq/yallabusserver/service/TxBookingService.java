@@ -46,6 +46,10 @@ public class TxBookingService {
         return repository.findTxBookingById(txBookingId);
     }
 
+    public TxBooking getTxBookingByQrCode(String qrCode) {
+        return repository.findTxBookingByQrCode(qrCode);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }
