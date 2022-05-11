@@ -30,14 +30,19 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
+    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
+    public List<Admin> getAllActiveAdminsById(@RequestParam("id") int companyId) {
+        return adminService.getAllActiveAdminsByCompanyId(companyId);
+    }
+
     @RequestMapping(value = "get-by-id", method = RequestMethod.GET)
     public Admin getAdminById(@RequestParam("id") int adminId) {
         return adminService.getAdminById(adminId);
     }
 
-    @RequestMapping(value = "/company/active", method = RequestMethod.GET)
-    public List<Admin> getAllActiveAdminsById(@RequestParam("id") int companyId) {
-        return adminService.getAllActiveAdminsByCompanyId(companyId);
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public Admin login(@RequestParam("username") String adminUsername,@RequestParam("password") String adminPassword) {
+        return adminService.getActiveAdminByUsernameAndPassword(adminUsername,adminPassword);
     }
 
     @PostMapping("save-admin")

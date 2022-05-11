@@ -11,6 +11,9 @@ import java.util.List;
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
     Admin findAdminById(int adminId);
+    Admin findAdminByUsernameAndPasswordAndEmp_EmpEndDate(String username,String password, LocalDate localDate);
     List<Admin> findAdminsByEmp_CompanyIdAndEmp_EmpEndDate(int companyId, LocalDate localDate);
+
+
 
 }

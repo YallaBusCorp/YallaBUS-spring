@@ -34,6 +34,10 @@ public class AdminService {
         return repository.findAdminById(adminId);
     }
 
+    public Admin getActiveAdminByUsernameAndPassword(String username,String password){
+        return repository.findAdminByUsernameAndPasswordAndEmp_EmpEndDate(username,password,null);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }
