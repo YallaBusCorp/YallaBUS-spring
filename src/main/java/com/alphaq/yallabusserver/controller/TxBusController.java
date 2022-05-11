@@ -51,10 +51,6 @@ public class TxBusController {
     public List<TxBus> getAllTxBussByBusId(@RequestParam("id") int busId) {
         return txBusService.getAllTxBusesByBusId(busId);
     }
-//    @RequestMapping(value = "/date/get-all", method = RequestMethod.GET)
-//    public List<TxBus> getAllTxBussByDate(@RequestParam("date") String localDateTime) {
-//        return txBusService.getAllTxBusesByDate(LocalDateTime.parse(localDateTime));
-//    }
 
     @RequestMapping(value = "/date/get-all", method = RequestMethod.GET)
     public List<TxBus> getAllTxBussByDate(@RequestParam("startDate") String startLocalDateTime, @RequestParam("endDate") String endLocalDateTime) {

@@ -41,6 +41,21 @@ public class TxBookingController {
         return txBookingService.getAllTxBookingsByCompanyId(companyId);
     }
 
+    @RequestMapping(value = "/student/get-all", method = RequestMethod.GET)
+    public List<TxBooking> getAllTxBookingsByStudentId(@RequestParam("id") int stdId) {
+        return txBookingService.getAllTxBookingsByStudentId(stdId);
+    }
+
+    @RequestMapping(value = "/student/get-all-scanned", method = RequestMethod.GET)
+    public List<TxBooking> getAllScannedTxBookingsByStudentId(@RequestParam("id") int stdId) {
+        return txBookingService.getAllTxBookingsByStudentIdAndIsScanned(stdId, true);
+    }
+
+    @RequestMapping(value = "/student/get-all-not-scanned", method = RequestMethod.GET)
+    public List<TxBooking> getAllNotScannedTxBookingsByStudentId(@RequestParam("id") int stdId) {
+        return txBookingService.getAllTxBookingsByStudentIdAndIsScanned(stdId, false);
+    }
+
     @RequestMapping(value = "/company/appointment/get-all-not-assigned", method = RequestMethod.GET)
     public List<TxBooking> getAllNotAssignedTxBookingsByCompanyIdAndAppointmentId(@RequestParam("companyId") int companyId, @RequestParam("appointmentId") int appointmentId) {
         return txBookingService.getAllTxBookingsByCompanyIdAndAppointmentId(companyId, appointmentId);

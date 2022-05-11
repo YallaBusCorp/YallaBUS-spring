@@ -19,7 +19,7 @@ public class TxBookingService {
         return repository.save(txBooking);
     }
 
-    public List<TxBooking> saveList(List<TxBooking> txBookings){
+    public List<TxBooking> saveList(List<TxBooking> txBookings) {
         return repository.saveAll(txBookings);
     }
 
@@ -32,6 +32,14 @@ public class TxBookingService {
 
     public List<TxBooking> getAllTxBookingsByCompanyId(int companyId) {
         return repository.findTxBookingsByStd_CompanyId(companyId);
+    }
+
+    public List<TxBooking> getAllTxBookingsByStudentId(int stdId) {
+        return repository.findTxBookingsByStdId(stdId);
+    }
+
+    public List<TxBooking> getAllTxBookingsByStudentIdAndIsScanned(int stdId, Boolean isScanned) {
+        return repository.findTxBookingsByStdIdAndIsScanned(stdId, isScanned);
     }
 
     public List<TxBooking> getAllTxBookingsByCompanyIdAndAppointmentId(int companyId, int appointmentId) {
