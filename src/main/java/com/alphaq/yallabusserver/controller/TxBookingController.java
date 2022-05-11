@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -40,10 +42,26 @@ public class TxBookingController {
     }
 
     @RequestMapping(value = "/company/appointment/get-all-not-assigned", method = RequestMethod.GET)
-    public List<TxBooking> getAllTxBookingsByCompanyIdAndAppointmentId(@RequestParam("companyId") int companyId, @RequestParam("appointmentId") int appointmentId) {
+    public List<TxBooking> getAllNotAssignedTxBookingsByCompanyIdAndAppointmentId(@RequestParam("companyId") int companyId, @RequestParam("appointmentId") int appointmentId) {
         return txBookingService.getAllTxBookingsByCompanyIdAndAppointmentId(companyId, appointmentId);
     }
 
+    @RequestMapping(value = "/company/get-all-not-assigned", method = RequestMethod.GET)
+    public List<TxBooking> getAllNotAssignedTxBookingsByCompanyId(@RequestParam("id") int companyId) {
+
+        List<TxBooking> txBookings = new ArrayList<>();
+        List<Appointment> appointments = appointmentService.getAllActiveAppointmentsByCompanyId(companyId);
+
+        for (Appointment appointment : appointments) {
+            LocalTime now = LocalTime.now();
+            long hours = ChronoUnit.HOURS.between(now, appointment.getAppointmentStartTime());
+            if (hours <= 3 && hours >= 0) {
+                txBookings.addAll(txBookingService.getAllTxBookingsByCompanyIdAndAppointmentId(companyId, appointment.getId()));
+            }
+        }
+
+        return txBookings;
+    }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public TxBooking getTxBookingById(@RequestParam("id") int txBookingId) {
@@ -104,7 +122,6 @@ public class TxBookingController {
             txBooking.setIsScanned(true);
             txBookingService.save(txBooking);
         }
-
 
         return result;
     }
