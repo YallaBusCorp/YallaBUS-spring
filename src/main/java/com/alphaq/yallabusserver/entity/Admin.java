@@ -1,5 +1,6 @@
 package com.alphaq.yallabusserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -24,6 +25,7 @@ public class Admin {
     private String username;
 
     @Column(name = "password", nullable = false)
+    //@JsonIgnore
     private String password;
 
     @Column(name = "access_token", nullable = true)

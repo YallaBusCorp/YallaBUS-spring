@@ -88,6 +88,12 @@ public class TxBookingController {
         return txBookingService.getTxBookingByIdAndCompanyId(txBookingId, companyId);
     }
 
+    @RequestMapping(value = "/get-current-by-stdId", method = RequestMethod.GET)
+    public TxBooking getCurrentTxBookingByStudentId(@RequestParam("id") int stdId) {
+        return txBookingService.getCurrentTxBookingByStudentId(stdId);
+    }
+
+
     @PostMapping("/save-txBooking")
     public TxBooking save(@RequestBody TxBookingDTO txBookingDTO) {
         TxBooking txBooking = new TxBooking();

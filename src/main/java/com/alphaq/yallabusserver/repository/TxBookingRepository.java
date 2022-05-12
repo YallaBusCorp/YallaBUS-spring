@@ -23,4 +23,5 @@ public interface TxBookingRepository extends JpaRepository<TxBooking, Integer> {
 
     TxBooking findTxBookingByQrCode(String qrCode);
 
+    TxBooking findTopByStdIdOrderByBookingDataDesc(int stdId);
 }
