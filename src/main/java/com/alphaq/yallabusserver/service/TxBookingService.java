@@ -38,8 +38,8 @@ public class TxBookingService {
         return repository.findTxBookingsByStdId(stdId);
     }
 
-    public TxBooking getCurrentTxBookingByStudentId(int stdId) {
-        return repository.findTopByStdIdOrderByBookingDataDesc(stdId);
+    public TxBooking getCurrentTxBookingByStudentUid(String stdUid) {
+        return repository.findTopByStdStdUidOrderByBookingDataDesc(stdUid);
     }
 
     public List<TxBooking> getAllTxBookingsByStudentIdAndIsScanned(int stdId, Boolean isScanned) {
