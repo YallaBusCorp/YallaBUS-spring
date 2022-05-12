@@ -50,6 +50,10 @@ public class TxBookingService {
         return repository.findTxBookingsByStd_CompanyIdAndAppointmentIdAndEmpIsNullAndBusIsNull(companyId, appointmentId);
     }
 
+    public List<TxBooking> getAllNotAssignedTxBookingsByCompanyId(int companyId) {
+        return repository.findTxBookingsByStd_CompanyIdAndEmpIsNullAndBusIsNull(companyId);
+    }
+
     public TxBooking getTxBookingByIdAndCompanyId(int txBookingId, int companyId) {
         return repository.findTxBookingByIdAndStd_CompanyId(txBookingId, companyId);
     }

@@ -62,7 +62,12 @@ public class TxBookingController {
     }
 
     @RequestMapping(value = "/company/get-all-not-assigned", method = RequestMethod.GET)
-    public List<TxBooking> getAllNotAssignedTxBookingsByCompanyId(@RequestParam("id") int companyId) {
+    public List<TxBooking> getAllNotAssignedTxBookingsByCompanyId(@RequestParam("companyId") int companyId) {
+        return txBookingService.getAllNotAssignedTxBookingsByCompanyId(companyId);
+    }
+
+    @RequestMapping(value = "/company/get-all-not-assigned-WithinDeadLine", method = RequestMethod.GET)
+    public List<TxBooking> getAllNotAssignedTxBookingsByCompanyIdWithinDeadLine(@RequestParam("id") int companyId) {
 
         List<TxBooking> txBookings = new ArrayList<>();
         List<Appointment> appointments = appointmentService.getAllActiveAppointmentsByCompanyId(companyId);
