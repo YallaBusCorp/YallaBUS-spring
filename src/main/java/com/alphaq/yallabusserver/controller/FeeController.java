@@ -101,7 +101,7 @@ public class FeeController {
 
     @RequestMapping(value = "/date/get-all", method = RequestMethod.GET)
     public List<Fee> getAllFeesByDateBetween(@RequestParam("startDate") String startLocalDateTime, @RequestParam("endDate") String endLocalDateTime) {
-        return feeService.getAllFeesByDateBetween(LocalDateTime.parse(startLocalDateTime),LocalDateTime.parse(endLocalDateTime));
+        return feeService.getAllFeesByDateBetween(LocalDateTime.parse(startLocalDateTime), LocalDateTime.parse(endLocalDateTime));
     }
 
     @PostMapping("/save-fee")
@@ -121,17 +121,15 @@ public class FeeController {
     }
 
     @PutMapping("/approve-by-fee-id")
-    public String approve(@RequestParam("feeId") int feeId, @RequestParam("isApproved") Boolean isApproved) {
+    public Boolean approve(@RequestParam("feeId") int feeId, @RequestParam("isApproved") Boolean isApproved) {
         Fee fee = feeService.getFeeById(feeId);
         fee.setIsApproved(isApproved);
         Boolean status = feeService.save(fee).getIsApproved();
 
-        if (isApproved && status)
-            return "Fee have been Approved";
-        if (!isApproved && !status)
-            return "Fee have been Refused";
+        if ((isApproved && status) || (!isApproved && !status))
+            return true;
 
-        return "There is an Error !";
+        return false;
     }
 
 
