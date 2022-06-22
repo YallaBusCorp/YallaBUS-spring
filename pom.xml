@@ -88,7 +88,7 @@
                 <configuration>
                     <executable>true</executable>
                     <jvmArguments>
-                        -Xms4096m
+                        -Xms900m
                         -Xmx1g
                     </jvmArguments>
                 </configuration>
