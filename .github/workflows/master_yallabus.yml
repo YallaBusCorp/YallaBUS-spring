@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'YallaBus'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7D9D77EBDEBB4138B471AA2E9A6A8144 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_49AAB5F1DE434DDCBFFF2E900F08E8D5 }}
           package: '*.jar'
