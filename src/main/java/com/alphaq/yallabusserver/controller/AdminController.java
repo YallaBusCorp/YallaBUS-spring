@@ -90,5 +90,4 @@ public class AdminController {
         admin.setPassword(adminDTO.getPassword());
         return adminService.save(admin);
     }
-
 }
