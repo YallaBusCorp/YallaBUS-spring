@@ -1,6 +1,7 @@
 package com.alphaq.yallabusserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -20,6 +21,7 @@ public class LkUniversity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     @JsonManagedReference()
+    @JsonIncludeProperties(value = {"id"})
     @Fetch(FetchMode.JOIN)
     private Company company;
 
