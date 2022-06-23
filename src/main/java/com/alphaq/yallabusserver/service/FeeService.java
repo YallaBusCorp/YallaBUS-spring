@@ -1,7 +1,6 @@
 package com.alphaq.yallabusserver.service;
 
 import com.alphaq.yallabusserver.entity.Fee;
-import com.alphaq.yallabusserver.entity.TxBus;
 import com.alphaq.yallabusserver.repository.FeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
