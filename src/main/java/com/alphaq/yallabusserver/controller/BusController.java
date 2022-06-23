@@ -78,4 +78,9 @@ public class BusController {
         return !busService.save(bus).getIsActive() ? true : false;
     }
 
+    @RequestMapping(value = "/get-count/company/active", method = RequestMethod.GET)
+    public int getCountByCompanyIdAndIsActive(@RequestParam("id") int companyId) {
+        return busService.getCountByCompanyIdAndIsActive(companyId);
+    }
+
 }

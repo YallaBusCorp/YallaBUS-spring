@@ -132,4 +132,9 @@ public class StudentController {
         return false;
     }
 
+    @RequestMapping(value = "/get-count/company/active", method = RequestMethod.GET)
+    public int getCountByCompanyIdAndIsActive(@RequestParam("id") int companyId) {
+        return studentService.getCountByCompanyIdAndIsActive(companyId);
+    }
+
 }

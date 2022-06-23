@@ -104,4 +104,9 @@ public class EmployeeController {
         return employee.getEmpEndDate() != null ? true : false;
     }
 
+    @RequestMapping(value = "/get-count/company/active", method = RequestMethod.GET)
+    public int getCountByCompanyIdAndIsActive(@RequestParam("id") int companyId) {
+        return employeeService.getCountByCompanyIdAndIsActive(companyId);
+    }
+
 }

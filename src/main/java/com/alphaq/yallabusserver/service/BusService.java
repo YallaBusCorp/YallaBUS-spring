@@ -50,4 +50,8 @@ public class BusService {
         return (int) repository.count();
     }
 
+    public int getCountByCompanyIdAndIsActive(int company_id) {
+        return repository.findCountByCompanyIdAndIsActive(company_id,true);
+    }
+
 }

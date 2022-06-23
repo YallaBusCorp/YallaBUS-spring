@@ -29,7 +29,7 @@ public class StudentService {
         return repository.findStudentsById(studentId);
     }
 
-    public Student getStudentByStdUid(String stdUid){
+    public Student getStudentByStdUid(String stdUid) {
         return repository.findStudentByStdUid(stdUid);
     }
 
@@ -37,12 +37,12 @@ public class StudentService {
         return repository.findStudentsByCompanyId(companyId);
     }
 
-    public List<Student> getAllActiveStudentsByCompanyId(int companyId){
-        return repository.findStudentsByCompanyIdAndIsActiveEquals(companyId,true);
+    public List<Student> getAllActiveStudentsByCompanyId(int companyId) {
+        return repository.findStudentsByCompanyIdAndIsActiveEquals(companyId, true);
 
     }
 
-    public int getCount() {
-        return (int) repository.count();
+    public int getCountByCompanyIdAndIsActive(int company_id) {
+         return repository.findCountByCompanyIdAndIsActive(company_id,true);
     }
 }

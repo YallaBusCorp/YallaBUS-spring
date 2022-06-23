@@ -62,8 +62,8 @@ public class EmployeeService {
         return repository.findEmployeeByIdAndEmpLkId(employeeId, lkEmployeeId);
     }
 
-    public int getCount() {
-        return (int) repository.count();
+    public int getCountByCompanyIdAndIsActive(int company_id) {
+        return repository.findCountByCompanyIdAndIsActive(company_id);
     }
 
 }
