@@ -19,7 +19,8 @@ public class LkTown {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     @JsonManagedReference()
-    @JsonIncludeProperties(value = {"id"})
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @Fetch(FetchMode.JOIN)
     private Company company;
 
