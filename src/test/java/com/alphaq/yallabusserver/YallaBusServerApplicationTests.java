@@ -105,46 +105,46 @@ class YallaBusServerApplicationTests {
     }
 
     //@Test
-    void addStudent() {
-        long company_id = 1;
-        long town_id = 2;
-        long university_id = 1;
-        Student student = new Student();
-        Company company = new Company();
-        LkTown lkTown = new LkTown();
-        LkUniversity lkUniversity = new LkUniversity();
-        int count = studentService.getCount();
-        List<Company> companies = companyService.getAllCompanies();
-        for (Company element : companies) {
-            if (element.getId() == company_id) {
-                company = element;
-                break;
-            }
-        }
-        List<LkTown> lkTowns = lkTownService.getAllLkTowns();
-        for (LkTown element : lkTowns) {
-            if (element.getId() == town_id) {
-                lkTown = element;
-                break;
-            }
-        }
-        List<LkUniversity> lkUniversities = lkUniversityService.getAllLkUniversities();
-        for (LkUniversity element : lkUniversities) {
-            if (element.getId() == university_id) {
-                lkUniversity = element;
-                break;
-            }
-        }
-        student.setId(++count);
-        student.setStdName("مصطفي ابراهيم عبدالباسط");
-        student.setStdPhone("01067893079");
-        student.setTown(lkTown);
-        student.setUniversity(lkUniversity);
-        student.setCompany(company);
-        student.setEndSubscriptionDate(LocalDate.now().plusDays(30));
-        student.setIsSubscribed(true);
-        studentService.save(student);
-    }
+//    void addStudent() {
+//        long company_id = 1;
+//        long town_id = 2;
+//        long university_id = 1;
+//        Student student = new Student();
+//        Company company = new Company();
+//        LkTown lkTown = new LkTown();
+//        LkUniversity lkUniversity = new LkUniversity();
+//        int count = studentService.getCount();
+//        List<Company> companies = companyService.getAllCompanies();
+//        for (Company element : companies) {
+//            if (element.getId() == company_id) {
+//                company = element;
+//                break;
+//            }
+//        }
+//        List<LkTown> lkTowns = lkTownService.getAllLkTowns();
+//        for (LkTown element : lkTowns) {
+//            if (element.getId() == town_id) {
+//                lkTown = element;
+//                break;
+//            }
+//        }
+//        List<LkUniversity> lkUniversities = lkUniversityService.getAllLkUniversities();
+//        for (LkUniversity element : lkUniversities) {
+//            if (element.getId() == university_id) {
+//                lkUniversity = element;
+//                break;
+//            }
+//        }
+//        student.setId(++count);
+//        student.setStdName("مصطفي ابراهيم عبدالباسط");
+//        student.setStdPhone("01067893079");
+//        student.setTown(lkTown);
+//        student.setUniversity(lkUniversity);
+//        student.setCompany(company);
+//        student.setEndSubscriptionDate(LocalDate.now().plusDays(30));
+//        student.setIsSubscribed(true);
+//        studentService.save(student);
+//    }
 
     //@Test
     void getAllStudents() {
