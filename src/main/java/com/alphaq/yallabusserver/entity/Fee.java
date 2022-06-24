@@ -19,13 +19,11 @@ public class Fee {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "bus_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Bus bus;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fees_lk_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private LKFee feesLk;
 
     @Column(name = "price", nullable = false)

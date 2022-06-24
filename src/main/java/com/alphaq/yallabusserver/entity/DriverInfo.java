@@ -21,7 +21,6 @@ public class DriverInfo {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "emp_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Employee emp;
 
     @Column(name = "driver_licence_number", nullable = false)

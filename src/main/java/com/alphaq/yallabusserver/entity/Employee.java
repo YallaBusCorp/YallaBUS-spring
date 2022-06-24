@@ -22,7 +22,6 @@ public class Employee {
     @JsonManagedReference()
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @Fetch(FetchMode.JOIN)
     private Company company;
 
     @Column(name = "emp_code", nullable = false)
@@ -43,7 +42,6 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "emp_lk_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private LkEmployee empLk;
 
     @Column(name = "emp_start_date")
@@ -54,27 +52,22 @@ public class Employee {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "emp")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Admin admin;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "emp")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private DriverInfo driverInfo;
 
     @OneToMany(mappedBy = "emp")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBus> txBuses = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "emp")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Salary> salaries = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "emp")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBooking> txBookings = new LinkedHashSet<>();
 
     public Set<TxBooking> getTxBookings() {

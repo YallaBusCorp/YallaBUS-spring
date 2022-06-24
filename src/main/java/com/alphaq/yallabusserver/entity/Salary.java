@@ -18,7 +18,6 @@ public class Salary {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "emp_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Employee emp;
 
     @Column(name = "emp_salary", nullable = false)

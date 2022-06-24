@@ -21,7 +21,6 @@ public class LkEmployee {
 
     @OneToMany(mappedBy = "empLk")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Employee> employees = new LinkedHashSet<>();
 
     public Set<Employee> getEmployees() {

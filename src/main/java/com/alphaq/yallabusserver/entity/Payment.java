@@ -18,7 +18,6 @@ public class Payment {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "std_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Student std;
 
     @Column(name = "payment_start_date", nullable = false)

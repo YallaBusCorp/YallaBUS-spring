@@ -46,7 +46,6 @@ public class Bus {
     @JsonManagedReference()
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @Fetch(FetchMode.JOIN)
     private Company company;
 
     @Column(name = "is_active", nullable = false)
@@ -54,17 +53,14 @@ public class Bus {
 
     @OneToMany(mappedBy = "bus")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Fee> fees = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "bus")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBus> txBuses = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "bus")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBooking> txBookings = new LinkedHashSet<>();
 
     public Boolean getActive() {

@@ -38,42 +38,34 @@ public class Company {
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Student> students = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<LkTown> lkTowns = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Employee> employees = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Appointment> appointments = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<LkUniversity> lkUniversities = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<MapPoint> mapPoints = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Bus> buses = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "company")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<SubscriptionPrice> subscriptionPrices = new LinkedHashSet<>();
 
     public Set<SubscriptionPrice> getSubscriptionPrices() {

@@ -26,7 +26,6 @@ public class LKFee {
 
     @OneToMany(mappedBy = "feesLk")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Fee> fees = new LinkedHashSet<>();
 
     public Set<Fee> getFees() {

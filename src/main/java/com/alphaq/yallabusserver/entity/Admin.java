@@ -19,7 +19,6 @@ public class Admin {
     @JsonManagedReference()
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @Fetch(FetchMode.JOIN)
     private Employee emp;
 
     @Column(name = "username", nullable = false)

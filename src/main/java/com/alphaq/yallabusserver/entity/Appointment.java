@@ -22,7 +22,6 @@ public class Appointment {
     @JsonManagedReference()
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @Fetch(FetchMode.JOIN)
     private Company company;
 
     @Column(name = "appointment_start_time", nullable = false)
@@ -36,7 +35,6 @@ public class Appointment {
 
     @OneToMany(mappedBy = "appointment")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBooking> txBookings = new LinkedHashSet<>();
 
     public Set<TxBooking> getTxBookings() {

@@ -22,19 +22,16 @@ public class Student {
     @JsonManagedReference()
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @Fetch(FetchMode.JOIN)
     private Company company;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "town_id")
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private LkTown town;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "university_id")
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private LkUniversity university;
 
     @Column(name = "std_name", nullable = false)
@@ -57,12 +54,10 @@ public class Student {
 
     @OneToMany(mappedBy = "std")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Payment> payments = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "std")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBooking> txBookings = new LinkedHashSet<>();
 
     public Set<TxBooking> getTxBookings() {

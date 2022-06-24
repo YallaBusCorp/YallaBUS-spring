@@ -40,17 +40,14 @@ public class MapPoint {
 //    @JsonIncludeProperties(value = {"id"})
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @Fetch(FetchMode.JOIN)
     private Company company;
 
     @OneToMany(mappedBy = "pickupPoint")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBooking> txPickBookings = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "dropoffPoint")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<TxBooking> txDropBookings = new LinkedHashSet<>();
 
     public Set<TxBooking> getTxPickBookings() {

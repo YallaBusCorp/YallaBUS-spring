@@ -21,7 +21,6 @@ public class LkTown {
     @JsonManagedReference()
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @Fetch(FetchMode.JOIN)
     private Company company;
 
     @Column(name = "town_name", nullable = false)
@@ -32,7 +31,6 @@ public class LkTown {
 
     @OneToMany(mappedBy = "town")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Student> students = new LinkedHashSet<>();
 
     public Set<Student> getStudents() {

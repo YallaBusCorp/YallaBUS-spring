@@ -31,37 +31,31 @@ public class TxBooking {
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "emp_id", nullable = true)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Employee emp;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "pickup_point_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private MapPoint pickupPoint;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "dropoff_point_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private MapPoint dropoffPoint;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "appointment_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Appointment appointment;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "bus_id", nullable = true)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Bus bus;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "std_id", nullable = false)
     @JsonManagedReference()
-    @Fetch(FetchMode.JOIN)
     private Student std;
 
     public Integer getId() {
