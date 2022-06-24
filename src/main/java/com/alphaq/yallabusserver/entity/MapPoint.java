@@ -34,12 +34,12 @@ public class MapPoint {
     @Column(name = "latitude", nullable = false)
     private Double latitude;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "company_id", nullable = false)
     @JsonManagedReference()
 //    @JsonIncludeProperties(value = {"id"})
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    //@JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
     @OneToMany(mappedBy = "pickupPoint")

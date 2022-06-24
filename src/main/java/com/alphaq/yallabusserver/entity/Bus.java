@@ -41,11 +41,11 @@ public class Bus {
     @Column(name = "bus_licence_expiration_date_alarm", nullable = false)
     private LocalDate busLicenceExpirationDateAlarm;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "company_id", nullable = false)
     @JsonManagedReference()
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    //@JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
     @Column(name = "is_active", nullable = false)
