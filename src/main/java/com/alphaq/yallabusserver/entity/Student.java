@@ -24,12 +24,12 @@ public class Student {
     @JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "town_id")
     @JsonManagedReference()
     private LkTown town;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "university_id")
     @JsonManagedReference()
     private LkUniversity university;

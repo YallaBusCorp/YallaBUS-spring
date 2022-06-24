@@ -15,7 +15,7 @@ public class Salary {
     @Column(name = "salary_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "emp_id", nullable = false)
     @JsonManagedReference()
     private Employee emp;

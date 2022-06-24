@@ -16,12 +16,12 @@ public class TxBus {
     @Column(name = "tx_bus_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "emp_id", nullable = false)
     @JsonManagedReference()
     private Employee emp;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "bus_id", nullable = false)
     @JsonManagedReference()
     private Bus bus;

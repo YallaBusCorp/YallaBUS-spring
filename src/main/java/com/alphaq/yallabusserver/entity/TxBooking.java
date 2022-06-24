@@ -28,32 +28,32 @@ public class TxBooking {
     @CreationTimestamp
     private LocalDateTime bookingData;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "emp_id", nullable = true)
     @JsonManagedReference()
     private Employee emp;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "pickup_point_id", nullable = false)
     @JsonManagedReference()
     private MapPoint pickupPoint;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "dropoff_point_id", nullable = false)
     @JsonManagedReference()
     private MapPoint dropoffPoint;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "appointment_id", nullable = false)
     @JsonManagedReference()
     private Appointment appointment;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "bus_id", nullable = true)
     @JsonManagedReference()
     private Bus bus;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "std_id", nullable = false)
     @JsonManagedReference()
     private Student std;

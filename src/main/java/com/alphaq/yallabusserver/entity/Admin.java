@@ -14,11 +14,9 @@ public class Admin {
     @Column(name = "admin_id", nullable = false)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "emp_id")
     @JsonManagedReference()
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private Employee emp;
 
     @Column(name = "username", nullable = false)

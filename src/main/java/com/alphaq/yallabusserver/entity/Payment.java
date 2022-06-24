@@ -15,7 +15,7 @@ public class Payment {
     @Column(name = "payment_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "std_id", nullable = false)
     @JsonManagedReference()
     private Student std;

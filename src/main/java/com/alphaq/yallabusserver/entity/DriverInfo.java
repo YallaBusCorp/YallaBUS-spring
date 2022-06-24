@@ -18,7 +18,7 @@ public class DriverInfo {
     @Column(name = "driver_info_id", nullable = false)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "emp_id", nullable = false)
     @JsonManagedReference()
     private Employee emp;
