@@ -20,8 +20,7 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     @JsonManagedReference()
-    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    //@JsonIdentityReference(alwaysAsId = true)
+    @JsonIncludeProperties(value = {"id"})
     private Company company;
 
     @Column(name = "appointment_start_time", nullable = false)

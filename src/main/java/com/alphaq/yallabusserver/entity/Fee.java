@@ -22,15 +22,11 @@ public class Fee {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "bus_id", nullable = false)
     @JsonManagedReference()
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
     private Bus bus;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "fees_lk_id", nullable = false)
     @JsonManagedReference()
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
     private LKFee feesLk;
 
     @Column(name = "price", nullable = false)

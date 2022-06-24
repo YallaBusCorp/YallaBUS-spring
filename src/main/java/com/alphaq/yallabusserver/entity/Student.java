@@ -20,8 +20,7 @@ public class Student {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     @JsonManagedReference()
-    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    //@JsonIdentityReference(alwaysAsId = true)
+    @JsonIncludeProperties(value = {"id"})
     private Company company;
 
     @ManyToOne(fetch = FetchType.EAGER)

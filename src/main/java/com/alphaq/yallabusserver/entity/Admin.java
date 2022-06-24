@@ -23,7 +23,6 @@ public class Admin {
     private String username;
 
     @Column(name = "password", nullable = false)
-    //@JsonIgnore
     private String password;
 
     @Column(name = "access_token", nullable = true)

@@ -19,8 +19,7 @@ public class LkUniversity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     @JsonManagedReference()
-    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    //@JsonIdentityReference(alwaysAsId = true)
+    @JsonIncludeProperties(value = {"id"})
     private Company company;
 
     @Column(name = "university_name", nullable = false)

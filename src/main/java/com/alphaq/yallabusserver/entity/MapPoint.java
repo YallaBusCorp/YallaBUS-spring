@@ -37,7 +37,7 @@ public class MapPoint {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "company_id", nullable = false)
     @JsonManagedReference()
-//    @JsonIncludeProperties(value = {"id"})
+    @JsonIncludeProperties(value = {"id"})
     //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     //@JsonIdentityReference(alwaysAsId = true)
     private Company company;

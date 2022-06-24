@@ -44,8 +44,7 @@ public class Bus {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "company_id", nullable = false)
     @JsonManagedReference()
-    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    //@JsonIdentityReference(alwaysAsId = true)
+    @JsonIncludeProperties(value = {"id"})
     private Company company;
 
     @Column(name = "is_active", nullable = false)
