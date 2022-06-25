@@ -99,6 +99,13 @@ public class TxRideController {
         return txRideService.save(txRide);
     }
 
+    @PutMapping("/canceled")
+    public TxRide canceled(@RequestParam("id") int rideId) {
+        TxRide txRide = txRideService.getTxRideById(rideId);
+        txRide.setRideStatus("canceled");
+        return txRideService.save(txRide);
+    }
+
     @PutMapping("/assign")
     public List<TxRide> assign(@RequestBody List<TxRideDTO> txRideDTOS) {
         List<TxRide> txRides = new ArrayList<>();
