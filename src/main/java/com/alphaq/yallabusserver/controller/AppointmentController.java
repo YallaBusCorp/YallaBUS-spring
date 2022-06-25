@@ -61,7 +61,7 @@ public class AppointmentController {
                     availableAppointments.add(appointment);
             }
         }
-        return appointments;
+        return availableAppointments;
     }
 
     @RequestMapping(value = "/company/active/get-all-am", method = RequestMethod.GET)
@@ -85,7 +85,7 @@ public class AppointmentController {
                     availableAppointments.add(appointment);
             }
         }
-        return appointments;
+        return availableAppointments;
     }
 
     @RequestMapping(value = "/company/available/get-all-pm", method = RequestMethod.GET)
@@ -99,7 +99,7 @@ public class AppointmentController {
                     availableAppointments.add(appointment);
             }
         }
-        return appointments;
+        return availableAppointments;
     }
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
