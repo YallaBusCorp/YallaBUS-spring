@@ -1,17 +1,16 @@
 package com.alphaq.yallabusserver.controller;
 
-import com.alphaq.yallabusserver.entity.DriverInfo;
-import com.alphaq.yallabusserver.entity.LkEmployee;
+import com.alphaq.yallabusserver.entity.*;
 import com.alphaq.yallabusserver.service.CompanyService;
 import com.alphaq.yallabusserver.service.EmployeeService;
 import com.alphaq.yallabusserver.dto.EmployeeDTO;
-import com.alphaq.yallabusserver.entity.Company;
-import com.alphaq.yallabusserver.entity.Employee;
 import com.alphaq.yallabusserver.service.LkEmployeeService;
+import com.alphaq.yallabusserver.service.TxRideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -25,6 +24,8 @@ public class EmployeeController {
     private CompanyService companyService;
     @Autowired
     LkEmployeeService lkEmployeeService;
+    @Autowired
+    TxRideService txRideService;
 
     @GetMapping
     public List<Employee> getAllEmployees() {
@@ -44,6 +45,24 @@ public class EmployeeController {
     @RequestMapping(value = "/company/supervisor/active", method = RequestMethod.GET)
     public List<Employee> getAllActiveSupervisorByCompanyId(@RequestParam("id") int companyId) {
         return employeeService.getAllActiveEmployeeByLkEmployeeAndCompanyId(2, companyId);
+    }
+
+    @RequestMapping(value = "/company/driver/available", method = RequestMethod.GET)
+    public List<Employee> getAllAvailableDriverByCompanyId(@RequestParam("id") int companyId) {
+        List<Employee> availableEmployees = new ArrayList<>();
+        List<Employee> employees = employeeService.getAllActiveEmployeeByLkEmployeeAndCompanyId(3, companyId);
+        List<TxRide> txRides = txRideService.getAllTxRidesByCompanyIdAndRideStatusEqualsAndEmpIsNotNullAndBusIsNotNull(companyId, "process");
+        boolean flag;
+        for (Employee employee : employees) {
+            flag = true;
+            for (TxRide txRide : txRides) {
+                if (employee.getId() == txRide.getEmp().getId())
+                    flag = false;
+            }
+            if (flag)
+                availableEmployees.add(employee);
+        }
+        return availableEmployees;
     }
 
     @RequestMapping(value = "/supervisor/get-by-id", method = RequestMethod.GET)
