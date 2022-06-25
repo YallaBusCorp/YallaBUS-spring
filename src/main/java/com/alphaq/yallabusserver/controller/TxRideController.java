@@ -85,6 +85,11 @@ public class TxRideController {
         return txRideService.getTxRideById(txRideId);
     }
 
+    @RequestMapping(value = "/get-current-by-busUid", method = RequestMethod.GET)
+    public TxRide getCurrentTxRideByBusUid(@RequestParam("uId") String busUid) {
+        return txRideService.getTxRideByBusBusUidAndRideStatus(busUid,"process");
+    }
+
     @PostMapping("/save-txRide")
     public TxRide save(@RequestBody TxRideDTO txRideDTO) {
         TxRide txRide = new TxRide();

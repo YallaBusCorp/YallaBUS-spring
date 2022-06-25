@@ -11,17 +11,12 @@ import java.util.List;
 public interface TxRideRepository extends JpaRepository<TxRide, Integer> {
 
     TxRide findTxRideById(int txRideId);
-
     TxRide findTxRideByIdAndAppointmentCompanyId(int txRideId, int companyId);
-
     List<TxRide> findTxRidesByAppointmentCompanyId(int companyId);
-
     List<TxRide> findTxRidesByRideData(LocalDate rideData);
-
     List<TxRide> findTxRidesByAppointmentCompanyIdAndRideData(int companyId,LocalDate rideData);
-
-
     List<TxRide> findTxRidesByAppointmentCompanyIdAndRideStatus(int companyId,String rideStatus);
     List<TxRide> findTxRidesByAppointmentCompanyIdAndRideStatusEqualsAndEmpIsNullAndBusIsNull(int companyId,String rideStatus);
     List<TxRide> findTxRidesByAppointmentCompanyIdAndRideStatusEqualsAndEmpIsNotNullAndBusIsNotNull(int companyId,String rideStatus);
+    TxRide findTxRideByBusBusUidAndRideStatus(String busUid,String rideStatus);
 }

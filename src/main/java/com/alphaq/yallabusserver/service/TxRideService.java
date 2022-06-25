@@ -63,6 +63,10 @@ public class TxRideService {
         return repository.findTxRideById(txRideId);
     }
 
+    public TxRide getTxRideByBusBusUidAndRideStatus(String busUid,String rideStatus){
+        return repository.findTxRideByBusBusUidAndRideStatus(busUid,rideStatus);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }
