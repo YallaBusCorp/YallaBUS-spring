@@ -1,9 +1,12 @@
 package com.alphaq.yallabusserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tx_ride", indexes = {
@@ -35,6 +38,10 @@ public class TxRide {
     @JoinColumn(name = "emp_id", nullable = true)
     @JsonManagedReference()
     private Employee emp;
+
+    @OneToMany(mappedBy = "txRide")
+    @JsonBackReference
+    private Set<TxBooking> txBookings = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;

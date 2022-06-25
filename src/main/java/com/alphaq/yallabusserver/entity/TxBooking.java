@@ -1,16 +1,13 @@
 package com.alphaq.yallabusserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "tx_booking", indexes = {
-        @Index(name = "TX_Booking_QR_code_uk", columnList = "QR_code", unique = true)
+        @Index(name = "TX_Booking_QR_code_uk", columnList = "qr_code", unique = true)
 })
 public class TxBooking {
     @Id
@@ -18,30 +15,14 @@ public class TxBooking {
     @Column(name = "tx_booking_id", nullable = false)
     private Integer id;
 
-    @Column(name = "QR_code", nullable = false)
-    private String qrCode;
-
-    @Column(name = "is_scanned", nullable = true)
-    private Boolean isScanned = false;
-
     @Column(name = "booking_data", nullable = false)
-    @CreationTimestamp
-    private LocalDateTime bookingData;
+    private Instant bookingData;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "emp_id", nullable = true)
-    @JsonManagedReference()
-    private Employee emp;
+    @Column(name = "is_scanned")
+    private Boolean isScanned;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "pickup_point_id", nullable = false)
-    @JsonManagedReference()
-    private MapPoint pickupPoint;
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "dropoff_point_id", nullable = false)
-    @JsonManagedReference()
-    private MapPoint dropoffPoint;
+    @Column(name = "qr_code", nullable = false)
+    private String qrCode;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "appointment_id", nullable = false)
@@ -54,9 +35,29 @@ public class TxBooking {
     private Bus bus;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "dropoff_point_id", nullable = false)
+    @JsonManagedReference()
+    private MapPoint dropoffPoint;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "emp_id", nullable = true)
+    @JsonManagedReference()
+    private Employee emp;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "pickup_point_id", nullable = false)
+    @JsonManagedReference()
+    private MapPoint pickupPoint;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "std_id", nullable = false)
     @JsonManagedReference()
     private Student std;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "tx_ride_id")
+    @JsonManagedReference()
+    private TxRide txRide;
 
     public Integer getId() {
         return id;
@@ -66,12 +67,12 @@ public class TxBooking {
         this.id = id;
     }
 
-    public String getQrCode() {
-        return qrCode;
+    public Instant getBookingData() {
+        return bookingData;
     }
 
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
+    public void setBookingData(Instant bookingData) {
+        this.bookingData = bookingData;
     }
 
     public Boolean getIsScanned() {
@@ -82,36 +83,12 @@ public class TxBooking {
         this.isScanned = isScanned;
     }
 
-    public LocalDateTime getBookingData() {
-        return bookingData;
+    public String getQrCode() {
+        return qrCode;
     }
 
-    public void setBookingData(LocalDateTime bookingData) {
-        this.bookingData = bookingData;
-    }
-
-    public Employee getEmp() {
-        return emp;
-    }
-
-    public void setEmp(Employee emp) {
-        this.emp = emp;
-    }
-
-    public MapPoint getPickupPoint() {
-        return pickupPoint;
-    }
-
-    public void setPickupPoint(MapPoint pickupPoint) {
-        this.pickupPoint = pickupPoint;
-    }
-
-    public MapPoint getDropoffPoint() {
-        return dropoffPoint;
-    }
-
-    public void setDropoffPoint(MapPoint dropoffPoint) {
-        this.dropoffPoint = dropoffPoint;
+    public void setQrCode(String qrCode) {
+        this.qrCode = qrCode;
     }
 
     public Appointment getAppointment() {
@@ -130,12 +107,44 @@ public class TxBooking {
         this.bus = bus;
     }
 
+    public MapPoint getDropoffPoint() {
+        return dropoffPoint;
+    }
+
+    public void setDropoffPoint(MapPoint dropoffPoint) {
+        this.dropoffPoint = dropoffPoint;
+    }
+
+    public Employee getEmp() {
+        return emp;
+    }
+
+    public void setEmp(Employee emp) {
+        this.emp = emp;
+    }
+
+    public MapPoint getPickupPoint() {
+        return pickupPoint;
+    }
+
+    public void setPickupPoint(MapPoint pickupPoint) {
+        this.pickupPoint = pickupPoint;
+    }
+
     public Student getStd() {
         return std;
     }
 
     public void setStd(Student std) {
         this.std = std;
+    }
+
+    public TxRide getTxRide() {
+        return txRide;
+    }
+
+    public void setTxRide(TxRide txRide) {
+        this.txRide = txRide;
     }
 
 }
