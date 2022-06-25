@@ -30,6 +30,8 @@ public class TxBookingController {
     StudentService studentService;
     @Autowired
     TxBusService txBusService;
+    @Autowired
+    TxRideService txRideService;
 
     @GetMapping
     public List<TxBooking> getAllTxBookings() {
@@ -121,12 +123,15 @@ public class TxBookingController {
         TxBooking txBooking;
         Employee employee;
         Bus bus;
+        TxRide txRide;
         for (TxBookingDTO txBookingDTO : txBookingDTOS) {
             txBooking = txBookingService.getTxBookingById(txBookingDTO.getId());
             employee = employeeService.getEmployeeById(txBookingDTO.getEmp().getId());
             bus = busService.getBusById(txBookingDTO.getBus().getId());
+            txRide = txRideService.getTxRideById(txBookingDTO.getTxRide().getId());
             txBooking.setEmp(employee);
             txBooking.setBus(bus);
+            txBooking.setTxRide(txRide);
             txBookings.add(txBooking);
         }
         return txBookingService.saveList(txBookings);
