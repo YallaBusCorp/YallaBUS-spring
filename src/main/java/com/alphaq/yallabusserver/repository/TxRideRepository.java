@@ -21,5 +21,6 @@ public interface TxRideRepository extends JpaRepository<TxRide, Integer> {
     List<TxRide> findTxRidesByAppointmentCompanyIdAndRideData(int companyId,LocalDate rideData);
 
     List<TxRide> findTxRidesByAppointmentCompanyIdAndRideStatus(int companyId,String rideStatus);
+    List<TxRide> findTxRidesByAppointmentCompanyIdAndRideStatusEqualsAndEmpIsNullAndBusIsNull(int companyId,String rideStatus);
 
 }

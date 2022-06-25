@@ -67,6 +67,11 @@ public class TxRideController {
         return txRideService.getAllTxRidesByCompanyIdAndRideStatus(companyId, "complete");
     }
 
+    @RequestMapping(value = "/company/get-rides-need-to-assign", method = RequestMethod.GET)
+    public List<TxRide> getAllRidesNeedToAssignByCompanyId(@RequestParam("id") int companyId) {
+        return txRideService.getAllTxRidesByCompanyIdAndRideStatusEqualsAndEmpIsNullAndBusIsNull(companyId, "process");
+    }
+
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public TxRide getTxRideById(@RequestParam("id") int txRideId) {
         return txRideService.getTxRideById(txRideId);
