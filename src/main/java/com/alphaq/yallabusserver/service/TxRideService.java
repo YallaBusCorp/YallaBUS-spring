@@ -51,6 +51,10 @@ public class TxRideService {
         return repository.findTxRidesByAppointmentCompanyIdAndRideStatusEqualsAndEmpIsNullAndBusIsNull(companyId,rideStatus);
     }
 
+    public List<TxRide> getAllTxRidesByCompanyIdAndRideStatusEqualsAndEmpIsNotNullAndBusIsNotNull(int companyId,String rideStatus){
+        return repository.findTxRidesByAppointmentCompanyIdAndRideStatusEqualsAndEmpIsNotNullAndBusIsNotNull(companyId,rideStatus);
+    }
+
     public TxRide checkExistenceTxRideInCompany(TxRide txRide, int companyId) {
         return repository.findTxRideByIdAndAppointmentCompanyId(txRide.getId(), companyId);
     }

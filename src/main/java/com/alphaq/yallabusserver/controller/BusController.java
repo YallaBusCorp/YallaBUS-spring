@@ -3,11 +3,14 @@ package com.alphaq.yallabusserver.controller;
 import com.alphaq.yallabusserver.dto.BusDTO;
 import com.alphaq.yallabusserver.entity.Bus;
 import com.alphaq.yallabusserver.entity.Company;
+import com.alphaq.yallabusserver.entity.TxRide;
 import com.alphaq.yallabusserver.service.BusService;
 import com.alphaq.yallabusserver.service.CompanyService;
+import com.alphaq.yallabusserver.service.TxRideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -19,6 +22,8 @@ public class BusController {
     private BusService busService;
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private TxRideService txRideService;
 
     @GetMapping
     public List<Bus> getAllBuses() {
@@ -43,6 +48,24 @@ public class BusController {
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
     public List<Bus> getAllActiveBusesByCompanyId(@RequestParam("id") int companyId) {
         return busService.getAllActiveBusesByCompanyId(companyId);
+    }
+
+    @RequestMapping(value = "/company/available", method = RequestMethod.GET)
+    public List<Bus> getAllAvailableBusesByCompanyId(@RequestParam("id") int companyId) {
+        List<Bus> availableBuses = new ArrayList<>();
+        List<Bus> buses = busService.getAllActiveBusesByCompanyId(companyId);
+        List<TxRide> txRides = txRideService.getAllTxRidesByCompanyIdAndRideStatusEqualsAndEmpIsNotNullAndBusIsNotNull(companyId, "process");
+        boolean flag;
+        for (Bus bus : buses) {
+            flag = true;
+            for (TxRide txRide : txRides) {
+                if (bus.getId() == txRide.getBus().getId())
+                    flag = false;
+            }
+            if (flag)
+                availableBuses.add(bus);
+        }
+        return availableBuses;
     }
 
     @PostMapping("/save-bus")
