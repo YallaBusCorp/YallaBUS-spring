@@ -23,6 +23,8 @@ public class TxRideController {
     private BusService busService;
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private TxBookingService txBookingService;
 
 
     @GetMapping
@@ -74,6 +76,12 @@ public class TxRideController {
 
     @RequestMapping(value = "/get-by-id", method = RequestMethod.GET)
     public TxRide getTxRideById(@RequestParam("id") int txRideId) {
+        return txRideService.getTxRideById(txRideId);
+    }
+
+    @RequestMapping(value = "/get-current-by-stdUid", method = RequestMethod.GET)
+    public TxRide getCurrentTxRideByStudentUid(@RequestParam("uId") String stdUid) {
+        Integer txRideId = txBookingService.getCurrentTxBookingByStudentUid(stdUid).getTxRide().getId();
         return txRideService.getTxRideById(txRideId);
     }
 
