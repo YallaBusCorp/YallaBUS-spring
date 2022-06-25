@@ -62,12 +62,24 @@ public class Bus {
     @JsonBackReference
     private Set<TxBooking> txBookings = new LinkedHashSet<>();
 
-    public Boolean getActive() {
-        return isActive;
+    @OneToMany(mappedBy = "bus")
+    @JsonBackReference
+    private Set<TxRide> txRides = new LinkedHashSet<>();
+
+    public Set<TxRide> getTxRides() {
+        return txRides;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setTxRides(Set<TxRide> txRides) {
+        this.txRides = txRides;
+    }
+
+    public Set<TxBooking> getTxBookings() {
+        return txBookings;
+    }
+
+    public void setTxBookings(Set<TxBooking> txBookings) {
+        this.txBookings = txBookings;
     }
 
     public Set<Fee> getFees() {

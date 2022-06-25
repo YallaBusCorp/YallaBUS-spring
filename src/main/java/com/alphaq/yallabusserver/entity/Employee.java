@@ -69,6 +69,18 @@ public class Employee {
     @JsonBackReference
     private Set<TxBooking> txBookings = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "emp")
+    @JsonBackReference
+    private Set<TxRide> txRides = new LinkedHashSet<>();
+
+    public Set<TxRide> getTxRides() {
+        return txRides;
+    }
+
+    public void setTxRides(Set<TxRide> txRides) {
+        this.txRides = txRides;
+    }
+
     public Set<TxBooking> getTxBookings() {
         return txBookings;
     }

@@ -38,8 +38,6 @@ public class MapPoint {
     @JoinColumn(name = "company_id", nullable = false)
     @JsonManagedReference()
     @JsonIncludeProperties(value = {"id"})
-    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    //@JsonIdentityReference(alwaysAsId = true)
     private Company company;
 
     @OneToMany(mappedBy = "pickupPoint")
