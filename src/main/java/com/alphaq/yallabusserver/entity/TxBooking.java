@@ -1,9 +1,11 @@
 package com.alphaq.yallabusserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tx_booking", indexes = {
@@ -15,8 +17,9 @@ public class TxBooking {
     @Column(name = "tx_booking_id", nullable = false)
     private Integer id;
 
-    @Column(name = "booking_data", nullable = false)
-    private Instant bookingData;
+    @Column(name = "booking_data", nullable = true)
+    @CreationTimestamp
+    private LocalDateTime bookingData;
 
     @Column(name = "is_scanned")
     private Boolean isScanned;
@@ -67,11 +70,11 @@ public class TxBooking {
         this.id = id;
     }
 
-    public Instant getBookingData() {
+    public LocalDateTime getBookingData() {
         return bookingData;
     }
 
-    public void setBookingData(Instant bookingData) {
+    public void setBookingData(LocalDateTime bookingData) {
         this.bookingData = bookingData;
     }
 

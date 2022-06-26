@@ -2,11 +2,12 @@ package com.alphaq.yallabusserver.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class TxBookingDTO {
     private Integer id;
-    private Instant bookingData;
+    private LocalDateTime bookingData;
     private Boolean isScanned;
     private String qrCode;
     private AppointmentDTO appointment;
@@ -20,7 +21,7 @@ public class TxBookingDTO {
     public TxBookingDTO() {
     }
 
-    public TxBookingDTO(Integer id, Instant bookingData, Boolean isScanned, String qrCode, AppointmentDTO appointment, BusDTO bus, MapPointDTO dropoffPoint, EmployeeDTO emp, MapPointDTO pickupPoint, StudentDTO std, TxRideDTO txRide) {
+    public TxBookingDTO(Integer id, LocalDateTime bookingData, Boolean isScanned, String qrCode, AppointmentDTO appointment, BusDTO bus, MapPointDTO dropoffPoint, EmployeeDTO emp, MapPointDTO pickupPoint, StudentDTO std, TxRideDTO txRide) {
         this.id = id;
         this.bookingData = bookingData;
         this.isScanned = isScanned;
@@ -38,7 +39,7 @@ public class TxBookingDTO {
         this.id = id;
     }
 
-    public void setBookingData(Instant bookingData) {
+    public void setBookingData(LocalDateTime bookingData) {
         this.bookingData = bookingData;
     }
 
@@ -82,7 +83,7 @@ public class TxBookingDTO {
         return id;
     }
 
-    public Instant getBookingData() {
+    public LocalDateTime getBookingData() {
         return bookingData;
     }
 
