@@ -70,4 +70,8 @@ public class TxBookingService {
         return (int) repository.count();
     }
 
+    public void delete(int txBookingId){
+        repository.deleteById(txBookingId);
+    }
+
 }

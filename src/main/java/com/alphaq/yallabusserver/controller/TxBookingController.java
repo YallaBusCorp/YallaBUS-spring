@@ -114,6 +114,7 @@ public class TxBookingController {
         txBooking.setDropoffPoint(dropoffPoint);
         txBooking.setAppointment(appointment);
         txBooking.setStd(student);
+        txBooking.setIsScanned(false);
         return txBookingService.save(txBooking);
     }
 
@@ -156,4 +157,11 @@ public class TxBookingController {
 
         return result;
     }
+
+    @DeleteMapping
+    public Boolean deleteEmployee(@RequestParam("id") int txBookingId) {
+        txBookingService.delete(txBookingId);
+        return true;
+    }
+
 }
