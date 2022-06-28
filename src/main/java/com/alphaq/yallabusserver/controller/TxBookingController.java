@@ -68,6 +68,12 @@ public class TxBookingController {
         return txBookingService.getAllNotAssignedTxBookingsByCompanyId(companyId);
     }
 
+    @RequestMapping(value = "/bus/get-current", method = RequestMethod.GET)
+    public List<TxBooking> getAllTxBookingsByBusBusUidAndTxRide(@RequestParam("uId") String busUid) {
+        TxRide txRide = txRideService.getTxRideByBusBusUidAndRideStatus(busUid,"process");
+        return txBookingService.getAllTxBookingsByBusBusUidAndTxRide(busUid,txRide.getId());
+    }
+
     @RequestMapping(value = "/company/get-all-not-assigned-WithinDeadLine", method = RequestMethod.GET)
     public List<TxBooking> getAllNotAssignedTxBookingsByCompanyIdWithinDeadLine(@RequestParam("id") int companyId) {
 
