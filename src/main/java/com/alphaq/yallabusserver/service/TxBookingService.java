@@ -55,7 +55,7 @@ public class TxBookingService {
     }
 
     public List<TxBooking> getAllTxBookingsByBusBusUidAndTxRide(String busUid,int txRideId){
-        return repository.findTxBookingsByBusBusUidAndTxRide(busUid,txRideId);
+        return repository.findTxBookingsByBusBusUidAndTxRideId(busUid,txRideId);
     }
 
     public TxBooking getTxBookingByIdAndCompanyId(int txBookingId, int companyId) {
