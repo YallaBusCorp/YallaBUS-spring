@@ -45,6 +45,11 @@ public class BusController {
         return busService.getBusByUId(busUid);
     }
 
+    @RequestMapping(value = "/get-by-phone", method = RequestMethod.GET)
+    public Bus getBusByPhone(@RequestParam("phone") String busPhone) {
+        return busService.getBusByPhone(busPhone);
+    }
+
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
     public List<Bus> getAllActiveBusesByCompanyId(@RequestParam("id") int companyId) {
         return busService.getAllActiveBusesByCompanyId(companyId);

@@ -46,6 +46,10 @@ public class BusService {
         return repository.findBusByBusUid(busUid);
     }
 
+    public Bus getBusByPhone(String busPhone){
+        return repository.findBusByPhone(busPhone);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }

@@ -12,6 +12,7 @@ public interface BusRepository extends JpaRepository<Bus, Integer> {
 
     Bus findBusById(int busId);
     Bus findBusByBusUid(String busUid);
+    Bus findBusByPhone(String busPhone);
     Bus findBusByIdAndCompanyId(int busId, int companyId);
     List<Bus> findBussByCompanyId(int companyId);
     List<Bus> findBusesByCompanyIdAndAndIsActiveEquals(int companyId,boolean isActive);
