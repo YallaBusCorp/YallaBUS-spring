@@ -47,7 +47,8 @@ public class BusController {
 
     @RequestMapping(value = "/get-by-phone", method = RequestMethod.GET)
     public Bus getBusByPhone(@RequestParam("phone") String busPhone) {
-        return busService.getBusByPhone(busPhone);
+        String phone = "+"+busPhone.trim();
+        return busService.getBusByPhone(phone);
     }
 
     @RequestMapping(value = "/company/active", method = RequestMethod.GET)
