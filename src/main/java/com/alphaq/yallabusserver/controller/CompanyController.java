@@ -30,6 +30,11 @@ public class CompanyController {
     public Company save(@RequestBody CompanyDTO companyDTO) {
         Company company = new Company();
         company.setCompanyName(companyDTO.getCompanyName());
+        company.setCompanyLocation(companyDTO.getCompanyLocation());
+        company.setCompanyPhone(companyDTO.getCompanyPhone());
+        company.setDescription(companyDTO.getDescription());
+        company.setFacebookURL(companyDTO.getFacebookURL());
+        company.setImgURL(companyDTO.getImgURL());
         return companyService.save(company);
     }
 
