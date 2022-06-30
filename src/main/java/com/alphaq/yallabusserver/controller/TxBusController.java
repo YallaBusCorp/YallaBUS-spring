@@ -72,6 +72,7 @@ public class TxBusController {
         if (bus.getCompany().getId() == employee.getCompany().getId() && employee.getEmpLk().getId() != 1) {
             txBus.setBus(bus);
             txBus.setEmp(employee);
+            txBus.setLoginDate(LocalDate.now());
         }
 
         return txBusService.save(txBus);

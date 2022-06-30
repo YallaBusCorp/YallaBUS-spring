@@ -6,6 +6,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,7 +29,7 @@ public class TxBus {
 
     @Column(name = "login_date")
     @CreationTimestamp
-    private LocalDateTime loginDate;
+    private LocalDate loginDate;
 
     public Integer getId() {
         return id;
@@ -54,11 +55,11 @@ public class TxBus {
         this.bus = bus;
     }
 
-    public LocalDateTime getLoginDate() {
+    public LocalDate getLoginDate() {
         return loginDate;
     }
 
-    public void setLoginDate(LocalDateTime loginDate) {
+    public void setLoginDate(LocalDate loginDate) {
         this.loginDate = loginDate;
     }
 
