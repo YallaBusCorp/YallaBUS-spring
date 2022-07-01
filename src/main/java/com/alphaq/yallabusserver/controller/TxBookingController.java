@@ -130,6 +130,18 @@ public class TxBookingController {
         return txBookingService.save(txBooking);
     }
 
+    @PutMapping("/edit-txBooking")
+    public TxBooking edit(@RequestBody TxBookingDTO txBookingDTO) {
+        TxBooking txBooking = txBookingService.getTxBookingById(txBookingDTO.getId());
+
+        Appointment appointment = appointmentService.getAppointmentById(txBookingDTO.getAppointment().getId());
+
+        txBooking.setQrCode(txBookingDTO.getQrCode());
+        txBooking.setAppointment(appointment);
+        txBooking.setIsScanned(false);
+        return txBookingService.save(txBooking);
+    }
+
     @PutMapping("/assign")
     public List<TxBooking> assign(@RequestBody List<TxBookingDTO> txBookingDTOS) {
         List<TxBooking> txBookings = new ArrayList<>();
